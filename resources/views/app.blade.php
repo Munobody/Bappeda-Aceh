@@ -114,6 +114,7 @@
     </style>
 </head>
 <body>
+    @include('/components/navbar')
     @include('/components/messages')
     <div class="container mx-auto py-16 flex flex-col lg:flex-row items-center hero-section">
         <div class="text-left flex-1 p-4 lg:p-10">
