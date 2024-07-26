@@ -77,6 +77,7 @@
           <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">Tentang</a></li>
           <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">Layanan</a></li>
           <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">Kontak</a></li>
+          
         </ul>
       </div>
       <div class="navbar-end">
