@@ -170,7 +170,7 @@
                             </ul>
                         </td>
                         <td class="py-2 px-4 border-b">
-                            <button class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600">Booking</button>
+                    <a href="/booking?id=1" class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600 inline-block text-center">Booking</a>
                         </td>
                     </tr>
                     <!-- Row 2 -->
@@ -197,7 +197,7 @@
                             </ul>
                         </td>
                         <td class="py-2 px-4 border-b">
-                            <button class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600">Booking</button>
+                        <a href="/booking?id=2" class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600 inline-block text-center">Booking</a>
                         </td>
                     </tr>
                     <!-- Row 3 -->
@@ -222,7 +222,7 @@
                             </ul>
                         </td>
                         <td class="py-2 px-4 border-b">
-                            <button class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600">Booking</button>
+                        <a href="/booking?id=3" class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600 inline-block text-center">Booking</a>
                         </td>
                     </tr>
                     <!-- Row 4 -->
@@ -247,7 +247,7 @@
                             </ul>
                         </td>
                         <td class="py-2 px-4 border-b">
-                            <button class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600">Booking</button>
+                        <a href="/booking?id=4" class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600 inline-block text-center">Booking</a>
                         </td>
                     </tr>
                     <!-- Row 5 -->
@@ -272,7 +272,7 @@
                             </ul>
                         </td>
                         <td class="py-2 px-4 border-b">
-                            <button class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600">Booking</button>
+                        <a href="/booking?id=5" class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600 inline-block text-center">Booking</a>
                         </td>
                     </tr>
                     <!-- Row 6 -->
@@ -296,7 +296,7 @@
                             </ul>
                         </td>
                         <td class="py-2 px-4 border-b">
-                            <button class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600">Booking</button>
+                        <a href="/booking?id=6" class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600 inline-block text-center">Booking</a>
                         </td>
                     </tr>
                     <!-- Row 7 -->
@@ -323,7 +323,7 @@
                             </ul>
                         </td>
                         <td class="py-2 px-4 border-b">
-                            <button class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600">Booking</button>
+                        <a href="/booking?id=7" class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600 inline-block text-center">Booking</a>
                         </td>
                     </tr>
                     <!-- Add more rows as needed -->
