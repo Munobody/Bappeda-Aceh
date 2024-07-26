@@ -6,10 +6,18 @@
   <title>Landing Page</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/daisyui@2.3.1/dist/full.css" rel="stylesheet">
+  <style>
+    .hero {
+      background-image: url('{{ asset('images/kantor.jpg') }}');
+      background-size: cover; /* Cover ensures the background image covers the entire element */
+      background-position: center; /* Center the image */
+      background-repeat: no-repeat; /* Prevent repeating the image */
+    }
+  </style>
 </head>
 <body>
   @include('components/navbar')
-  <div class="hero min-h-screen" style="background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp);">
+  <div class="hero min-h-screen">
     <div class="hero-overlay bg-opacity-60"></div>
     <div class="hero-content text-neutral-content text-center">
       <div class="max-w-md">

@@ -18,7 +18,7 @@
         }
 
         body {
-            background: linear-gradient(90deg, #fff 0%, #fff 100%);
+            background: linear-gradient(90deg, #55AD9B 0%, #95D2B3 100%);
             background-size: 400% 400%;
             animation: waveBackgroundAnimation 10s ease infinite;
         }
@@ -41,25 +41,30 @@
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 1s forwards;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for 3D effect */
         }
 
         .type-table th, .type-table td {
             border: 1px solid #ddd;
             padding: 8px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
 
         .type-table th {
             background-color: #f2f2f2;
             text-align: left;
+            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1); /* Inner shadow for header */
         }
 
         .type-table tr:nth-child(even) {
-            background-color: rgba(0, 0, 0, 0.05);
+            background: linear-gradient(to bottom, #f9f9f9, #ffffff);
         }
 
         .type-table tr:hover {
             background-color: rgba(0, 123, 255, 0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow on hover */
         }
 
         .type-table-container {
@@ -93,6 +98,15 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        /* Custom styles for 3D effect */
+        .chart-bar {
+            transition: all 0.3s ease;
+        }
+        .chart-bar:hover {
+            transform: scale(1.1); /* Slightly enlarge the bar on hover */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow for 3D effect */
         }
     </style>
 </head>
@@ -151,6 +165,7 @@
             }
 
             var backgroundColors = labels.map(getRandomColor);
+            var borderColors = backgroundColors.map(color => color.replace('0.7', '1'));
 
             var ctx = document.getElementById('myChart').getContext('2d');
 
@@ -162,8 +177,14 @@
                         label: 'Total Kendaraan',
                         data: merkTotals,
                         backgroundColor: backgroundColors,
-                        borderColor: backgroundColors.map(color => color.replace('0.7', '1')),
-                        borderWidth: 1
+                        borderColor: borderColors,
+                        borderWidth: 3, // Increase border width for better 3D effect
+                        backgroundColor: labels.map((_, index) => {
+                            var gradient = ctx.createLinearGradient(0, 0, 0, 400);
+                            gradient.addColorStop(0, backgroundColors[index]);
+                            gradient.addColorStop(1, 'rgba(0, 0, 0, 0.1)');
+                            return gradient;
+                        }),
                     }],
                 },
                 options: {
