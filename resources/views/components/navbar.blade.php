@@ -44,7 +44,7 @@
 </head>
 <body class="bg-white text-black">
   <div class="flex justify-center">
-    <div class="navbar bg-green-600 shadow-lg rounded-lg fixed top-0 z-10 py-2 px-5 max-w-screen-xl w-full mt-3">
+    <div class="navbar backdrop-blur-lg bg-white/60 shadow-lg rounded-lg fixed top-0 z-10 py-2 px-5 max-w-screen-xl w-full mt-3">
       <div class="navbar-start">
         <div class="dropdown">
           <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
@@ -72,7 +72,12 @@
         </div>
       </div>
       <div class="navbar-center">
-        <a class="btn btn-ghost text-lg font-semibold">BAPPEDA ACEH</a>
+        <ul class="navbar-menu hidden lg:flex lg:items-center lg:w-auto lg:space-x-6">
+          <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">Beranda</a></li>
+          <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">Tentang</a></li>
+          <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">Layanan</a></li>
+          <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">Kontak</a></li>
+        </ul>
       </div>
       <div class="navbar-end">
         <button class="btn btn-ghost btn-circle">
