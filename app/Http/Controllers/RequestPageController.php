@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class RequestPageController extends Controller
 {
-    public function showRequestPage()
+    public function showrequestpage()
     {
-        return view('Request');
+        return view('request');
     }
 }
