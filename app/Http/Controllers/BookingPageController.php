@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class BookingPageController extends Controller
 {
-    public function showBookingForm()
+    public function showbookingform()
     {
-        return view('Booking');
+        return view('booking');
     }
 }

@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class EditPageController extends Controller
 {
-    public function showEditPage()
+    public function showeditpage()
     {
-        return view('Edit');
+        return view('edit');
     }
 }

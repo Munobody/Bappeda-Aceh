@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class MeetingRoomPageController extends Controller
 {
-    public function showMeetingRoomPage()
+    public function showmeetingroompage()
     {
         return view('MeetingRoom');
     }
