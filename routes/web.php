@@ -9,6 +9,7 @@ use App\Http\Controllers\BookingPageController;
 use App\Http\Controllers\LoginPageController;
 use App\Http\Controllers\MeetingRoomPageController;
 use App\Http\Controllers\RoomPageController;
+use App\Http\Controllers\EditPageController;
 
 Route::get('/', function () {
     return view('app');
@@ -22,4 +23,5 @@ Route::get('/booking', [BookingPageController::class, 'showBookingForm']);
 Route::get('/login', [LoginPageController::class, 'showLoginPage']);
 Route::get('/MeetingRoom', [MeetingRoomPageController::class, 'showMeetingRoomPage']);
 Route::get('/Room', [RoomPageController::class, 'ShowRoomPage']);
+Route::get('/Edit', [EditPageController::class, 'ShowEditPage']);
 
