@@ -7,9 +7,10 @@
     <link rel="icon" href="{{ asset('images/pancacita.png') }}" type="image/x-icon">
     @vite('resources/css/app.css')
     <style>
-        body, html {
+        html, body {
             height: 100%;
             margin: 0;
+            padding: 0;
         }
 
         body {
@@ -32,14 +33,19 @@
             }
         }
 
-        .content {
+        .main-content {
             flex: 1;
+            padding: 2rem;
+            margin-top: 80px; /* Jarak agar tidak tertutup navbar */
         }
 
         .request-container {
             max-width: 1200px;
             margin: auto;
             padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .request-table {
@@ -68,6 +74,7 @@
             cursor: pointer;
             color: #ffffff;
             font-weight: bold;
+            margin: 0.25rem; /* Spasi antara tombol */
         }
 
         .approve {
@@ -97,8 +104,8 @@
 <body>
     @include('/components/navbar')
 
-    <div class="content">
-        <main class="request-container">
+    <div class="main-content">
+        <div class="request-container">
             <h1 class="text-3xl font-bold mb-6">View Room Booking Requests</h1>
 
             <table class="request-table">
@@ -118,8 +125,8 @@
                     <!-- Example row, repeat for each request -->
                     <tr>
                         <td>1</td>
-                        <td>Bidang Umum</td>
-                        <td>Rapat Peminjaman Barang</td>
+                        <td>Bidang A</td>
+                        <td>Deskripsi singkat</td>
                         <td>2024-08-01</td>
                         <td>10:00-12:00</td>
                         <td><a href="{{ asset('path/to/document.pdf') }}" target="_blank" class="text-blue-500">Lihat File</a></td>
@@ -132,7 +139,7 @@
                     <!-- End of example row -->
                 </tbody>
             </table>
-        </main>
+        </div>
     </div>
 
     <footer>
