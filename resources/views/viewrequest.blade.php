@@ -16,6 +16,7 @@
         body {
             display: flex;
             flex-direction: column;
+            min-height: 100vh; /* memastikan halaman minimal setinggi viewport */
             background: linear-gradient(90deg, #fff 0%, #fff 100%);
             background-size: 400% 400%;
             animation: waveBackgroundAnimation 10s ease infinite;
@@ -93,12 +94,14 @@
             background-color: #dc2626;
         }
 
-        footer {
+        /* footer {
             background: #f3f4f6;
             padding: 1rem;
             text-align: center;
             border-top: 1px solid #e5e7eb;
-        }
+            width: 100%; /* memastikan footer menggunakan lebar penuh */
+            flex-shrink: 0; /* mencegah footer mengecil saat konten utama lebih sedikit */
+        } */
     </style>
 </head>
 <body>
@@ -141,11 +144,7 @@
             </table>
         </div>
     </div>
-
-    <footer>
         @include('components/footer')
-    </footer>
-
     <script>
         function updateRequestStatus(requestId, status) {
             // Implement the logic to update request status, e.g., send AJAX request to server
