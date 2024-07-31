@@ -46,6 +46,12 @@
       const menu = document.getElementById('mobile-menu');
       menu.classList.toggle('hidden');
     }
+
+    // Function to toggle the admin dropdown menu
+    function toggleAdminMenu() {
+      const menu = document.getElementById('admin-menu');
+      menu.classList.toggle('hidden');
+    }
   </script>
 </head>
 <body class="bg-white text-black">
@@ -75,19 +81,20 @@
       </div>
 
       <div class="navbar-end flex items-center">
-        <button class="btn btn-ghost btn-circle">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-        </button>
-        <button class="btn btn-ghost btn-circle">
-          <div class="indicator">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+        <!-- Login Icon Dropdown -->
+        <div class="relative">
+          <button class="btn btn-ghost btn-circle" onclick="toggleAdminMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
-            <span class="badge badge-xs badge-primary indicator-item"></span>
+          </button>
+          <div id="admin-menu" class="hidden absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg">
+            <ul class="py-2">
+              <li><a href="/login" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Login as Admin</a></li>
+              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</a></li>
+            </ul>
           </div>
-        </button>
+        </div>
 
         <!-- Theme Dropdown -->
         <div class="dropdown dropdown-end">
