@@ -141,18 +141,14 @@
 <body>
     @include('/components/navbar')
     
-    <div class="container mx-auto py-12 flex flex-col lg:flex-row items-center justify-center hero-section">
-        <div class="text-left flex-1 p-4 lg:p-8">
+    <div class="container mx-auto py-12 flex flex-col lg:flex-row items-center justify-center hero-section p-12">
+        <div class="text-left flex-1 p-4 lg:p-12">
             <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4 animate-slideInLeft">Form Peminjaman Ruang Rapat</h1>
             <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8 animate-slideInLeft delay-500">BAPPEDA ACEH</h1>
-            <a href="/dashboard" class="bg-green-500 text-white py-3 px-8 rounded-full animate-bounce">Booking Meeting Room</a>
-        </div>
-        <div class="flex-1 text-center lg:text-right">
-            <img src="{{ asset('images/logo 2.png') }}" alt="Pemerintah Aceh Logo" class="mx-auto w-32 md:w-48 shadow-lg transform transition duration-300 hover:scale-105">
         </div>
     </div>
     
-    <div class="container mx-auto max-w-lg bg-white p-8 rounded-lg shadow-lg mb-12">
+    <div class="container mx-auto max-w-lg bg-white p-8 rounded-lg shadow-lg mb-16">
         <h2 class="text-2xl font-bold mb-6 text-gray-800">Form Peminjaman Ruang Rapat</h2>
         <form action="/submit-room-booking" method="POST" enctype="multipart/form-data">
             <!-- Nama Bidang atau Bagian -->

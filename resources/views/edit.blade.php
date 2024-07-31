@@ -125,6 +125,12 @@
         .form-container button:hover {
             background-color: #059669;
         }
+        
+        .edit-button {
+            background-color: #10b981; /* Green button color */
+            color: #ffffff;
+        }
+
     </style>
 </head>
 <body>
@@ -149,8 +155,8 @@
                 <div class="mb-4">
                     <label for="capacity" class="block text-gray-700">Kapasitas</label>
                     <input type="number" id="capacity" name="capacity" class="w-full p-2 border border-gray-300 rounded" required>
-                </div>
-                <button type="submit" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Submit</button>
+                </div class=".edit-button">
+                <button type="submit" class="bg-green-600 text-white p-2 rounded hover:bg-green-600">Submit</button>
             </form>
         </div>
     </main>
