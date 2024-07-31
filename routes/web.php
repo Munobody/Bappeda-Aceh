@@ -11,6 +11,8 @@ use App\Http\Controllers\MeetingRoomPageController;
 use App\Http\Controllers\RoomPageController;
 use App\Http\Controllers\ViewRequestPageController;
 use App\Http\Controllers\EditPageController;
+use App\Http\Controllers\HomePageController;
+
 Route::get('/', function () {
     return view('app');
 });
@@ -25,3 +27,4 @@ Route::get('/MeetingRoom', [MeetingRoomPageController::class, 'showmeetingroompa
 Route::get('/Room', [RoomPageController::class, 'showroompage']);
 Route::get('/viewrequest', [ViewRequestPageController::class, 'showviewrequestpage']);
 Route::get('/Edit', [EditPageController::class, 'showeditpage']);
+Route::get('/home', [HomePageController::class, 'showhomepage']);
