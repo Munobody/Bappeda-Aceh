@@ -18,7 +18,7 @@
         }
 
         body {
-            background: linear-gradient(90deg, #55AD9B 0%, #95D2B3 100%);
+            background: linear-gradient(90deg, #fff 0%, #fff 100%);
             background-size: 400% 400%;
             animation: waveBackgroundAnimation 10s ease infinite;
         }

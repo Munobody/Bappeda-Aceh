@@ -192,7 +192,7 @@
                                 echo "<td class='border border-slate-300 px-6 py-4 whitespace-nowrap'>" . $data[0] . "</td>"; // Display Name column
                                 echo "<td class='border border-slate-300 px-6 py-4 whitespace-nowrap'>" . $data[1] . "</td>"; // Display Asset column
                                 echo "<td class='border border-slate-300 px-6 py-4 whitespace-nowrap'>" . $data[2] . "</td>"; // Display Department column
-                                echo "<td class='border border-slate-300 px-6 py-4 whitespace-nowrap'>" . $data[3] . "</td>"; // Display Tahun column
+                                echo "<td class='border border-slate-300 px-6 py-4 whitespace-nowrap'>" . $data[6] . "</td>"; // Display Tahun column
                                 echo "</tr>";
                             }
                             $count++;
