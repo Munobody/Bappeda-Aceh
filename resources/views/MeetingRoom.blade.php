@@ -172,17 +172,14 @@
 <body>
     @include('/components/navbar') 
     <div class="container mx-auto py-12 flex flex-col lg:flex-row items-center justify-center hero-section">
-        <div class="text-left flex-1 p-4 lg:p-8">
+        <div class="text-left flex-1 p-4 lg:p-12">
             <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4 animate-slideInLeft">Halaman Admin Ruang Rapat</h1>
             <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8 animate-slideInLeft delay-500">BAPPEDA ACEH</h1>
-        </div>
-        <div class="flex-1 text-center lg:text-right">
-            <img src="{{ asset('images/logo 2.png') }}" alt="Pemerintah Aceh Logo" class="mx-auto w-32 md:w-48 shadow-lg transform transition duration-300 hover:scale-105">
         </div>
     </div>
 
     <!-- Table Section -->
-    <div class="container mx-auto py-6 px-4">
+    <div class="container mx-auto py-6 px-4 ">
         <div class="heading-button-container">
             <h2>Daftar Ruang Rapat</h2>
             <div class="button-container">
