@@ -179,11 +179,11 @@
     </div>
 
     <!-- Table Section -->
-    <div class="container mx-auto py-6 px-4 ">
+    <div class="container mx-auto py-6 px-4 mt-[-12rem] ">
         <div class="heading-button-container">
             <h2>Daftar Ruang Rapat</h2>
             <div class="button-container">
-                <a href="/create-room">Buat Ruang Rapat Baru</a>
+                <a href="/Room">Buat Ruang Rapat Baru</a>
             </div>
         </div>
         <div class="overflow-x-auto">
@@ -221,7 +221,7 @@
                             </ul>
                         </td>
                         <td class="py-2 px-4 border-b">
-                            <a href="/edit-room?id=1" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
+                            <a href="/Edit?id=1" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
                             <a href="/delete-room?id=1" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
                         </td>
                     </tr>
@@ -249,8 +249,8 @@
                             </ul>
                         </td>
                         <td class="py-2 px-4 border-b">
-                            <a href="/edit-room?id=1" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
-                            <a href="/delete-room?id=1" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
+                            <a href="/Edit?id=2" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
+                            <a href="/delete-room?id=2" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
                         </td>
                     </tr>
                     <!-- Row 3 -->
@@ -275,8 +275,8 @@
                             </ul>
                         </td>
                         <td class="py-2 px-4 border-b">
-                            <a href="/edit-room?id=1" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
-                            <a href="/delete-room?id=1" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
+                            <a href="/Edit?id=3" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
+                            <a href="/delete-room?id=3" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
                         </td>
                     </tr>
                     <!-- Row 4 -->
@@ -301,8 +301,8 @@
                             </ul>
                         </td>
                         <td class="py-2 px-4 border-b">
-                            <a href="/edit-room?id=1" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
-                            <a href="/delete-room?id=1" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
+                            <a href="/Edit?id=4" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
+                            <a href="/delete-room?id=4" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
                         </td>
                     </tr>
                     <!-- Row 5 -->
@@ -327,8 +327,8 @@
                             </ul>
                         </td>
                         <td class="py-2 px-4 border-b">
-                            <a href="/edit-room?id=1" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
-                            <a href="/delete-room?id=1" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
+                            <a href="/Edit?id=5" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
+                            <a href="/delete-room?id=5" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
                         </td>
                     </tr>
                     <!-- Row 6 -->
@@ -352,8 +352,8 @@
                             </ul>
                         </td>
                         <td class="py-2 px-4 border-b">
-                            <a href="/edit-room?id=1" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
-                            <a href="/delete-room?id=1" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
+                            <a href="/Edit?id=6" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
+                            <a href="/delete-room?id=6" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
                         </td>
                     </tr>
                     <!-- Row 7 -->
@@ -380,8 +380,8 @@
                             </ul>
                         </td>
                         <td class="py-2 px-4 border-b">
-                            <a href="/edit-room?id=1" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
-                            <a href="/delete-room?id=1" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
+                            <a href="/Edit?id=7" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
+                            <a href="/delete-room?id=7" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
                         </td>
                     </tr>
                     <!-- Add more rows as needed -->
