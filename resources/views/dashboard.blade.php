@@ -142,6 +142,13 @@
         </div>
     </div>
 
+    <div class="flex items-center justify-center min-h-screen">
+    <div class="flex flex-col items-center space-y-6">
+      <img src="{{ asset('images/visdat.jpeg') }}" alt="Example Image" class="shadow-lg rounded-lg w-180 h-auto mt-20">
+      <img src="{{ asset('images/visdat1.jpeg') }}" alt="Example Image" class="shadow-lg rounded-lg w-150 h-auto">
+    </div>
+  </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var data = @json($processedData); // Pass the processed data to the view
