@@ -19,7 +19,7 @@
           root.style.setProperty('--text-color', '#00000');
           break;
         case 'green':
-          root.style.setProperty('--bg-color', '#d3f9d8');
+          root.style.setProperty('--bg-color', '#2F8886');
           root.style.setProperty('--text-color', '#1b5e20');
           break;
         default:
