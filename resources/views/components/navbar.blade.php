@@ -73,10 +73,10 @@
 
       <div class="navbar-center hidden lg:flex">
         <ul class="navbar-menu flex items-center space-x-6">
-          <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">Beranda</a></li>
+          <li><a class="text-sm text-gray-700 hover:text-gray-900" href="/landingpage">Beranda</a></li>
           <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">Tentang</a></li>
-          <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">SI-IRA</a></li>
-          <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">Kontak</a></li>
+          <li><a href="/home" class="text-sm text-gray-700 hover:text-gray-900" href="#">SI-IRA</a></li>
+          <li><a class="text-sm text-gray-700 hover:text-gray-900" href="/">Data</a></li>
         </ul>
       </div>
 
@@ -118,7 +118,7 @@
         <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">Beranda</a></li>
         <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">Visualisasi</a></li>
         <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">SI-IRA</a></li>
-        <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">Kontak</a></li>
+        <li><a class="text-sm text-gray-700 hover:text-gray-900" href="/">Data</a></li>
       </ul>
     </div>
   </div>
