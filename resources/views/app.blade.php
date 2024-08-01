@@ -130,15 +130,8 @@
         </div>
     </div>
 
-    <div class="flex items-center justify-center min-h-screen">
-    <div class="flex flex-col items-center space-y-6">
-      <img src="{{ asset('images/visdat.jpeg') }}" alt="Example Image" class="shadow-lg rounded-lg w-180 h-auto mt-20">
-      <img src="{{ asset('images/visdat1.jpeg') }}" alt="Example Image" class="shadow-lg rounded-lg w-150 h-auto">
-    </div>
-  </div>
-
     <div class="container mx-auto text-center py-16">
-        <h2 class="text-2xl font-bold text-green-800 mb-4 shadow-2xl">Data Asset BAPPEDA ACEH</h2>
+        <h2 class="text-2xl font-bold text-green-800 mb-4 shadow-2xl"> Asset Transportasi BAPPEDA ACEH</h2>
     </div>
     <div class="overflow-x-auto px-4 lg:px-24 mb-16 scrollable-table">
         <table class="min-w-full divide-y divide-gray-200 shadow-2xl">
