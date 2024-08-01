@@ -1,4 +1,4 @@
-20<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -58,6 +58,26 @@
             }
         }
 
+        @keyframes checkmark {
+            0% {
+                stroke-dashoffset: 50px;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes modalFadeIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
         .animate-fadeIn {
             animation: fadeIn 1s ease-out;
         }
@@ -72,6 +92,20 @@
 
         .animate-bounce {
             animation: bounce 2s infinite;
+        }
+
+        .checkmark {
+            width: 200px; /* Perbesar ukuran checkmark */
+            height: 200px; /* Perbesar ukuran checkmark */
+            position: relative;
+            display: block;
+            stroke-width: 2;
+            stroke: #4CAF50;
+            fill: none;
+            margin: 0 auto 16px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            animation: checkmark 0.5s ease-in-out forwards;
         }
 
         [data-theme="dark"] {
@@ -136,12 +170,39 @@
             border-radius: 0.5rem;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+
+        .modal-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 40px; /* Perbesar padding modal */
+            border-radius: 15px; /* Perbesar border-radius modal */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transform: scale(0.8);
+            animation: modalFadeIn 0.5s ease-out forwards;
+        }
+
+        .blurred {
+            filter: blur(5px);
+        }
     </style>
 </head>
 <body>
     @include('/components/navbar')
     
-    <div class="container mx-auto py-12 flex flex-col lg:flex-row items-center justify-center hero-section p-12">
+    <div id="content" class="container mx-auto py-12 flex flex-col lg:flex-row items-center justify-center hero-section p-12">
         <div class="text-left flex-1 p-4 lg:p-12">
             <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4 animate-slideInLeft">Form Peminjaman Ruang Rapat</h1>
             <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8 animate-slideInLeft delay-500">BAPPEDA ACEH</h1>
@@ -150,7 +211,7 @@
     
     <div class="container mx-auto max-w-lg bg-white p-8 rounded-lg shadow-lg mb-16">
         <h2 class="text-2xl font-bold mb-6 text-gray-800">Form Peminjaman Ruang Rapat</h2>
-        <form action="/submit-room-booking" method="POST" enctype="multipart/form-data">
+        <form id="bookingForm" action="/submit-room-booking" method="POST" enctype="multipart/form-data">
             <!-- Nama Bidang atau Bagian -->
             <div class="mb-4">
                 <label for="nama-bidang" class="block text-gray-700 font-bold mb-2">Nama Bidang atau Bagian</label>
@@ -187,6 +248,32 @@
             </div>
         </form>
     </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal-bg">
+        <div class="modal-content">
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle cx="26" cy="26" r="25" fill="none" stroke-width="2"/>
+                <path fill="none" d="M14 27l7 7 17-17" stroke-width="2"/>
+            </svg>
+            <p class="text-lg text-green-800 font-bold">Peminjaman Berhasil!</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("bookingForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Mencegah perilaku submit default
+
+            // Tampilkan modal sukses
+            document.getElementById("successModal").style.display = "flex";
+            document.getElementById("content").classList.add("blurred");
+
+            // Redirect ke halaman lain setelah beberapa detik (misalnya 3 detik)
+            setTimeout(function() {
+                window.location.href = "/landingpage"; // Ganti "/halaman-baru" dengan URL yang diinginkan
+            }, 3000);
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     @vite('resources/js/app.js')
