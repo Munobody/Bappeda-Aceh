@@ -174,7 +174,61 @@
         </div>
     </div>
 </div>
-@include('home')
+<div class="container mx-auto py-12 mt-20">
+    <div class="text-center p-4">
+    <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4" style="text-shadow: 1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;">
+  Agenda Rapat
+</h1>
+<h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8" style="text-shadow: 1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;">
+  BAPPEDA ACEH
+</h1>
+    </div>
+
+    <ul class="timeline">
+      <li>
+        <div class="timeline-content">
+          <time>05 Agustus 2024, 15:00 - 17:00</time>
+          <div class="text-lg font-bold">Bidang Perencanaan</div>
+          <p>Rapat Sosialisasi Program Pembangunan</p>
+          <div class="location">Ruang Rapat Executive</div>
+        </div>
+      </li>
+      <li>
+        <div class="timeline-content">
+          <time>05 Agustus 2024, 08:00 - 10:00</time>
+          <div class="text-lg font-bold">Bidang Perencanaan</div>
+          <p>Rapat Penyusunan Rencana Kerja</p>
+          <div class="location">Ruang Rapat VIP</div>
+        </div>
+      </li>
+      <li>
+        <div class="timeline-content">
+          <time>04 Agustus 2024, 15:00 - 17:00</time>
+          <div class="text-lg font-bold">Bidang Perencanaan</div>
+          <p>Rapat Sosialisasi Program Pembangunan</p>
+          <div class="location">Ruang Rapat Executive</div>
+        </div>
+      </li>
+      <li>
+        <div class="timeline-content">
+          <time>03 Agustus 2024, 10:00 - 12:00</time>
+          <div class="text-lg font-bold">Bidang Kepegawaian</div>
+          <p>Rapat Evaluasi Rencana Pembangunan</p>
+          <div class="location">Ruang Rapat Utama</div>
+        </div>
+      </li>
+      <li>
+        <div class="timeline-content">
+          <time>02 Agustus 2024, 08:00 - 10:00</time>
+          <div class="text-lg font-bold">Bidang Umum</div>
+          <p>Peminjaman Barang Pegawai BAPPEDA</p>
+          <div class="location">Ruang Rapat VIP</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  @include('components/footer')
 
 </body>
 </html>
