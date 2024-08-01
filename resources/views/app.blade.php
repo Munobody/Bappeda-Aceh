@@ -130,26 +130,12 @@
         </div>
     </div>
 
-    @include('components/carousel')
-
-    <div class="container mx-auto text-center p-4">
-        <h2 class="text-2xl font-bold text-green-800 mb-4">Some count that matters</h2>
-        <p class="text-gray-600 mb-8">Our achievement in the journey depicted in numbers</p>
-        <div class="flex flex-wrap justify-center space-x-0 lg:space-x-16 text-green-800">
-            <div class="text-center mb-6 w-1/2 lg:w-auto">
-                <div class="text-4xl font-bold">192</div>
-                <div>Pegawai</div>
-            </div>
-            <div class="text-center mb-6 w-1/2 lg:w-auto">
-                <div class="text-4xl font-bold">300+</div>
-                <div>Taken business legalities</div>
-            </div>
-            <div class="text-center w-1/2 lg:w-auto">
-                <div class="text-4xl font-bold">50</div>
-                <div>Years of Journey</div>
-            </div>
-        </div>
+    <div class="flex items-center justify-center min-h-screen">
+    <div class="flex flex-col items-center space-y-6">
+      <img src="{{ asset('images/visdat.jpeg') }}" alt="Example Image" class="shadow-lg rounded-lg w-180 h-auto mt-20">
+      <img src="{{ asset('images/visdat1.jpeg') }}" alt="Example Image" class="shadow-lg rounded-lg w-150 h-auto">
     </div>
+  </div>
 
     <div class="container mx-auto text-center py-16">
         <h2 class="text-2xl font-bold text-green-800 mb-4 shadow-2xl">Data Asset BAPPEDA ACEH</h2>
