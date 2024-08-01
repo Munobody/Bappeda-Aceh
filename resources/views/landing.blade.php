@@ -174,62 +174,7 @@
         </div>
     </div>
 </div>
-
-
-
-  <!-- Timeline Section -->
-  <div class="container mx-auto py-12 flex flex-col items-center justify-center hero-section">
-    <div class="text-center p-4">
-      <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4 animate-slideInLeft">Agenda Rapat</h1>
-      <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8 animate-slideInLeft delay-500">BAPPEDA ACEH</h1>
-      <a href="/request" class="bg-green-500 text-white py-3 px-8 rounded-full animate-bounce">Booking Meeting Room</a>
-    </div>
-
-    <ul class="timeline">
-      <li>
-        <div class="timeline-content">
-          <time>05 Agustus 2024, 15:00 - 17:00</time>
-          <div class="text-lg font-bold">Bidang Perencanaan</div>
-          <p>Rapat Sosialisasi Program Pembangunan</p>
-          <div class="location">Ruang Rapat Executive</div>
-        </div>
-      </li>
-      <li>
-        <div class="timeline-content">
-          <time>05 Agustus 2024, 08:00 - 10:00</time>
-          <div class="text-lg font-bold">Bidang Perencanaan</div>
-          <p>Rapat Penyusunan Rencana Kerja</p>
-          <div class="location">Ruang Rapat VIP</div>
-        </div>
-      </li>
-      <li>
-        <div class="timeline-content">
-          <time>04 Agustus 2024, 15:00 - 17:00</time>
-          <div class="text-lg font-bold">Bidang Perencanaan</div>
-          <p>Rapat Sosialisasi Program Pembangunan</p>
-          <div class="location">Ruang Rapat Executive</div>
-        </div>
-      </li>
-      <li>
-        <div class="timeline-content">
-          <time>03 Agustus 2024, 10:00 - 12:00</time>
-          <div class="text-lg font-bold">Bidang Kepegawaian</div>
-          <p>Rapat Evaluasi Rencana Pembangunan</p>
-          <div class="location">Ruang Rapat Utama</div>
-        </div>
-      </li>
-      <li>
-        <div class="timeline-content">
-          <time>02 Agustus 2024, 08:00 - 10:00</time>
-          <div class="text-lg font-bold">Bidang Umum</div>
-          <p>Peminjaman Barang Pegawai BAPPEDA</p>
-          <div class="location">Ruang Rapat VIP</div>
-        </div>
-      </li>
-    </ul>
-  </div>
-
-  @include('components/footer')
+@include('home')
 
 </body>
 </html>
