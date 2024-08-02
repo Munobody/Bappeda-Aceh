@@ -210,10 +210,10 @@
             document.body.setAttribute('data-theme', savedTheme);
             
             // Set the toggle's checked status based on the saved theme
-            themeToggle.checked = (savedTheme === 'dark');
-            
-            // Add event listener to toggle theme on change
-            themeToggle.addEventListener('change', toggleTheme);
+            if (themeToggle) {
+                themeToggle.checked = (savedTheme === 'dark');
+                themeToggle.addEventListener('change', toggleTheme);
+            }
         });
     </script>
 </body>

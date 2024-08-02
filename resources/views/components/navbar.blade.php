@@ -19,7 +19,7 @@
           root.style.setProperty('--text-color', '#00000');
           break;
         case 'green':
-          root.style.setProperty('--bg-color', '#d3f9d8');
+          root.style.setProperty('--bg-color', '#2F8886');
           root.style.setProperty('--text-color', '#1b5e20');
           break;
         default:
@@ -73,8 +73,6 @@
 
       <div class="navbar-center hidden lg:flex">
         <ul class="navbar-menu flex items-center space-x-6">
-          <li><a class="text-sm text-gray-700 hover:text-gray-900" href="/landingpage">Beranda</a></li>
-          <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">Tentang</a></li>
           <li><a href="/home" class="text-sm text-gray-700 hover:text-gray-900" href="#">SI-IRA</a></li>
           <li><a class="text-sm text-gray-700 hover:text-gray-900" href="/">Data</a></li>
         </ul>
@@ -119,8 +117,6 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden lg:hidden absolute top-16 left-0 w-full bg-green-100 shadow-lg rounded-lg mt-2 z-20">
       <ul class="menu p-2 flex flex-col space-y-2">
-        <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">Beranda</a></li>
-        <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">Visualisasi</a></li>
         <li><a class="text-sm text-gray-700 hover:text-gray-900" href="#">SI-IRA</a></li>
         <li><a class="text-sm text-gray-700 hover:text-gray-900" href="/">Data</a></li>
       </ul>
