@@ -38,16 +38,22 @@
       position: relative;
       width: 50%;
       padding: 1rem;
+      opacity: 0; /* Start hidden */
+      transform: translateY(50px) scale(0.95); /* Initial slide-in and scale effect */
+      animation: fadeInSlideUpScale 1s forwards; /* Apply animation */
+      animation-delay: calc(0.3s * var(--i)); /* Stagger animation delay */
     }
 
     .timeline li:nth-child(odd) {
       left: 0;
       text-align: right;
+      transform-origin: right center; /* Transform origin for odd items */
     }
 
     .timeline li:nth-child(even) {
       left: 50%;
       text-align: left;
+      transform-origin: left center; /* Transform origin for even items */
     }
 
     .timeline li::before {
@@ -121,21 +127,6 @@
       opacity: 1;
     }
 
-    .animate-slideInLeft {
-      animation: slideInLeft 1s ease-out;
-    }
-
-    @keyframes slideInLeft {
-      0% {
-        transform: translateX(-100%);
-        opacity: 0;
-      }
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
     .animate-bounce {
       animation: bounce 1s infinite;
     }
@@ -151,7 +142,21 @@
         transform: translateY(-15px);
       }
     }
-    
+
+    @keyframes fadeInSlideUpScale {
+      0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+      }
+      50% {
+        opacity: 0.5;
+        transform: translateY(-10px) scale(1.02);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
     
   </style>
 </head>
@@ -160,33 +165,33 @@
   <!-- Timeline Section -->
   <div class="container mx-auto py-12 mt-20">
     <div class="text-center p-4">
-    <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4" style="text-shadow: 1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;">
-  Agenda Rapat
-</h1>
-<h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8" style="text-shadow: 1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;">
-  BAPPEDA ACEH
-</h1>
+      <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4" style="text-shadow: 1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;">
+        Agenda Rapat
+      </h1>
+      <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8" style="text-shadow: 1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;">
+        BAPPEDA ACEH
+      </h1>
       <a href="/request" class="bg-green-500 text-white py-3 px-8 rounded-full animate-bounce">Booking Meeting Room</a>
     </div>
 
     <ul class="timeline">
-      <li>
+      <li style="--i: 1;">
         <div class="timeline-content">
-          <time>05 Agustus 2024, 15:00 - 17:00</time>
+          <time>02 Agustus 2024, 15:00 - 17:00</time>
           <div class="text-lg font-bold">Bidang Perencanaan</div>
           <p>Rapat Sosialisasi Program Pembangunan</p>
           <div class="location">Ruang Rapat Executive</div>
         </div>
       </li>
-      <li>
+      <li style="--i: 2;">
         <div class="timeline-content">
-          <time>05 Agustus 2024, 08:00 - 10:00</time>
+          <time>03 Agustus 2024, 08:00 - 10:00</time>
           <div class="text-lg font-bold">Bidang Perencanaan</div>
           <p>Rapat Penyusunan Rencana Kerja</p>
           <div class="location">Ruang Rapat VIP</div>
         </div>
       </li>
-      <li>
+      <li style="--i: 3;">
         <div class="timeline-content">
           <time>04 Agustus 2024, 15:00 - 17:00</time>
           <div class="text-lg font-bold">Bidang Perencanaan</div>
@@ -194,17 +199,17 @@
           <div class="location">Ruang Rapat Executive</div>
         </div>
       </li>
-      <li>
+      <li style="--i: 4;">
         <div class="timeline-content">
-          <time>03 Agustus 2024, 10:00 - 12:00</time>
+          <time>05 Agustus 2024, 10:00 - 12:00</time>
           <div class="text-lg font-bold">Bidang Kepegawaian</div>
           <p>Rapat Evaluasi Rencana Pembangunan</p>
           <div class="location">Ruang Rapat Utama</div>
         </div>
       </li>
-      <li>
+      <li style="--i: 5;">
         <div class="timeline-content">
-          <time>02 Agustus 2024, 08:00 - 10:00</time>
+          <time>06 Agustus 2024, 08:00 - 10:00</time>
           <div class="text-lg font-bold">Bidang Umum</div>
           <p>Peminjaman Barang Pegawai BAPPEDA</p>
           <div class="location">Ruang Rapat VIP</div>
