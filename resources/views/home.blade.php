@@ -32,6 +32,7 @@
       bottom: 0;
       width: 2px;
       background-color: #d1d5db; /* Gray-300 */
+      animation: draw 2s ease-out forwards; /* Animate the line */
     }
 
     .timeline li {
@@ -155,6 +156,15 @@
       100% {
         opacity: 1;
         transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes draw {
+      0% {
+        height: 0;
+      }
+      100% {
+        height: 100%;
       }
     }
     
