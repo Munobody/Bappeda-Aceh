@@ -9,7 +9,6 @@
   <link href="https://cdn.jsdelivr.net/npm/daisyui@2.3.1/dist/full.css" rel="stylesheet">
   <style>
     .hero {
-      background-image: url('{{ asset('images/kantor.jpg') }}');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -101,6 +100,57 @@
       font-size: 0.875rem;
     }
 
+    .timeline .timeline-content .description {
+      margin: 1rem 0;
+    }
+
+    .waiting-list {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    .waiting-list-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 0.75rem; /* Rounded corners */
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    }
+
+    .waiting-list-table th, .waiting-list-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #d1d5db; /* Gray-300 */
+    }
+
+    .waiting-list-table th {
+      background-color: #34d399; /* Green-400 */
+      color: #fff;
+    }
+
+    .waiting-list-table tr:nth-child(even) {
+      background-color: #d1fae5; /* Green-100 */
+    }
+
+    .waiting-list-table td {
+      font-size: 0.875rem;
+      color: #4b5563; /* Gray-700 */
+    }
+
+    .waiting-list-table .department {
+      font-weight: bold;
+      color: #2d3748; /* Gray-800 */
+    }
+
+    .waiting-list-table .date {
+      color: #4f46e5; /* Indigo-500 */
+    }
+
+    .waiting-list-table .time {
+      color: #22c55e; /* Green-500 */
+    }
+
     .tooltip {
       position: relative;
       display: inline-block;
@@ -167,68 +217,101 @@
         height: 100%;
       }
     }
-    
   </style>
 </head>
 <body>
-  @include('components/navbar')
-  <!-- Timeline Section -->
-  <div class="container mx-auto py-12 mt-20">
-    <div class="text-center p-4">
-      <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4" style="text-shadow: 1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;">
-        Agenda Rapat
-      </h1>
-      <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8" style="text-shadow: 1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;">
-        BAPPEDA ACEH
-      </h1>
-      <a href="/request" class="bg-green-500 text-white py-3 px-8 rounded-full animate-bounce">Booking Meeting Room</a>
+@include('/components/navbar') 
+<div class="container mx-auto py-12 flex items-center justify-center hero-section">
+    <div class="text-center flex-1 p-4 lg:p-12">
+        <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4 animate-slideInLeft">Si - IRA</h1>
+        <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8 animate-slideInLeft delay-500">BAPPEDA ACEH</h1>
     </div>
+</div>
+
+ 
 
     <ul class="timeline">
-      <li style="--i: 1;">
+      <li style="--i: 1">
         <div class="timeline-content">
-          <time>02 Agustus 2024, 15:00 - 17:00</time>
-          <div class="text-lg font-bold">Bidang Perencanaan</div>
-          <p>Rapat Sosialisasi Program Pembangunan</p>
-          <div class="location">Ruang Rapat Executive</div>
+          <time datetime="2024-08-02">02 Agustus 2024</time>
+          <h2 class="text-xl font-bold">Rapat Koordinasi</h2>
+          <p class="location">Ruang Rapat 1</p>
+          <p class="description">Deskripsi rapat koordinasi dengan pihak terkait mengenai rencana anggaran.</p>
         </div>
       </li>
-      <li style="--i: 2;">
+      <li style="--i: 2">
         <div class="timeline-content">
-          <time>03 Agustus 2024, 08:00 - 10:00</time>
-          <div class="text-lg font-bold">Bidang Perencanaan</div>
-          <p>Rapat Penyusunan Rencana Kerja</p>
-          <div class="location">Ruang Rapat VIP</div>
+          <time datetime="2024-08-05">05 Agustus 2024</time>
+          <h2 class="text-xl font-bold">Evaluasi Proyek</h2>
+          <p class="location">Ruang Rapat 2</p>
+          <p class="description">Evaluasi perkembangan proyek yang sedang berlangsung dan perencanaan kedepannya.</p>
         </div>
       </li>
-      <li style="--i: 3;">
+      <li style="--i: 3">
         <div class="timeline-content">
-          <time>04 Agustus 2024, 15:00 - 17:00</time>
-          <div class="text-lg font-bold">Bidang Perencanaan</div>
-          <p>Rapat Sosialisasi Program Pembangunan</p>
-          <div class="location">Ruang Rapat Executive</div>
+          <time datetime="2024-08-10">10 Agustus 2024</time>
+          <h2 class="text-xl font-bold">Rapat Konsultasi</h2>
+          <p class="location">Ruang Rapat 3</p>
+          <p class="description">Konsultasi dengan para ahli mengenai kebijakan dan strategi pengembangan.</p>
         </div>
       </li>
-      <li style="--i: 4;">
+      <li style="--i: 4">
         <div class="timeline-content">
-          <time>05 Agustus 2024, 10:00 - 12:00</time>
-          <div class="text-lg font-bold">Bidang Kepegawaian</div>
-          <p>Rapat Evaluasi Rencana Pembangunan</p>
-          <div class="location">Ruang Rapat Utama</div>
-        </div>
-      </li>
-      <li style="--i: 5;">
-        <div class="timeline-content">
-          <time>06 Agustus 2024, 08:00 - 10:00</time>
-          <div class="text-lg font-bold">Bidang Umum</div>
-          <p>Peminjaman Barang Pegawai BAPPEDA</p>
-          <div class="location">Ruang Rapat VIP</div>
+          <time datetime="2024-08-15">15 Agustus 2024</time>
+          <h2 class="text-xl font-bold">Penyusunan Rencana</h2>
+          <p class="location">Ruang Rapat 4</p>
+          <p class="description">Penyusunan rencana kerja untuk bulan berikutnya.</p>
         </div>
       </li>
     </ul>
   </div>
 
-  @include('components/footer')
-
+  <!-- Waiting List Section -->
+  <div class="waiting-list container mx-auto py-12">
+    <h2 class="text-2xl md:text-4xl font-bold mb-8 text-green-800 text-center">Waiting List</h2>
+    <table class="waiting-list-table mx-auto">
+      <thead>
+        <tr>
+          <th class="text-left">No.</th>
+          <th class="text-left">Nama Departemen</th>
+          <th class="text-left">Tanggal</th>
+          <th class="text-left">Waktu</th>
+          <th class="text-left">Deskripsi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Example rows -->
+        <tr>
+          <td>1</td>
+          <td class="department">Departemen A</td>
+          <td class="date">01 Agustus 2024</td>
+          <td class="time">08:00 - 10:00</td>
+          <td>Rapat internal untuk evaluasi.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td class="department">Departemen B</td>
+          <td class="date">03 Agustus 2024</td>
+          <td class="time">10:00 - 12:00</td>
+          <td>Diskusi proyek baru.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td class="department">Departemen C</td>
+          <td class="date">07 Agustus 2024</td>
+          <td class="time">13:00 - 15:00</td>
+          <td>Rapat persiapan event.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td class="department">Departemen D</td>
+          <td class="date">09 Agustus 2024</td>
+          <td class="time">15:00 - 17:00</td>
+          <td>Review dan perencanaan strategi.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
+@include('components/footer')
 </html>
