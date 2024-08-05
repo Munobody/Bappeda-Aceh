@@ -150,6 +150,14 @@
                     <label for="capacity" class="block text-gray-700">Kapasitas</label>
                     <input type="number" id="capacity" name="capacity" class="w-full p-2 border border-gray-300 rounded" required>
                 </div>
+                <div class="mb-4">
+                    <label for="operator" class="block text-gray-700">operator</label>
+                    <input type="text" id="operator" name="operator" class="w-full p-2 border border-gray-300 rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label for="cs" class="block text-gray-700">CS</label>
+                    <input type="text" id="cs" name="cs" class="w-full p-2 border border-gray-300 rounded" required>
+                </div>
                 <button type="submit" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Submit</button>
             </form>
         </div>

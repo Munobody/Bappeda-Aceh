@@ -84,8 +84,10 @@
       position: relative;
       margin-bottom: 1.5rem;
       font-size: 1rem;
-      width: 800px;
-      max-width: 100%;
+      width: 100%;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .timeline .timeline-content .location {
@@ -151,21 +153,49 @@
         transform: translateY(-15px);
       }
     }
-    
-    
+
+    /* Custom styles for the table */
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .table th, .table td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb; /* Gray-200 */
+    }
+
+    .table thead {
+      background-color: #f3f4f6; /* Gray-100 */
+    }
+
+    .table th {
+      font-weight: bold;
+      color: #4b5563; /* Gray-700 */
+    }
+
+    .table tbody tr:nth-of-type(odd) {
+      background-color: #f9fafb; /* Gray-50 */
+    }
+
+    .table tbody tr:hover {
+      background-color: #e5e7eb; /* Gray-200 */
+    }
   </style>
 </head>
 <body>
   @include('components/navbar')
+
   <!-- Timeline Section -->
   <div class="container mx-auto py-12 mt-20">
     <div class="text-center p-4">
-    <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4" style="text-shadow: 1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;">
-  Agenda Rapat
-</h1>
-<h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8" style="text-shadow: 1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;">
-  BAPPEDA ACEH
-</h1>
+      <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4" style="text-shadow: 1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;">
+        Si - IRA
+      </h1>
+      <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8" style="text-shadow: 1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff;">
+        BAPPEDA ACEH
+      </h1>
       <a href="/request" class="bg-green-500 text-white py-3 px-8 rounded-full animate-bounce">Booking Meeting Room</a>
     </div>
 
@@ -205,15 +235,56 @@
       <li>
         <div class="timeline-content">
           <time>02 Agustus 2024, 08:00 - 10:00</time>
-          <div class="text-lg font-bold">Bidang Umum</div>
-          <p>Peminjaman Barang Pegawai BAPPEDA</p>
-          <div class="location">Ruang Rapat VIP</div>
+          <div class="text-lg font-bold">Bidang Keuangan</div>
+          <p>Rapat Evaluasi Kinerja Keuangan</p>
+          <div class="location">Ruang Rapat Utama</div>
         </div>
       </li>
     </ul>
   </div>
 
-  @include('components/footer')
+  <!-- Waiting List Section -->
+  <div class="container mx-auto py-12">
+    <h2 class="text-2xl md:text-3xl font-bold text-green-800 mb-4">Waiting List Booking</h2>
+    <div class="overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="py-3 px-4">No</th>
+            <th class="py-3 px-4">Judul Rapat</th>
+            <th class="py-3 px-4">Bidang</th>
+            <th class="py-3 px-4">Nama Ruang Rapat</th>
+            <th class="py-3 px-4">Hari/Tanggal</th>
+            <th class="py-3 px-4">Jam</th>
+            <th class="py-3 px-4">Status</th>   
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Example Row -->
 
+          @php
+          $index=1;
+          @endphp
+
+           @foreach ($booking as $data)
+           <tr>
+            <td class="py-3 px-4">{{ $index++}}</td>
+            <td class="py-3 px-4">{{ $data->agenda}}</td>
+            <td class="py-3 px-4">{{ $data->nama_bidang}}</td>
+            <td class="py-3 px-4">{{ $data->RuangRapat->nama}}</td>
+            <td class="py-3 px-4">{{$data->jadwal_mulai_formatted}}</td>
+            <td class="py-3 px-4">{{$data->jam}}</td>
+            <td class="py-3 px-4">{{$data->status}}</td>
+          </tr>
+           @endforeach
+        
+          
+          <!-- Additional rows as needed -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  @include('components/footer')
 </body>
 </html>
