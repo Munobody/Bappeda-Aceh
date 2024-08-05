@@ -90,8 +90,10 @@
       position: relative;
       margin-bottom: 1.5rem;
       font-size: 1rem;
-      width: 800px;
-      max-width: 100%;
+      width: 100%;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .timeline .timeline-content .location {
@@ -264,6 +266,48 @@
         </div>
       </li>
     </ul>
+  </div>
+
+  <!-- Waiting List Section -->
+  <div class="container mx-auto py-12">
+    <h2 class="text-2xl md:text-3xl font-bold text-green-800 mb-4">Waiting List Booking</h2>
+    <div class="overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="py-3 px-4">No</th>
+            <th class="py-3 px-4">Judul Rapat</th>
+            <th class="py-3 px-4">Bidang</th>
+            <th class="py-3 px-4">Nama Ruang Rapat</th>
+            <th class="py-3 px-4">Hari/Tanggal</th>
+            <th class="py-3 px-4">Jam</th>
+            <th class="py-3 px-4">Status</th>   
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Example Row -->
+
+          @php
+          $index=1;
+          @endphp
+
+           @foreach ($booking as $data)
+           <tr>
+            <td class="py-3 px-4">{{ $index++}}</td>
+            <td class="py-3 px-4">{{ $data->agenda}}</td>
+            <td class="py-3 px-4">{{ $data->nama_bidang}}</td>
+            <td class="py-3 px-4">{{ $data->RuangRapat->nama}}</td>
+            <td class="py-3 px-4">{{$data->jadwal_mulai_formatted}}</td>
+            <td class="py-3 px-4">{{$data->jam}}</td>
+            <td class="py-3 px-4">{{$data->status}}</td>
+          </tr>
+           @endforeach
+        
+          
+          <!-- Additional rows as needed -->
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <!-- Waiting List Section -->
