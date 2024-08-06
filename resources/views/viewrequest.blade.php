@@ -116,29 +116,46 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Bidang</th>
-                        <th>Deskripsi</th>
-                        <th>Tanggal</th>
-                        <th>Jam</th>
+                        <th>Penaggung Jawab</th>
+                        <th>Agenda Rapat</th>
+                        <th>Hari/Tanggal</th>
+                        <th>Waktu</th>
                         <th>File</th>
-                        <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Example row, repeat for each request -->
+                     @php
+                     $index=1;
+                     @endphp
+
+                    @foreach ($booking as $data)
                     <tr>
-                        <td>1</td>
-                        <td>Bidang A</td>
-                        <td>Deskripsi singkat</td>
-                        <td>2024-08-01</td>
-                        <td>10:00-12:00</td>
-                        <td><a href="{{ asset('path/to/document.pdf') }}" target="_blank" class="text-blue-500">Lihat File</a></td>
-                        <td><span class="text-gray-500">Pending</span></td>
+                        <td class="py-3 px-4">{{ $index++}}</td>
+                        <td class="py-3 px-4">{{ $data->nama_bidang}}</td>
+                        <td class="py-3 px-4">{{ $data->penanggung_jawab}}</td>
+                        <td class="py-3 px-4">{{ $data->agenda}}</td>
+                        <td class="py-3 px-4">{{$data->jadwal_mulai_formatted}}</td>
+                        <td class="py-3 px-4">{{$data->jam}}</td>
+                        <td class="py-3 px-4 text-blue-700 cursor-pointer underline">dokumen</td>
                         <td>
-                            <button class="status-btn approve" onclick="updateRequestStatus(1, 'approved')">Approve</button>
-                            <button class="status-btn reject" onclick="updateRequestStatus(1, 'rejected')">Reject</button>
+                        @if($data->status === 'Disetujui')
+    <div class="bg-green-100 text-green-800 border border-green-300 rounded px-3 py-1 text-sm">
+        Disetujui
+    </div>
+@elseif($data->status === 'Ditolak')
+    <div class="bg-red-100 text-red-800 border border-red-300 rounded px-3 py-1 text-sm">
+        Ditolak
+    </div>
+@else
+
+                            <button class="status-btn approve" onclick="updateRequestStatus(1, 'approved')">Setuju</button>
+                            <button class="status-btn reject" onclick="updateRequestStatus(1, 'rejected')">Tolak</button>
+                            @endif
                         </td>
                     </tr>
+                    @endforeach
                     <!-- End of example row -->
                 </tbody>
             </table>
