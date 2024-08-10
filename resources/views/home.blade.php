@@ -227,6 +227,7 @@
     <div class="text-center flex-1 p-4 lg:p-12">
         <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4 animate-slideInLeft">Si - IRA</h1>
         <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8 animate-slideInLeft delay-500">BAPPEDA ACEH</h1>
+        <a href="/request" class="bg-green-500 text-white py-3 px-8 rounded-full animate-bounce">Booking Meeting Room</a>
     </div>
 </div>
 
@@ -269,10 +270,9 @@
   </div>
 
   <!-- Waiting List Section -->
-  <div class="container mx-auto py-12">
-    <h2 class="text-2xl md:text-3xl font-bold text-green-800 mb-4">Waiting List Booking</h2>
-    <div class="overflow-x-auto">
-      <table class="table">
+  <div class="waiting-list container mx-auto py-12 px-32">
+    <h2 class="text-2xl md:text-4xl font-bold mb-8 text-green-800 text-center">Waiting List</h2>
+    <table class="waiting-list-table mx-auto">
         <thead>
           <tr>
             <th class="py-3 px-4">No</th>
@@ -302,60 +302,12 @@
             <td class="py-3 px-4">{{$data->status}}</td>
           </tr>
            @endforeach
-        
-          
-          <!-- Additional rows as needed -->
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- Waiting List Section -->
-  <div class="waiting-list container mx-auto py-12">
-    <h2 class="text-2xl md:text-4xl font-bold mb-8 text-green-800 text-center">Waiting List</h2>
-    <table class="waiting-list-table mx-auto">
-      <thead>
-        <tr>
-          <th class="text-left">No.</th>
-          <th class="text-left">Nama Departemen</th>
-          <th class="text-left">Tanggal</th>
-          <th class="text-left">Waktu</th>
-          <th class="text-left">Deskripsi</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Example rows -->
-        <tr>
-          <td>1</td>
-          <td class="department">Departemen A</td>
-          <td class="date">01 Agustus 2024</td>
-          <td class="time">08:00 - 10:00</td>
-          <td>Rapat internal untuk evaluasi.</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td class="department">Departemen B</td>
-          <td class="date">03 Agustus 2024</td>
-          <td class="time">10:00 - 12:00</td>
-          <td>Diskusi proyek baru.</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td class="department">Departemen C</td>
-          <td class="date">07 Agustus 2024</td>
-          <td class="time">13:00 - 15:00</td>
-          <td>Rapat persiapan event.</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td class="department">Departemen D</td>
-          <td class="date">09 Agustus 2024</td>
-          <td class="time">15:00 - 17:00</td>
-          <td>Review dan perencanaan strategi.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  
 </body>
 @include('components/footer')
 </html>
