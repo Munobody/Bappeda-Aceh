@@ -234,12 +234,13 @@
  
 
     <ul class="timeline">
+      @foreach($booking as $data)
       <li style="--i: 1">
         <div class="timeline-content">
-          <time datetime="2024-08-02">02 Agustus 2024</time>
-          <h2 class="text-xl font-bold">Rapat Koordinasi</h2>
-          <p class="location">Ruang Rapat 1</p>
-          <p class="description">Deskripsi rapat koordinasi dengan pihak terkait mengenai rencana anggaran.</p>
+          <time datetime="2024-08-02">{{ $data->jadwal_mulai_formatted }}</time>
+          <h2 class="text-xl font-bold">{{ $data->agenda }}</h2>
+          <p class="location">{{ $data->RuangRapat->nama }}</p>
+          <p class="description">{{ $data->deskripsi }}</p>
         </div>
       </li>
       <li style="--i: 2">
@@ -266,6 +267,7 @@
           <p class="description">Penyusunan rencana kerja untuk bulan berikutnya.</p>
         </div>
       </li>
+      @endforeach
     </ul>
   </div>
 
@@ -288,10 +290,17 @@
           <!-- Example Row -->
 
           @php
+          $row = 0;
           $index=1;
           @endphp
 
            @foreach ($booking as $data)
+           @php
+           if($row < 4){
+             $row++;
+            continue;
+           }
+           @endphp
            <tr>
             <td class="py-3 px-4">{{ $index++}}</td>
             <td class="py-3 px-4">{{ $data->agenda}}</td>

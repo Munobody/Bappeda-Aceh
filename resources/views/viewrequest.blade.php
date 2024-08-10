@@ -138,8 +138,8 @@
         <td class="py-3 px-4">{{ $data->penanggung_jawab }}</td>
         <td class="py-3 px-4">{{ $data->agenda }}</td>
         <td class="py-3 px-4">{{ $data->jadwal_mulai_formatted }}</td>
-        <td class="py-3 px-4">{{ $data->jam }}</td>
-        <td class="py-3 px-4 text-blue-700 cursor-pointer underline">dokumen</td>
+        <td class="py-3 px-4">{{ $data->jam }}</td><td class="py-3 px-4"><a href="/download?file={{ $data->surat }}"class="text-blue-500 hover:underline">Dokumen</a>
+        
         <td class="py-2 px-4 border-b">
             @if($data->status === 'Disetujui')
                 <div class="bg-green-100 text-green-800 border border-green-300 rounded px-3 py-1 text-sm">

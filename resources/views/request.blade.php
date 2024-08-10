@@ -139,184 +139,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Row 1 -->
+
+                @php
+                $index=1;
+                @endphp
+
+                
+
+                    @foreach ($ruang_rapat as $data)
                     <tr>
-                        <td class="py-2 px-4 border-b">1</td>
-                        <td class="py-2 px-4 border-b">Ruang Rapat VIP</td>
-                        <td class="py-2 px-4 border-b">Lobby Lantai 1</td>
+                        <td class="py-2 px-4 border-b">{{ $index++}}</td>
+                        <td class="py-2 px-4 border-b">{{$data->nama}}</td>
+                        <td class="py-2 px-4 border-b">{{$data->lokasi}}</td>
+                        <td class="py-2 px-4 border-b">{!! nl2br($data->fasilitas) !!} </td>
+                        <td class="py-2 px-4 border-b">{{$data->kapasitas}} orang</td>
                         <td class="py-2 px-4 border-b">
                             <ul class="bullet-list">
-                                <li>Kursi : 25 Unit</li>
-                                <li>Meja Rapat 1 Set</li>
-                                <li>Layar Proyektor 1 Unit</li>
-                                <li>Sound System 1 Unit</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">25 orang</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Operator : Fauzi Noor</li>
-                                <li>Cs : Herwandi</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">
-                    <a href="/booking?id=1" class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600 inline-block text-center">Booking</a>
-                        </td>
-                    </tr>
-                    <!-- Row 2 -->
-                    <tr>
-                        <td class="py-2 px-4 border-b">2</td>
-                        <td class="py-2 px-4 border-b">Ruang Rapat Executive</td>
-                        <td class="py-2 px-4 border-b">Selasar Lantai 1(Depan Musholla)</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Kursi : 30 Unit</li>
-                                <li>Meja Rapat 1 Set</li>
-                                <li>Meja Operator 1 Set</li>
-                                <li>Vidiotron 1 Unit</li>
-                                <li>Mic Conference</li>
-                                <li>Camera Zoom 1 Unit</li>
-                                <li>PC 1 Unit</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">30 orang</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Operator : Abd. Rani</li>
-                                <li>Cs : Gunawan</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">
-                        <a href="/booking?id=2" class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600 inline-block text-center">Booking</a>
-                        </td>
-                    </tr>
-                    <!-- Row 3 -->
-                    <tr>
-                        <td class="py-2 px-4 border-b">3</td>
-                        <td class="py-2 px-4 border-b">Ruang Rapat 2.A</td>
-                        <td class="py-2 px-4 border-b">Lobby Lantai 2(Bisa Connect ke 2.B)</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Kursi : 50 Unit</li>
-                                <li>Meja Rapat 1 Set</li>
-                                <li>Meja Operator 1 Set</li>
-                                <li>Layar Proyektor 1 Unit</li>
-                                <li>Sound System 1 Unit</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">50 orang</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Operator : Abd. Rani</li>
-                                <li>Cs : Herwandi</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">
-                        <a href="/booking?id=3" class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600 inline-block text-center">Booking</a>
-                        </td>
-                    </tr>
-                    <!-- Row 4 -->
-                    <tr>
-                        <td class="py-2 px-4 border-b">4</td>
-                        <td class="py-2 px-4 border-b">Ruang Rapat 2.B</td>
-                        <td class="py-2 px-4 border-b">Lobby Lantai 2(Bisa Connect ke 2.A)</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Kursi : 50 Unit</li>
-                                <li>Meja Rapat 1 Set</li>
-                                <li>Meja Operator 1 Set</li>
-                                <li>Layar Proyektor 3 Unit</li>
-                                <li>Mic Conference</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">50 orang</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Operator : Fauzi Noor</li>
-                                <li>Cs : Fidarliani</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">
-                        <a href="/booking?id=4" class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600 inline-block text-center">Booking</a>
-                        </td>
-                    </tr>
-                    <!-- Row 5 -->
-                    <tr>
-                        <td class="py-2 px-4 border-b">5</td>
-                        <td class="py-2 px-4 border-b">Ruang Rapat 2.C</td>
-                        <td class="py-2 px-4 border-b">Selasar Lantai 2 Dekat Ruang Litbang</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Kursi : 40 Unit</li>
-                                <li>Meja Rapat 1 Set</li>
-                                <li>Meja Operator 1 Set</li>
-                                <li>Layar Proyektor 1 Unit</li>
-                                <li>Mic Conference</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">40 orang</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Operator : Abd.Rani</li>
-                                <li>Cs : Salman</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">
-                        <a href="/booking?id=5" class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600 inline-block text-center">Booking</a>
-                        </td>
-                    </tr>
-                    <!-- Row 6 -->
-                    <tr>
-                        <td class="py-2 px-4 border-b">6</td>
-                        <td class="py-2 px-4 border-b">Ruang Rapat 3 Kemiskinan</td>
-                        <td class="py-2 px-4 border-b">Lantai 3 Dekat Ruang Kemiskinan</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Kursi : 20 Unit</li>
-                                <li>Meja Rapat 1 Set</li>
-                                <li>Meja Operator 1 Set</li>
-                                <li>Layar Proyektor 1 Unit</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">20 orang</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Operator : Abd.Rani</li>
-                                <li>Cs : Darmawan</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">
-                        <a href="/booking?id=6" class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600 inline-block text-center">Booking</a>
-                        </td>
-                    </tr>
-                    <!-- Row 7 -->
-                    <tr>
-                        <td class="py-2 px-4 border-b">7</td>
-                        <td class="py-2 px-4 border-b">Aula Prof. A. Madjid Ibrahim</td>
-                        <td class="py-2 px-4 border-b">Lantai 4</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Kursi : 150 Unit</li>
-                                <li>Meja Rapat 1 Set</li>
-                                <li>Meja Operator 2 Set</li>
-                                <li>Vidiotron 1 Unit</li>
-                                <li>Layar Proyektor 2 Unit</li>
-                                <li>Mic Conference</li>
-                                <li>Kursi Sofa 1 Set</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">150 orang</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Operator : Fauzi Noor & Abd.Rani</li>
-                                <li>Cs : Optional</li>
+                                <li>Operator : {{$data->operator}}</li>
+                                <li>Cs : {{$data->cs}}</li>
                             </ul>
                         </td>
                         <td class="py-2 px-4 border-b">
                         <a href="/booking?id=7" class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600 inline-block text-center">Booking</a>
                         </td>
                     </tr>
-                    <!-- Add more rows as needed -->
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -327,3 +174,4 @@
 
 </body>
 </html>
+

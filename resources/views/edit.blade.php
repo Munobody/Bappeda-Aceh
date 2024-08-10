@@ -139,30 +139,32 @@
     <main class="container mx-auto p-4 mt-20 mb-8">
         <div class="bg-white p-6 rounded-lg shadow-lg">
             <h1 class="text-2xl font-semibold mb-4">Edit Ruang Rapat</h1>
-            <form action="#" method="post">
+            <form action="/Room/Update" method="post">
+                @csrf
+            <input type="hidden" id="id" name="id" value="{{ request()->get('id')}}" required>
                 <div class="mb-4">
                     <label for="room_name" class="block text-gray-700">Nama Ruang Rapat</label>
-                    <input type="text" id="room_name" name="room_name" class="w-full p-2 border border-gray-300 rounded" required>
+                    <input type="text" value="{{$ruang_rapat->nama}}" id="room_name" name="room_name" class="w-full p-2 border border-gray-300 rounded" required>
                 </div>
                 <div class="mb-4">
                     <label for="location" class="block text-gray-700">Lokasi</label>
-                    <input type="text" id="location" name="location" class="w-full p-2 border border-gray-300 rounded" required>
+                    <input type="text" value="{{$ruang_rapat->lokasi}}"id="location" name="location" class="w-full p-2 border border-gray-300 rounded" required>
                 </div>
                 <div class="mb-4">
                     <label for="facilities" class="block text-gray-700">Fasilitas</label>
-                    <textarea id="facilities" name="facilities" class="w-full p-2 border border-gray-300 rounded" required></textarea>
+                    <textarea id="facilities"  name="facilities" class="w-full p-2 border border-gray-300 rounded" required>{{$ruang_rapat->fasilitas}}</textarea>
                 </div>
                 <div class="mb-4">
                     <label for="capacity" class="block text-gray-700">Kapasitas</label>
-                    <input type="number" id="capacity" name="capacity" class="w-full p-2 border border-gray-300 rounded" required>
+                    <input type="number" value="{{$ruang_rapat->kapasitas}}" id="capacity" name="capacity" class="w-full p-2 border border-gray-300 rounded" required>
                 </div class=".edit-button">
                 <div class="mb-4">
                     <label for="operator" class="block text-gray-700">operator</label>
-                    <input type="text" id="operator" name="operator" class="w-full p-2 border border-gray-300 rounded" required>
+                    <input type="text" value="{{$ruang_rapat->operator}}" id="operator" name="operator" class="w-full p-2 border border-gray-300 rounded" required>
                 </div class=".edit-button">
                 <div class="mb-4">
                     <label for="cs" class="block text-gray-700">CS</label>
-                    <input type="text" id="cs" name="cs" class="w-full p-2 border border-gray-300 rounded" required>
+                    <input type="text" value="{{$ruang_rapat->cs}}" id="cs" name="cs" class="w-full p-2 border border-gray-300 rounded" required>
                 </div class=".edit-button">
                 <button type="submit" class="bg-green-600 text-white p-2 rounded hover:bg-green-600">Submit</button>
             </form>
