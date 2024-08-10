@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use Carbon\Carbon;
 
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BookingPageController extends Controller
 {
@@ -29,6 +31,7 @@ class BookingPageController extends Controller
             } else {
                 // Jika tanggal mulai dan akhir berbeda
                 $selisih = $jadwalMulai->diffInDays($jadwalAkhir);
+                $selisih = intval($selisih);
                 $formattedDate = $jadwalMulai->translatedFormat('l') . ' - ' . $jadwalAkhir->translatedFormat('l/') . $jadwalMulai->translatedFormat('d') . ' - ' .$jadwalAkhir->translatedFormat('d F Y');
                 $formattedTime = $jamMulai . ' - ' . $jamAkhir . ' WIB'.' (' . $selisih .' hari)';
             }
@@ -58,4 +61,55 @@ class BookingPageController extends Controller
         return view('booking', ["booking" => $data, "disabledDates" => $disabledDates]);
         
     }
+
+    public function showrequestpage (){
+        return view('request');
+    }
+
+    public function handlerequestroom ( Request $request ){
+        // mengambil data inputan
+        $penanggung_jawab=$request->input("penanggung_jawab");
+        $ruang_rapat_id=$request->input("ruang_rapat_id");
+        $nama_bidang=$request->input("nama_bidang");
+        $agenda=$request->input("agenda");
+        $tanggal_mulai=$request->input("tanggal_mulai");
+        $tanggal_akhir=$request->input("tanggal_akhir");
+        $file=$request->file("file");
+        $status="Menunggu";
+        $filename=time() .'.'.$file->getClientOriginalExtension();
+        
+        // menguploads file
+        $path = $file->storeAs('public/uploads', $filename);
+        $relativePath = str_replace('public/', '', $path);
+        
+        // simpan ke database
+        $booking = new Booking;
+        $booking->penanggung_jawab = $penanggung_jawab;
+        $booking->ruang_rapat_id = $ruang_rapat_id;
+        $booking->nama_bidang = $nama_bidang;
+        $booking->agenda = $agenda;
+        $booking->jadwal_mulai = $tanggal_mulai;
+        $booking->jadwal_akhir = $tanggal_akhir;
+        $booking->status = $status;
+        $booking->surat = $relativePath;
+        $booking->save();
+
+        return back()->with('success', 'File uploaded successfully!');
+    }
+    public function updateStatus(Request $request)
+{
+    $request->validate([
+        'id' => 'required|integer|exists:bookings,id',
+        'status' => 'required|string|in:Disetujui,Ditolak'
+    ]);
+
+    $booking = Booking::find($request->id);
+    $booking->status = $request->status;
+    $booking->save();
+        return response()->json(['success' => true]);
+    }
 }
+
+
+ 
+

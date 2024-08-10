@@ -171,17 +171,16 @@
 </head>
 <body>
     @include('/components/navbar') 
-    <div class="container mx-auto py-12 flex flex-col lg:flex-row items-center justify-center hero-section">
-        <div class="text-left flex-1 p-4 lg:p-12">
+    <div id="content" class="container mx-auto pt-12 flex flex-col lg:flex-row items-center justify-center hero-section px-12">
+        <div class=" p-4 lg:px-12 lg:pt-12">
             <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4 animate-slideInLeft">Halaman Admin Ruang Rapat</h1>
-            <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8 animate-slideInLeft delay-500">BAPPEDA ACEH</h1>
+            <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8 animate-slideInLeft text-center">BAPPEDA ACEH</h1>
         </div>
     </div>
 
     <!-- Table Section -->
     <div class="container mx-auto py-6 px-4 mt-[-12rem] ">
         <div class="heading-button-container">
-            <h2>Daftar Ruang Rapat</h2>
             <div class="button-container">
                 <a href="/Room">Buat Ruang Rapat Baru</a>
             </div>
@@ -200,191 +199,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Row 1 -->
+
+                @php
+                $index=1;
+                @endphp
+
+                
+
+                    @foreach ($ruang_rapat as $data)
                     <tr>
-                        <td class="py-2 px-4 border-b">1</td>
-                        <td class="py-2 px-4 border-b">Ruang Rapat VIP</td>
-                        <td class="py-2 px-4 border-b">Lobby Lantai 1</td>
+                        <td class="py-2 px-4 border-b">{{ $index++}}</td>
+                        <td class="py-2 px-4 border-b">{{$data->nama}}</td>
+                        <td class="py-2 px-4 border-b">{{$data->lokasi}}</td>
+                        <td class="py-2 px-4 border-b">{{$data->fasilitas}} </td>
+                        <td class="py-2 px-4 border-b">{{$data->kapasitas}} orang</td>
                         <td class="py-2 px-4 border-b">
                             <ul class="bullet-list">
-                                <li>Kursi : 25 Unit</li>
-                                <li>Meja Rapat 1 Set</li>
-                                <li>Layar Proyektor 1 Unit</li>
-                                <li>Sound System 1 Unit</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">25 orang</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Operator : Fauzi Noor</li>
-                                <li>Cs : Herwandi</li>
+                                <li>Operator : {{$data->operator}}</li>
+                                <li>Cs : {{$data->cs}}</li>
                             </ul>
                         </td>
                         <td class="py-2 px-4 border-b">
-                            <a href="/Edit?id=1" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
-                            <a href="/delete-room?id=1" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
+                            <a href="/Edit?id={{$data->id}}" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
+                            <a href="/delete-room?id={{$data->id}}" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
                         </td>
                     </tr>
-                    <!-- Row 2 -->
-                    <tr>
-                        <td class="py-2 px-4 border-b">2</td>
-                        <td class="py-2 px-4 border-b">Ruang Rapat Executive</td>
-                        <td class="py-2 px-4 border-b">Selasar Lantai 1(Depan Musholla)</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Kursi : 30 Unit</li>
-                                <li>Meja Rapat 1 Set</li>
-                                <li>Meja Operator 1 Set</li>
-                                <li>Vidiotron 1 Unit</li>
-                                <li>Mic Conference</li>
-                                <li>Camera Zoom 1 Unit</li>
-                                <li>PC 1 Unit</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">30 orang</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Operator : Abd. Rani</li>
-                                <li>Cs : Gunawan</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">
-                            <a href="/Edit?id=2" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
-                            <a href="/delete-room?id=2" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
-                        </td>
-                    </tr>
-                    <!-- Row 3 -->
-                    <tr>
-                        <td class="py-2 px-4 border-b">3</td>
-                        <td class="py-2 px-4 border-b">Ruang Rapat 2.A</td>
-                        <td class="py-2 px-4 border-b">Lobby Lantai 2(Bisa Connect ke 2.B)</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Kursi : 50 Unit</li>
-                                <li>Meja Rapat 1 Set</li>
-                                <li>Meja Operator 1 Set</li>
-                                <li>Layar Proyektor 1 Unit</li>
-                                <li>Sound System 1 Unit</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">50 orang</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Operator : Abd. Rani</li>
-                                <li>Cs : Herwandi</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">
-                            <a href="/Edit?id=3" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
-                            <a href="/delete-room?id=3" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
-                        </td>
-                    </tr>
-                    <!-- Row 4 -->
-                    <tr>
-                        <td class="py-2 px-4 border-b">4</td>
-                        <td class="py-2 px-4 border-b">Ruang Rapat 2.B</td>
-                        <td class="py-2 px-4 border-b">Lobby Lantai 2(Bisa Connect ke 2.A)</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Kursi : 50 Unit</li>
-                                <li>Meja Rapat 1 Set</li>
-                                <li>Meja Operator 1 Set</li>
-                                <li>Layar Proyektor 3 Unit</li>
-                                <li>Mic Conference</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">50 orang</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Operator : Fauzi Noor</li>
-                                <li>Cs : Fidarliani</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">
-                            <a href="/Edit?id=4" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
-                            <a href="/delete-room?id=4" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
-                        </td>
-                    </tr>
-                    <!-- Row 5 -->
-                    <tr>
-                        <td class="py-2 px-4 border-b">5</td>
-                        <td class="py-2 px-4 border-b">Ruang Rapat 2.C</td>
-                        <td class="py-2 px-4 border-b">Selasar Lantai 2 Dekat Ruang Litbang</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Kursi : 40 Unit</li>
-                                <li>Meja Rapat 1 Set</li>
-                                <li>Meja Operator 1 Set</li>
-                                <li>Layar Proyektor 1 Unit</li>
-                                <li>Mic Conference</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">40 orang</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Operator : Abd.Rani</li>
-                                <li>Cs : Salman</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">
-                            <a href="/Edit?id=5" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
-                            <a href="/delete-room?id=5" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
-                        </td>
-                    </tr>
-                    <!-- Row 6 -->
-                    <tr>
-                        <td class="py-2 px-4 border-b">6</td>
-                        <td class="py-2 px-4 border-b">Ruang Rapat 3 Kemiskinan</td>
-                        <td class="py-2 px-4 border-b">Lantai 3 Dekat Ruang Kemiskinan</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Kursi : 20 Unit</li>
-                                <li>Meja Rapat 1 Set</li>
-                                <li>Meja Operator 1 Set</li>
-                                <li>Layar Proyektor 1 Unit</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">20 orang</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Operator : Abd.Rani</li>
-                                <li>Cs : Darmawan</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">
-                            <a href="/Edit?id=6" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
-                            <a href="/delete-room?id=6" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
-                        </td>
-                    </tr>
-                    <!-- Row 7 -->
-                    <tr>
-                        <td class="py-2 px-4 border-b">7</td>
-                        <td class="py-2 px-4 border-b">Aula Prof. A. Madjid Ibrahim</td>
-                        <td class="py-2 px-4 border-b">Lantai 4</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Kursi : 150 Unit</li>
-                                <li>Meja Rapat 1 Set</li>
-                                <li>Meja Operator 2 Set</li>
-                                <li>Vidiotron 1 Unit</li>
-                                <li>Layar Proyektor 2 Unit</li>
-                                <li>Mic Conference</li>
-                                <li>Kursi Sofa 1 Set</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">150 orang</td>
-                        <td class="py-2 px-4 border-b">
-                            <ul class="bullet-list">
-                                <li>Operator : Fauzi Noor & Abd.Rani</li>
-                                <li>Cs : Optional</li>
-                            </ul>
-                        </td>
-                        <td class="py-2 px-4 border-b">
-                            <a href="/Edit?id=7" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
-                            <a href="/delete-room?id=7" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
-                        </td>
-                    </tr>
-                    <!-- Add more rows as needed -->
+                    @endforeach
                 </tbody>
             </table>
         </div>
