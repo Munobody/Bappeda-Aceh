@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Booking;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class ViewRequestPageController extends Controller
@@ -28,6 +28,7 @@ class ViewRequestPageController extends Controller
             } else {
                 // Jika tanggal mulai dan akhir berbeda
                 $selisih = $jadwalMulai->diffInDays($jadwalAkhir);
+                $selisih = intval($selisih);
                 $formattedDate = $jadwalMulai->translatedFormat('l') . ' - ' . $jadwalAkhir->translatedFormat('l/') . $jadwalMulai->translatedFormat('d') . ' - ' .$jadwalAkhir->translatedFormat('d F Y');
                 $formattedTime = $jamMulai . ' - ' . $jamAkhir . ' WIB'.' (' . $selisih .' hari)';
             }
@@ -42,4 +43,20 @@ class ViewRequestPageController extends Controller
 
         return view('viewrequest', ["booking" => $data]);
     }
+
+    public function downloadfile(Request $request)
+{
+    $filename = $request->get('file');
+
+    // Menggunakan path relatif untuk public storage
+    $path = 'public/' . $filename;
+
+    // Cek apakah file ada
+    if (Storage::exists($path)) {
+        return Storage::download($path);
+    }
+
+    // Jika file tidak ditemukan, return response error
+    return abort(404, 'File not found');
+}
 }

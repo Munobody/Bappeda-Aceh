@@ -146,6 +146,8 @@
             transition: background-color 0.3s ease;
         }
 
+        
+
         .button-container a:hover {
             background-color: #059669; /* Darker green on hover */
         }
@@ -172,19 +174,23 @@
 <body>
     @include('/components/navbar') 
     <div id="content" class="container mx-auto pt-12 flex flex-col lg:flex-row items-center justify-center hero-section px-12">
-        <div class=" p-4 lg:px-12 lg:pt-12">
+        <div class="lg:px-12 lg:pt-12">
             <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4 animate-slideInLeft">Halaman Admin Ruang Rapat</h1>
-            <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8 animate-slideInLeft text-center">BAPPEDA ACEH</h1>
+            <h1 class="text-2xl md:text-4xl font-bold text-green-800 animate-slideInLeft text-center">BAPPEDA ACEH</h1>
         </div>
     </div>
 
     <!-- Table Section -->
-    <div class="container mx-auto py-6 px-4 mt-[-12rem] ">
-        <div class="heading-button-container">
+    <div class="container mx-auto py-6 px-20 mt-[-12rem] ">
+        <div class="heading-button-container flex justify-between">
             <div class="button-container">
-                <a href="/Room">Buat Ruang Rapat Baru</a>
+                <a href="/Room">+ Ruang Rapat</a>
+            </div>
+            <div class="button-container">
+                <a style="background-color:#2183a3" href="/viewrequest">Lihat Daftar Permintaan</a>
             </div>
         </div>
+        
         <div class="overflow-x-auto">
             <table class="min-w-full bg-white shadow-md rounded-[10px]">
                 <thead>
@@ -211,7 +217,7 @@
                         <td class="py-2 px-4 border-b">{{ $index++}}</td>
                         <td class="py-2 px-4 border-b">{{$data->nama}}</td>
                         <td class="py-2 px-4 border-b">{{$data->lokasi}}</td>
-                        <td class="py-2 px-4 border-b">{{$data->fasilitas}} </td>
+                        <td class="py-2 px-4 border-b">{!! nl2br($data->fasilitas) !!} </td>
                         <td class="py-2 px-4 border-b">{{$data->kapasitas}} orang</td>
                         <td class="py-2 px-4 border-b">
                             <ul class="bullet-list">
@@ -221,7 +227,13 @@
                         </td>
                         <td class="py-2 px-4 border-b">
                             <a href="/Edit?id={{$data->id}}" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
-                            <a href="/delete-room?id={{$data->id}}" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</a>
+                            <form action="{{ route('room.delete') }}" method="POST" style="display: inline;">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $data->id }}">
+                                <button type="submit" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">
+                                    Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach

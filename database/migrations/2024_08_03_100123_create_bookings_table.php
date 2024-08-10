@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('ruang_rapat_id');
             $table->string('nama_bidang'); // Kolom Nama Bidang
             $table->string('agenda'); // Kolom Agenda
+            $table->string('deskripsi')->nullable; // Kolom deskripsi
             $table->dateTime('jadwal_mulai'); // Kolom Jadwal Mulai
             $table->dateTime('jadwal_akhir'); // Kolom Jadwal Akhir
             $table->string('surat'); // Kolom Surat

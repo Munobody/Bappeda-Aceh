@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Booking;
 use Carbon\Carbon;
+use App\Models\RuangRapat;
 
 
 use Illuminate\Http\Request;
@@ -63,7 +64,8 @@ class BookingPageController extends Controller
     }
 
     public function showrequestpage (){
-        return view('request');
+        $data= RuangRapat::all();
+        return view('request', ["ruang_rapat" => $data]);
     }
 
     public function handlerequestroom ( Request $request ){
@@ -72,6 +74,7 @@ class BookingPageController extends Controller
         $ruang_rapat_id=$request->input("ruang_rapat_id");
         $nama_bidang=$request->input("nama_bidang");
         $agenda=$request->input("agenda");
+        $deskripsi=$request->input("deskripsi");
         $tanggal_mulai=$request->input("tanggal_mulai");
         $tanggal_akhir=$request->input("tanggal_akhir");
         $file=$request->file("file");
@@ -88,6 +91,7 @@ class BookingPageController extends Controller
         $booking->ruang_rapat_id = $ruang_rapat_id;
         $booking->nama_bidang = $nama_bidang;
         $booking->agenda = $agenda;
+        $booking->deskripsi = $deskripsi;
         $booking->jadwal_mulai = $tanggal_mulai;
         $booking->jadwal_akhir = $tanggal_akhir;
         $booking->status = $status;

@@ -21,6 +21,7 @@ class Booking extends Model
         'ruang_rapat_id',
         'nama_bidang',
         'agenda',
+        'deskripsi',
         'jadwal_mulai',
         'jadwal_akhir',
         'surat',
