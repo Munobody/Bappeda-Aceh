@@ -285,15 +285,22 @@
 </div>
 @endif
 
-    <div id="content" class="container mx-auto pt-12 flex flex-col lg:flex-row items-center justify-center hero-section px-12">
-        <div class=" p-4 lg:px-12 lg:pt-12">
+    
+
+    <div id="content" class="container mx-auto py-12 flex flex-col lg:flex-row items-center justify-center hero-section p-12">
+        <div class=" p-4 lg:p-12">
             <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4 animate-slideInLeft">Form Peminjaman Ruang Rapat</h1>
             <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8 animate-slideInLeft text-center">BAPPEDA ACEH</h1>
         </div>
     </div>
-   
-    <div class="container mx-auto max-w-lg bg-white p-8 rounded-lg shadow-lg mb-16">
-        <h2 class="text-2xl font-bold mb-6 text-gray-800">Form Peminjaman Ruang Rapat</h2>
+   <div id="content" class="container mx-auto pt-12 flex flex-col lg:flex-row items-center justify-center hero-section px-12">
+        <div class=" p-4 lg:px-12 lg:pt-12">
+            <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4 animate-slideInLeft">Form Peminjaman Ruang Rapat</h1>
+
+            <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8 animate-slideInLeft text-center">BAPPEDA ACEH</h1>
+
+            <div class="container mx-auto max-w-lg bg-white p-8 rounded-lg shadow-lg mb-16">
+        
    
         <form id="bookingForm" action="/submit-room-booking" method="POST" enctype="multipart/form-data">
             @csrf
