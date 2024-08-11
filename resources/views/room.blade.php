@@ -133,7 +133,8 @@
     <main class="container mx-auto p-4 mt-20 mb-8">
         <div class="bg-white p-6 rounded-lg shadow-lg">
             <h1 class="text-2xl font-semibold mb-4">Tambah Ruang Rapat Baru</h1>
-            <form action="#" method="post">
+            <form action="/Room/Store" method="post">
+                @csrf
                 <div class="mb-4">
                     <label for="room_name" class="block text-gray-700">Nama Ruang Rapat</label>
                     <input type="text" id="room_name" name="room_name" class="w-full p-2 border border-gray-300 rounded" required>

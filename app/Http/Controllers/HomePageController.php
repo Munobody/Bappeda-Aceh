@@ -30,6 +30,7 @@ class HomePageController extends Controller
         } else {
             // Jika tanggal mulai dan akhir berbeda
             $selisih = $jadwalMulai->diffInDays($jadwalAkhir);
+            $selisih = intval($selisih);
             $formattedDate = $jadwalMulai->translatedFormat('l') . ' - ' . $jadwalAkhir->translatedFormat('l/') . $jadwalMulai->translatedFormat('d') . ' - ' .$jadwalAkhir->translatedFormat('d F Y');
             $formattedTime = $jamMulai . ' - ' . $jamAkhir . ' WIB'.' (' . $selisih .' hari)';
         }

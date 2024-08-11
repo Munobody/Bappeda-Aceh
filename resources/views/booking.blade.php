@@ -211,54 +211,96 @@
             width: 100%;
         }
 
+        .waiting-list {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    .waiting-list-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 0.75rem; /* Rounded corners */
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    }
+
+    .waiting-list-table th, .waiting-list-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #d1d5db; /* Gray-300 */
+    }
+
+    .waiting-list-table th {
+      background-color: #34d399; /* Green-400 */
+      color: #fff;
+    }
+
+    .waiting-list-table tr:nth-child(even) {
+      background-color: #d1fae5; /* Green-100 */
+    }
+
+    .waiting-list-table td {
+      font-size: 0.875rem;
+      color: #4b5563; /* Gray-700 */
+    }
+
+    .waiting-list-table .department {
+      font-weight: bold;
+      color: #2d3748; /* Gray-800 */
+    }
+
+    .waiting-list-table .date {
+      color: #4f46e5; /* Indigo-500 */
+    }
+
+    .waiting-list-table .time {
+      color: #22c55e; /* Green-500 */
+    }
+
 
     </style>
 </head>
 <body>
     @include('/components/navbar')
             
+    @if (session('success'))
 
-<div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-md max-h-full">
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
-                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                </svg>
-                <span class="sr-only">Close modal</span>
-            </button>
-            <div class="p-4 md:p-5 text-center">
-                <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-               
-                
-  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-
-
-
-
-                </svg>
-                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Terimakasih, Mohon Tunggu Verifikasi!</h3>
-                <button data-modal-hide="popup-modal" type="button" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
-                Tutup
-                </button>
-
-            </div>
+    <div id="popup-modal" tabindex="-1" class="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-50">
+    <div class="relative p-4 w-full max-w-md bg-white rounded-lg shadow-md">
+        <button type="button" class="absolute top-3 right-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center" data-modal-hide="popup-modal">
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+            </svg>
+            <span class="sr-only">Close modal</span>
+        </button>
+        <div class="p-4 text-center">
+            <svg class="mx-auto mb-4 text-gray-400 w-12 h-12" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+            </svg>
+            <p class="text-lg font-semibold text-gray-800">Sukses!</p>
+            <p class="text-gray-600">Booking anda berhasil! Mohon tunggu.</p>
         </div>
     </div>
 </div>
+@endif
 
+    
 
-    <div id="content" class="container mx-auto py-12 flex flex-col lg:flex-row items-center justify-center hero-section p-12">
-        <div class=" p-4 lg:p-12">
+<div id="content" class="container mx-auto py-16 flex flex-col lg:flex-row items-center justify-center hero-section">
+        <div class=" py-4 lg:px-12">
             <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4 animate-slideInLeft">Form Peminjaman Ruang Rapat</h1>
-            <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8 animate-slideInLeft delay-500">BAPPEDA ACEH</h1>
+            <h1 class="text-2xl md:text-4xl font-bold text-green-800 animate-slideInLeft text-center">BAPPEDA ACEH</h1>
         </div>
     </div>
     
-    <div class="container mx-auto max-w-lg bg-white p-8 rounded-lg shadow-lg mb-16">
+    <div class="container mx-auto max-w-lg bg-white p-8 rounded-lg shadow-lg mb-16 ">
         <h2 class="text-2xl font-bold mb-6 text-gray-800">Form Peminjaman Ruang Rapat</h2>
         <form id="bookingForm" action="/submit-room-booking" method="POST" enctype="multipart/form-data">
+            @csrf
             <!-- Nama Bidang atau Bagian -->
+
+            <input type="hidden" id="ruang_rapat_id" name="ruang_rapat_id" value="{{ request()->get('id')}}" required>
             <div class="mb-4">
                 <label for="nama-bidang" class="block text-gray-700 font-bold mb-2">Nama Penanggung Jawab</label>
                 <input type="text" id="nama-penanggung-jawab" name="penanggung_jawab" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
@@ -270,6 +312,11 @@
             <!-- Deskripsi Singkat Ruang Rapat -->
             <div class="mb-4">
                 <label for="deskripsi" class="block text-gray-700 font-bold mb-2">Agenda Rapat</label>
+                <textarea id="agenda" name="agenda" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required></textarea>
+            </div>
+            <!-- Deskripsi Singkat Ruang Rapat -->
+            <div class="mb-4">
+                <label for="deskripsi" class="block text-gray-700 font-bold mb-2">Deskripsi Rapat</label>
                 <textarea id="deskripsi" name="deskripsi" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required></textarea>
             </div>
             <!-- Tanggal Peminjaman -->
@@ -289,14 +336,14 @@
             </div>
             <!-- Submit Button -->
             <div class="mb-4">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Kirim</button>
+                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Kirim</button>
             </div>
         </form>
     </div>
 
-    <div class="container mx-auto px-4 py-6">
-    <div class="overflow-x-auto">
-        <table class="table-auto mx-auto w-full bg-white shadow-md rounded-lg">
+    <div class="waiting-list container mx-auto py-12 px-32">
+    <h2 class="text-2xl md:text-4xl font-bold mb-8 text-green-800 text-center">Waiting List</h2>
+    <table class="waiting-list-table mx-auto">
             <thead>
                 <tr class="bg-gray-100 border-b">
                     <th class="py-3 px-4 text-left">No</th>
@@ -359,8 +406,24 @@
         // Disable all dates in the disabledDates array
         tanggalAkhirInput.setAttribute('min', new Date().toISOString().split('T')[0]); // Set minimum date to today
     });
+    document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById('popup-modal');
+    const closeModalButton = modal.querySelector('[data-modal-hide]');
+    
+    closeModalButton.addEventListener('click', function () {
+        modal.classList.add('hidden');
+    });
+
+    // Jika ingin menampilkan modal, hapus kelas 'hidden'
+    function showModal() {
+        modal.classList.remove('hidden');
+    }
+});
+
 </script>
 
 </body>
+
 @include('components/footer')
+
 </html>
