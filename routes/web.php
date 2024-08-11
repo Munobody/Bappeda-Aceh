@@ -12,6 +12,7 @@ use App\Http\Controllers\RoomPageController;
 use App\Http\Controllers\ViewRequestPageController;
 use App\Http\Controllers\EditPageController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\KomputerController;
 
 Route::get('/', function () {
     return view('app');
@@ -28,3 +29,4 @@ Route::get('/Room', [RoomPageController::class, 'showroompage']);
 Route::get('/viewrequest', [ViewRequestPageController::class, 'showviewrequestpage']);
 Route::get('/Edit', [EditPageController::class, 'showeditpage']);
 Route::get('/home', [HomePageController::class, 'showhomepage']);
+Route::get('/komputer', [KomputerController::class, 'index'])->name('komputer');
