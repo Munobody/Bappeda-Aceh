@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>View Requests</title>
     <link rel="icon" href="{{ asset('images/pancacita.png') }}" type="image/x-icon">
     @vite('resources/css/app.css')
@@ -132,29 +133,28 @@
 
                     @foreach ($booking as $data)
                     <tr>
-                        <td class="py-3 px-4">{{ $index++}}</td>
-                        <td class="py-3 px-4">{{ $data->nama_bidang}}</td>
-                        <td class="py-3 px-4">{{ $data->penanggung_jawab}}</td>
-                        <td class="py-3 px-4">{{ $data->agenda}}</td>
-                        <td class="py-3 px-4">{{$data->jadwal_mulai_formatted}}</td>
-                        <td class="py-3 px-4">{{$data->jam}}</td>
-                        <td class="py-3 px-4 text-blue-700 cursor-pointer underline">dokumen</td>
-                        <td>
-                        @if($data->status === 'Disetujui')
-    <div class="bg-green-100 text-green-800 border border-green-300 rounded px-3 py-1 text-sm">
-        Disetujui
-    </div>
-@elseif($data->status === 'Ditolak')
-    <div class="bg-red-100 text-red-800 border border-red-300 rounded px-3 py-1 text-sm">
-        Ditolak
-    </div>
-@else
-
-                            <button class="status-btn approve" onclick="updateRequestStatus(1, 'approved')">Setuju</button>
-                            <button class="status-btn reject" onclick="updateRequestStatus(1, 'rejected')">Tolak</button>
-                            @endif
-                        </td>
-                    </tr>
+        <td class="py-3 px-4">{{ $index++ }}</td>
+        <td class="py-3 px-4">{{ $data->nama_bidang }}</td>
+        <td class="py-3 px-4">{{ $data->penanggung_jawab }}</td>
+        <td class="py-3 px-4">{{ $data->agenda }}</td>
+        <td class="py-3 px-4">{{ $data->jadwal_mulai_formatted }}</td>
+        <td class="py-3 px-4">{{ $data->jam }}</td><td class="py-3 px-4"><a href="/download?file={{ $data->surat }}"class="text-blue-500 hover:underline">Dokumen</a>
+        
+        <td class="py-2 px-4 border-b">
+            @if($data->status === 'Disetujui')
+                <div class="bg-green-100 text-green-800 border border-green-300 rounded px-3 py-1 text-sm">
+                    Disetujui
+                </div>
+            @elseif($data->status === 'Ditolak')
+                <div class="bg-red-100 text-red-800 border border-red-300 rounded px-3 py-1 text-sm">
+                    Ditolak
+                </div>
+            @else
+                <button class="status-btn approve" onclick="updateRequestStatus({{ $data->id }}, 'Disetujui')">Setuju</button>
+                <button class="status-btn reject" onclick="updateRequestStatus({{ $data->id }}, 'Ditolak')">Tolak</button>
+            @endif
+        </td>
+    </tr>
                     @endforeach
                     <!-- End of example row -->
                 </tbody>
@@ -162,12 +162,43 @@
         </div>
     </div>
         @include('components/footer')
-    <script>
-        function updateRequestStatus(requestId, status) {
-            // Implement the logic to update request status, e.g., send AJAX request to server
-            console.log(`Request ${requestId} is ${status}`);
-        }
-    </script>
+        <script>
+    function updateRequestStatus(id, status) {
+        fetch('/booking/update-status', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({ id: id, status: status })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Temukan baris dengan ID yang sesuai
+                document.querySelectorAll('tr').forEach(row => {
+                    // Temukan cell pertama yang berisi ID
+                    const firstCell = row.querySelector('td:first-child');
+                    if (firstCell && firstCell.innerText.trim() == id) {
+                        const statusCell = row.querySelector('td:nth-child(8)');
+                        if (statusCell) {
+                            if (status === 'Disetujui') {
+                                statusCell.innerHTML = '<div class="bg-green-100 text-green-800 border border-green-300 rounded px-3 py-1 text-sm">Disetujui</div>';
+                            } else if (status === 'Ditolak') {
+                                statusCell.innerHTML = '<div class="bg-red-100 text-red-800 border border-red-300 rounded px-3 py-1 text-sm">Ditolak</div>';
+                            }
+                        } else {
+                            console.error('Status cell not found');
+                        }
+                    }
+                });
+            } else {
+                alert('Update failed');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+</script>
 
     @vite('resources/js/app.js')
 </body>

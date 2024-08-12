@@ -8,6 +8,6 @@ class RequestPageController extends Controller
 {
     public function showrequestpage()
     {
-        return view('request');
+       
     }
 }
