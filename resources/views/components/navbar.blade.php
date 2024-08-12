@@ -77,18 +77,8 @@
       <a href="/">
       <label tabindex="0" class="btn btn-ghost flex items-center text-sm text-gray-700 hover:text-gray-900">
         Data
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-        </svg>
       </label>
       </a>
-      <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box w-52 p-2 shadow">
-        <li><a href="#">Alat Angkutan</a></li>
-        <li><a href="#">Alat Bengkel</a></li>
-        <li><a href="#">Alat Besar</a></li>
-        <li><a href="#">Alat Kantor</a></li>
-        <li><a href="#">Alat Kesehatan</a></li>
-      </ul>
     </div>
   </ul>
 </div>

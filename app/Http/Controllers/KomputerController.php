@@ -21,12 +21,7 @@ class KomputerController extends Controller
         $headers = array_map('strtolower', $data[0]); // Ensure headers are lowercase
         $rows = array_slice($data, 1);
 
-        // Ensure 'nama_barang' is present in headers
-        if (!in_array('nama_barang', $headers)) {
-            abort(500, "'nama_barang' column not found in CSV file.");
-        }
-
-        // Process data into a suitable format for Chart.js
+        // Process data into a suitable format for the view
         $processedData = $this->processKomputerData($rows, $headers);
 
         return view('komputer', compact('processedData'));
@@ -37,7 +32,6 @@ class KomputerController extends Controller
         $data = [];
 
         foreach ($rows as $row) {
-            // Check if the number of headers and row values are the same
             if (count($headers) !== count($row)) {
                 \Log::warning("Row does not match header count. Row: " . implode(',', $row));
                 continue; // Skip this row
@@ -50,7 +44,6 @@ class KomputerController extends Controller
                 continue; // Skip this row
             }
 
-            // Ensure 'nama_barang' key exists
             if (!isset($item['nama_barang'])) {
                 \Log::warning("'nama_barang' key not found in row: " . implode(',', $row));
                 continue; // Skip this row
@@ -60,18 +53,18 @@ class KomputerController extends Controller
 
             if (!isset($data[$key])) {
                 $data[$key] = [
+                    'nama_barang' => $key,
                     'count' => 0,
-                    'details' => []
+                    'details' => [] // Ensure 'details' is always an array
                 ];
             }
 
             $data[$key]['count']++;
             $data[$key]['details'][] = [
-                'no_polisi' => $item['no_polisi'] ?? '-',
-                'tahun_pembuatan' => $item['tahun_pembuatan'] ?? '-'
+                'Merek/tipe' => $item['merek/tipe'] ?? '-', // Sesuaikan dengan nama kolom di CSV
+                'Tanggal Perolehan' => $item['tanggal perolehan'] ?? '-' // Sesuaikan dengan nama kolom di CSV
             ];
         }
-
         return $data;
     }
 }

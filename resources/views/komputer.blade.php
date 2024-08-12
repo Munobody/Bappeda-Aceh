@@ -10,12 +10,13 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .chart-container {
-            width: 100%;
-            max-width: 900px;
-            height: 600px;
-            margin: 0 auto;
-            margin-bottom: 20px;
-        }
+    width: 100%;
+    max-width: 1200px; /* Ubah max-width sesuai kebutuhan */
+    height: 800px; /* Ubah height sesuai kebutuhan */
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
 
         body {
             background: linear-gradient(90deg, #fff 0%, #fff 100%);
@@ -68,8 +69,8 @@
         }
 
         .type-table-container {
-            display: none;
             margin-top: 20px;
+            display: none; /* Initially hidden */
         }
 
         .back-button {
@@ -126,8 +127,8 @@
                     <thead>
                         <tr>
                             <th>Nama Barang</th>
-                            <th>No Polisi</th>
-                            <th>Tahun Pembuatan</th>
+                            <th>Merk/Tipe</th>
+                            <th>Tanggal Perolehan</th>
                         </tr>
                     </thead>
                     <tbody id="typeTableBody">
@@ -139,94 +140,135 @@
         <div class="back-button">
             <a href="/" class="btn-back">Back</a>
         </div>
+
+        <!-- Modal Password -->
+        <div id="passwordModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+            <div class="bg-white rounded-lg p-6 max-w-md mx-auto">
+                <h2 class="text-xl font-bold mb-4">Masukkan Password</h2>
+                <input type="password" id="passwordInput" class="border border-gray-300 rounded w-full p-2 mb-4" placeholder="Password">
+                <div class="flex justify-end">
+                    <button id="cancelButton" class="bg-gray-300 text-gray-800 py-2 px-4 rounded mr-2">Batal</button>
+                    <button id="submitPasswordButton" class="bg-blue-600 text-white py-2 px-4 rounded">Submit</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var data = @json($processedData); // Pass the processed data to the view
+    document.addEventListener('DOMContentLoaded', function() {
+        var data = @json($processedData); // Pass the processed data to the view
+        var correctPassword = 'Bappeda'; // Ganti dengan password yang sesuai
+        var isAuthenticated = false; // Flag untuk memastikan apakah user sudah mengautentikasi
 
-            // Prepare the labels and datasets for the chart
-            var labels = Object.keys(data);
-            var totals = labels.map(function(key) {
-                return data[key].count;
-            });
+        console.log('Processed Data:', data); // Log data for debugging
 
-            // Generate random colors for each item
-            function getRandomColor() {
-                var r = Math.floor(Math.random() * 256);
-                var g = Math.floor(Math.random() * 256);
-                var b = Math.floor(Math.random() * 256);
-                return `rgba(${r}, ${g}, ${b}, 0.7)`;
-            }
+        var labels = Object.keys(data);
+        var totals = labels.map(function(key) {
+            return data[key].count;
+        });
 
-            var backgroundColors = labels.map(getRandomColor);
-            var borderColors = backgroundColors.map(color => color.replace('0.7', '1'));
+        function getRandomColor() {
+            var r = Math.floor(Math.random() * 256);
+            var g = Math.floor(Math.random() * 256);
+            var b = Math.floor(Math.random() * 256);
+            return `rgba(${r}, ${g}, ${b}, 0.7)`;
+        }
 
-            var ctx = document.getElementById('myChart').getContext('2d');
+        var backgroundColors = labels.map(getRandomColor);
+        var borderColors = backgroundColors.map(color => color.replace('0.7', '1'));
 
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Jumlah Barang',
-                        data: totals,
-                        backgroundColor: backgroundColors,
-                        borderColor: borderColors,
-                        borderWidth: 1
-                    }],
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    var label = context.label || '';
-                                    var value = context.raw || 0;
-                                    return label + ': ' + value;
-                                }
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Jumlah Barang',
+                    data: totals,
+                    backgroundColor: backgroundColors,
+                    borderColor: borderColors,
+                    borderWidth: 1
+                }],
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                var label = context.label || '';
+                                var value = context.raw || 0;
+                                return label + ': ' + value;
                             }
                         }
-                    },
-                    onClick: function(evt, activeElements) {
-                        var typeTableContainer = document.getElementById('typeTableContainer');
-                        var typeTableBody = document.getElementById('typeTableBody');
-                        typeTableBody.innerHTML = ''; // Clear existing rows
+                    }
+                },
+                onClick: function(evt, activeElements) {
+                    if (!isAuthenticated) {
+                        // Show the password modal if not authenticated
+                        var passwordModal = document.getElementById('passwordModal');
+                        passwordModal.classList.remove('hidden');
 
-                        if (activeElements.length > 0) {
-                            var index = activeElements[0].index;
-                            var selectedBarang = labels[index];
-                            var selectedData = data[selectedBarang];
+                        // Handle password submission
+                        document.getElementById('submitPasswordButton').onclick = function() {
+                            var enteredPassword = document.getElementById('passwordInput').value;
+                            if (enteredPassword === correctPassword) {
+                                isAuthenticated = true;
+                                passwordModal.classList.add('hidden');
+                                showTableData(activeElements);
+                            } else {
+                                alert('Password salah! Silakan coba lagi.');
+                            }
+                        };
 
-                            // Display the type table
-                            typeTableContainer.style.display = 'block';
-
-                            // Populate the type table
-                            selectedData.details.forEach(function(detail) {
-                                var row = document.createElement('tr');
-                                var namaBarangCell = document.createElement('td');
-                                var noPolisiCell = document.createElement('td');
-                                var tahunPembuatanCell = document.createElement('td');
-
-                                namaBarangCell.textContent = selectedBarang;
-                                noPolisiCell.textContent = detail.no_polisi;
-                                tahunPembuatanCell.textContent = detail.tahun_pembuatan;
-
-                                row.appendChild(namaBarangCell);
-                                row.appendChild(noPolisiCell);
-                                row.appendChild(tahunPembuatanCell);
-
-                                typeTableBody.appendChild(row);
-                            });
-                        }
+                        // Handle cancel button
+                        document.getElementById('cancelButton').onclick = function() {
+                            passwordModal.classList.add('hidden');
+                        };
+                    } else {
+                        showTableData(activeElements);
                     }
                 }
-            });
+            }
         });
+
+        function showTableData(activeElements) {
+            var typeTableContainer = document.getElementById('typeTableContainer');
+            var typeTableBody = document.getElementById('typeTableBody');
+            typeTableBody.innerHTML = ''; // Clear existing rows
+
+            if (activeElements.length > 0) {
+                var index = activeElements[0].index;
+                var selectedBarang = labels[index];
+                var selectedData = data[selectedBarang];
+
+                // Display the type table
+                typeTableContainer.style.display = 'block';
+
+                // Populate the type table
+                selectedData.details.forEach(function(detail) {
+                    var row = document.createElement('tr');
+                    var namaBarangCell = document.createElement('td');
+                    var merkTipeCell = document.createElement('td');
+                    var tanggalPerolehanCell = document.createElement('td');
+
+                    namaBarangCell.textContent = selectedBarang;
+                    merkTipeCell.textContent = detail['Merek/tipe'] || '-'; // Default to '-' if not found
+                    tanggalPerolehanCell.textContent = detail['Tanggal Perolehan'] || '-'; // Default to '-' if not found
+
+                    row.appendChild(namaBarangCell);
+                    row.appendChild(merkTipeCell);
+                    row.appendChild(tanggalPerolehanCell);
+
+                    typeTableBody.appendChild(row);
+                });
+            }
+        }
+    });
     </script>
 </body>
 </html>

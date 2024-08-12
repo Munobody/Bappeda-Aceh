@@ -8,7 +8,9 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <style>
+        /* Styles remain the same */
         .chart-container {
             width: 100%;
             max-width: 900px;
@@ -43,7 +45,7 @@
             animation: fadeInUp 1s forwards;
             background: #fff;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for 3D effect */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .type-table th, .type-table td {
@@ -55,7 +57,7 @@
         .type-table th {
             background-color: #f2f2f2;
             text-align: left;
-            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1); /* Inner shadow for header */
+            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
         }
 
         .type-table tr:nth-child(even) {
@@ -64,7 +66,7 @@
 
         .type-table tr:hover {
             background-color: rgba(0, 123, 255, 0.1);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .type-table-container {
@@ -100,168 +102,273 @@
             }
         }
 
-        /* Custom styles for 3D effect */
         .chart-bar {
             transition: all 0.3s ease;
         }
+
         .chart-bar:hover {
-            transform: scale(1.1); /* Slightly enlarge the bar on hover */
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow for 3D effect */
+            transform: scale(1.1);
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
 <body>
     @include('components/navbar')
-    @include('components/messages')
 
     <div class="container mx-auto py-16">
         <h2 class="text-2xl font-bold text-green-800 mb-4 text-center">BAPPEDA ACEH - Vehicle Data Visualization</h2>
+        
+        <!-- Chart -->
         <div class="chart-container">
             <canvas id="myChart"></canvas>
         </div>
+        
+        <!-- Data Table -->
         <div class="mt-12">
-            <h3 class="text-xl font-semibold text-center">Keterangan Type</h3>
-            <div class="type-table-container" id="typeTableContainer">
-                <table class="type-table" id="typeTable">
-                    <thead>
-                        <tr>
-                            <th>No Polisi</th>
-                            <th>Tahun Pembuatan</th>
-                            <th>Type</th>
-                            <th>Jumlah</th>
-                        </tr>
-                    </thead>
-                    <tbody id="typeTableBody">
-                        <!-- Rows will be inserted dynamically here -->
-                    </tbody>
-                </table>
-            </div>
+    <div class="type-table-container bg-green-400 rounded-lg overflow-x-auto" id="typeTableContainer">
+        <table class="type-table bg-green-500 text-black w-full border-collapse rounded-lg shadow-md transition-transform duration-500 ease-in-out transform hover:scale-105" id="typeTable">
+            <thead class="bg-green-600">
+                <tr class="bg-green-800">
+                    <th class="p-3 border-b">Kategori</th>
+                    <th class="p-3 border-b">Merek</th>
+                    <th class="p-3 border-b">Tipe</th>
+                    <th class="p-3 border-b">Sub Kategori</th>
+                    <th class="p-3 border-b">Nama Barang</th>
+                </tr>
+            </thead>
+            <tbody class="bg-green-200" id="typeTableBody">
+                <!-- Rows will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
         </div>
         <div class="back-button">
             <a href="/" class="btn-back">Back</a>
         </div>
     </div>
 
-    <!-- <div class="flex items-center justify-center min-h-screen">
-    <div class="flex flex-col items-center space-y-6">
-      <img src="{{ asset('images/visdat.jpeg') }}" alt="Example Image" class="shadow-lg rounded-lg w-180 h-auto mt-20">
-      <img src="{{ asset('images/visdat1.jpeg') }}" alt="Example Image" class="shadow-lg rounded-lg w-150 h-auto">
+    <!-- Modal Password -->
+    <div id="passwordModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-lg p-6 max-w-md mx-auto">
+            <h2 class="text-xl font-bold mb-4">Masukkan Password</h2>
+            <input type="password" id="passwordInput" class="border border-gray-300 rounded w-full p-2 mb-4" placeholder="Password">
+            <div class="flex justify-end">
+                <button id="cancelButton" class="bg-gray-300 text-gray-800 py-2 px-4 rounded mr-2">Batal</button>
+                <button id="submitPasswordButton" class="bg-blue-600 text-white py-2 px-4 rounded">Submit</button>
+            </div>
+        </div>
     </div>
-  </div> -->
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var data = @json($processedData); // Pass the processed data to the view
+document.addEventListener('DOMContentLoaded', function() {
+    var data = @json($processedData); // Pass the processed data to the view
+    var correctPassword = 'Bappeda'; // Ganti dengan password yang sesuai
+    var isAuthenticated = false; // Flag untuk memastikan apakah user sudah mengautentikasi
 
-            // Prepare the labels and datasets for the chart
-            var labels = data.map(function(item) {
-                return item.merk; 
-            });
+    // Group data by kategori and then by merek
+    var categories = {};
 
-            // Calculate the total number of vehicles per merk
-            var merkTotals = data.map(function(item) {
-                return Object.values(item.types).reduce((a, b) => a + b.length, 0);
-            });
+    data.forEach(function(item) {
+        if (!categories[item.kategori]) {
+            categories[item.kategori] = {};
+        }
 
-            // Generate random colors for each merk
-            function getRandomColor() {
-                var r = Math.floor(Math.random() * 256);
-                var g = Math.floor(Math.random() * 256);
-                var b = Math.floor(Math.random() * 256);
-                return `rgba(${r}, ${g}, ${b}, 0.7)`;
-            }
+        if (!categories[item.kategori][item.merek]) {
+            categories[item.kategori][item.merek] = [];
+        }
+        categories[item.kategori][item.merek].push(item); // Store details under each brand
+    });
 
-            var backgroundColors = labels.map(getRandomColor);
-            var borderColors = backgroundColors.map(color => color.replace('0.7', '1'));
+    var allMerekLabels = [];
+    var datasets = [];
+    var categoryColors = getDistinctColors(Object.keys(categories).length);
+    var merekColors = getDistinctColors(getTotalUniqueMerekCount(data));
+    var totalDataCount = data.length;
 
-            var ctx = document.getElementById('myChart').getContext('2d');
+    Object.keys(categories).forEach(function(category, categoryIndex) {
+        var brands = Object.keys(categories[category]);
+        var brandTotals = brands.map(function(brand) {
+            return categories[category][brand].length;
+        });
 
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Total Kendaraan',
-                        data: merkTotals,
-                        backgroundColor: backgroundColors,
-                        borderColor: borderColors,
-                        borderWidth: 3, // Increase border width for better 3D effect
-                        backgroundColor: labels.map((_, index) => {
-                            var gradient = ctx.createLinearGradient(0, 0, 0, 400);
-                            gradient.addColorStop(0, backgroundColors[index]);
-                            gradient.addColorStop(1, 'rgba(0, 0, 0, 0.1)');
-                            return gradient;
-                        }),
-                    }],
+        datasets.push({
+            label: category,
+            data: brandTotals,
+            backgroundColor: brands.map((brand, brandIndex) => merekColors[brandIndex]),
+            borderColor: '#000',
+            borderWidth: 1
+        });
+
+        allMerekLabels = [...new Set([...allMerekLabels, ...brands])];
+    });
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: allMerekLabels,
+            datasets: datasets,
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: {
+                duration: 1000,
+                easing: 'easeInOutBounce'
+            },
+            plugins: {
+                datalabels: {
+                    formatter: function(value, context) {
+                        var total = context.chart._metasets[0].total;
+                        var percentage = ((value / total) * 100).toFixed(2) + '%';
+                        return percentage;
+                    },
+                    color: '#fff',
+                    font: {
+                        weight: 'bold'
+                    },
+                    align: 'center',
+                    anchor: 'center'
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top',
-                        },
-                        title: {
-                            display: true,
-                            text: 'Jumlah Total Kendaraan per Merk'
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                stepSize: 1
-                            }
-                        }
-                    },
-                    animation: {
-                        duration: 2000, // Duration of the animation in milliseconds
-                        easing: 'easeOutElastic', // Easing function for the animation
-                        onComplete: function() {
-                            console.log('Chart animation complete');
-                        }
-                    },
-                    onClick: function(evt, activeElements) {
-                        var typeTableContainer = document.getElementById('typeTableContainer');
-                        var typeTableBody = document.getElementById('typeTableBody');
-                        typeTableBody.innerHTML = ''; // Clear existing rows
-
-                        if (activeElements.length > 0) {
-                            var index = activeElements[0].index;
-                            var selectedMerk = labels[index];
-                            var selectedData = data.find(item => item.merk === selectedMerk);
-
-                            // Display the type table
-                            typeTableContainer.style.display = 'block';
-
-                            // Populate the type table
-                            Object.keys(selectedData.types).forEach(function(type) {
-                                selectedData.types[type].forEach(function(detail) {
-                                    var row = document.createElement('tr');
-                                    var noPolisiCell = document.createElement('td');
-                                    var tahunPembuatanCell = document.createElement('td');
-                                    var typeCell = document.createElement('td');
-                                    var countCell = document.createElement('td');
-
-                                    noPolisiCell.textContent = detail.no_polisi;
-                                    tahunPembuatanCell.textContent = detail.tahun_pembuatan;
-                                    typeCell.textContent = type;
-                                    countCell.textContent = '1'; // Each detail represents one vehicle
-
-                                    row.appendChild(noPolisiCell);
-                                    row.appendChild(tahunPembuatanCell);
-                                    row.appendChild(typeCell);
-                                    row.appendChild(countCell);
-
-                                    typeTableBody.appendChild(row);
-                                });
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    labels: {
+                        generateLabels: function(chart) {
+                            var data = chart.data;
+                            return data.labels.map(function(label, i) {
+                                var meta = chart.getDatasetMeta(0);
+                                var total = meta.total;
+                                var count = data.datasets[0].data[i];
+                                var percentage = ((count / total) * 100).toFixed(2) + '%';
+                                return {
+                                    text: `${label}: ${count} (${percentage})`,
+                                    fillStyle: data.datasets[0].backgroundColor[i],
+                                    strokeStyle: data.datasets[0].borderColor,
+                                    lineWidth: data.datasets[0].borderWidth
+                                };
                             });
                         }
                     }
                 }
-            });
-        });
-    </script>
+            },
+            elements: {
+                arc: {
+                    borderWidth: 2,
+                    hoverBorderColor: '#333',
+                    hoverBorderWidth: 4,
+                    hoverRadius: 10 // Adjust hover radius for better visibility
+                }
+            },
+            interaction: {
+                mode: 'nearest',
+                intersect: false
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        var dataset = data.datasets[tooltipItem.datasetIndex];
+                        var label = data.labels[tooltipItem.index];
+                        var value = dataset.data[tooltipItem.index];
+                        return `${label}: ${value}`;
+                    }
+                }
+            }
+        }
+    });
+
+    document.getElementById('myChart').addEventListener('click', function(evt) {
+        var activePoints = myChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, false);
+
+        if (activePoints.length > 0) {
+            if (!isAuthenticated) {
+                var modal = document.getElementById('passwordModal');
+                modal.classList.remove('hidden');
+            } else {
+                // Show the table data
+                showTableData(activePoints);
+            }
+        }
+    });
+
+    document.getElementById('submitPasswordButton').addEventListener('click', function() {
+        var password = document.getElementById('passwordInput').value;
+
+        if (password === correctPassword) {
+            isAuthenticated = true; // Set flag to true
+            var modal = document.getElementById('passwordModal');
+            modal.classList.add('hidden');
+            var activePoints = myChart.getActiveElements(); // Ambil elemen aktif saat ini
+
+            if (activePoints.length > 0) {
+                // Show the table data
+                showTableData(activePoints);
+            }
+        } else {
+            alert('Password salah. Silakan coba lagi.');
+        }
+    });
+
+    document.getElementById('cancelButton').addEventListener('click', function() {
+        var modal = document.getElementById('passwordModal');
+        modal.classList.add('hidden');
+    });
+
+    function showTableData(activePoints) {
+    var selectedCategory = activePoints[0].element.$context.dataset.label;
+    var selectedBrand = myChart.data.labels[activePoints[0].index];
+    var tableContainer = document.getElementById('typeTableContainer');
+    var tableBody = document.getElementById('typeTableBody');
+    tableBody.innerHTML = ''; // Clear existing rows
+
+    // Add rows to table body
+    categories[selectedCategory][selectedBrand].forEach(function(item) {
+        var row = document.createElement('tr');
+
+        var kategoriCell = document.createElement('td');
+        var merekCell = document.createElement('td');
+        var tipeCell = document.createElement('td');
+        var subkategoriCell = document.createElement('td');
+        var namabarangCell = document.createElement('td');
+
+        kategoriCell.textContent = item.kategori || '-';
+        merekCell.textContent = item.merek || '-';
+        tipeCell.textContent = item.tipe || '-';
+        subkategoriCell.textContent = item.subkategori || '-';
+        namabarangCell.textContent = item.namabarang || '-';
+
+        row.appendChild(kategoriCell);
+        row.appendChild(merekCell);
+        row.appendChild(tipeCell);
+        row.appendChild(subkategoriCell);
+        row.appendChild(namabarangCell);
+
+        tableBody.appendChild(row);
+    });
+
+    // Display the table
+    tableContainer.style.display = 'block';
+}
+
+
+    function getDistinctColors(count) {
+        var colors = [];
+        for (var i = 0; i < count; i++) {
+            colors.push('hsl(' + (360 * i / count) + ', 100%, 50%)');
+        }
+        return colors;
+    }
+
+    function getTotalUniqueMerekCount(data) {
+        var uniqueMereks = new Set(data.map(function(item) {
+            return item.merek;
+        }));
+        return uniqueMereks.size;
+    }
+});
+</script>
 </body>
 </html>

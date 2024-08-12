@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -9,7 +8,7 @@ class DashboardController extends Controller
     public function index()
     {
         // Path to your CSV file
-        $csvPath = storage_path('app/public/Transportasi-Bappeda-Aceh.csv');
+        $csvPath = storage_path('app/public/Alat-Angkutan.csv');
 
         // Check if the file exists
         if (!file_exists($csvPath)) {
@@ -18,7 +17,7 @@ class DashboardController extends Controller
 
         // Open the CSV file and read data
         $data = array_map('str_getcsv', file($csvPath));
-        $headers = array_map('strtolower', $data[0]); // Ensure headers are lowercase
+        $headers = array_map('strtolower', array_map('trim', $data[0])); // Ensure headers are lowercase and trimmed
         $rows = array_slice($data, 1);
 
         // Process data into a suitable format for Chart.js
@@ -32,33 +31,32 @@ class DashboardController extends Controller
         $data = [];
 
         foreach ($rows as $row) {
-            // Check if the number of headers and row values are the same
             if (count($headers) !== count($row)) {
                 \Log::warning("Row does not match header count. Row: " . implode(',', $row));
                 continue; // Skip this row
             }
 
-            $item = array_combine($headers, $row);
+            $item = array_combine($headers, array_map('trim', $row)); // Combine headers and row values, trimming whitespace
 
             if ($item === false) {
                 \Log::warning("array_combine failed for row: " . implode(',', $row));
                 continue; // Skip this row
             }
 
-            if (!isset($data[$item['merk']])) {
-                $data[$item['merk']] = ['merk' => $item['merk'], 'types' => []];
+            if (!isset($item['kategori']) || !isset($item['merek']) || !isset($item['tipe']) || !isset($item['subkategori']) || !isset($item['namabarang'])) {
+                \Log::warning("'kategori', 'merek', 'tipe', 'subkategori', or 'namabarang' key not found in row: " . implode(',', $row));
+                continue; // Skip this row
             }
 
-            if (!isset($data[$item['merk']]['types'][$item['type']])) {
-                $data[$item['merk']]['types'][$item['type']] = [];
-            }
-
-            $data[$item['merk']]['types'][$item['type']][] = [
-                'no_polisi' => $item['no polisi'],
-                'tahun_pembuatan' => $item['tahun pembuatan']
+            $data[] = [
+                'kategori' => $item['kategori'],
+                'merek' => $item['merek'],
+                'tipe' => $item['tipe'],
+                'subkategori' => $item['subkategori'],
+                'namabarang' => $item['namabarang'],
             ];
         }
 
-        return array_values($data);
+        return $data;
     }
 }
