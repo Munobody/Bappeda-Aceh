@@ -110,7 +110,22 @@
 
     <div class="main-content">
         <div class="request-container">
-            <h1 class="text-3xl font-bold mb-6">View Room Booking Requests</h1>
+            <h1 class="text-3xl font-bold mb-6">Daftar Permintaan Peminjaman Ruang</h1>
+
+            <form method="GET" action="{{ route('viewrequest') }}" class="mb-6">
+            <div class="flex space-x-4">
+                <select name="status" class="form-select">
+                    <option value="">-- Semua Status --</option>
+                    <option value="Disetujui" {{ request('status') === 'Disetujui' ? 'selected' : '' }}>Disetujui</option>
+                    <option value="Ditolak" {{ request('status') === 'Ditolak' ? 'selected' : '' }}>Ditolak</option>
+                    <option value="Menunggu" {{ request('status') === 'Menunggu' ? 'selected' : '' }}>Menunggu</option>
+                </select>
+
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Filter</button>
+            </div>
+        </form>
+
+
 
             <table class="request-table">
                 <thead>
