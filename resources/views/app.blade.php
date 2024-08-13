@@ -8,9 +8,8 @@
     @vite('resources/css/app.css')
     <style>
         body {
-            background: linear-gradient(90deg, #fff 0%, #fff 100%);
-            background-size: 400% 400%;
-            animation: waveBackgroundAnimation 10s ease infinite;
+            background: url('{{ asset('images/bg.jpg') }}') no-repeat center center fixed; 
+            background-size: cover; /* Make sure the background covers the entire viewport */
             transition: background 0.5s, color 0.5s;
         }
 
@@ -111,109 +110,204 @@
             font-weight: bold;
             color: #334155; /* Text color for caption */
         }
+
+        /* Modal Styling */
+        #dataModal {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #dataModal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            max-width: 90%;
+            width: 400px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-content a {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #134B70; /* Link color */
+            text-decoration: none;
+        }
+
+        .close-button {
+            margin-top: 1rem;
+            background-color: #ef4444; /* Red color */
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+
+        /* Timeline Line Color */
+.bg-green-300 {
+    background-color: #34d399; /* Ganti dengan warna hijau yang diinginkan */
+}
+
+/* Timeline Animation */
+@keyframes fadeInTimeline {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.timeline-item {
+    animation: fadeInTimeline 1s ease-out;
+}
+
+/* Timeline Item Animation Delay */
+.timeline-item.delay-300 {
+    animation-delay: 0.3s;
+}
+.timeline-item.delay-600 {
+    animation-delay: 0.6s;
+}
     </style>
 </head>
 <body>
     @include('/components/navbar')
-    @include('/components/messages')
-    <div class="container mx-auto py-16 flex flex-col lg:flex-row items-center hero-section">
-        <div class="text-left flex-1 p-4 lg:p-10">
+    <div class="container mx-auto py-16 flex flex-col items-center justify-center hero-section">
+        <div class="text-center flex-1 p-4 lg:p-10">
             <div class="inline-block bg-green-100 text-green-800 py-2 px-4 rounded-full text-sm mb-4 animate-fadeIn">
                 New Visualitation Data For BAPPEDA ACEH
             </div>
-            <h1 class="text-4xl md:text-7xl font-bold text-green-800 mb-4 animate-slideInLeft">Data Visualitation</h1>
+            <h1 class="text-4xl md:text-7xl font-bold text-green-800 mb-4 animate-slideInLeft">Visualisasi Data</h1>
             <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-10 animate-slideInLeft delay-500">BAPPEDA ACEH</h1>
-            <a href="/dashboard" class="bg-green-500 text-white py-3 px-8 rounded-full animate-bounce">GET Visualisasi Data</a>
+            <img src="{{ asset('images/pancacita.png') }}" alt="BAPPEDA ACEH" class="mb-10 w-full max-w-md mx-auto rounded-lg ">
+            <a href="#" id="openModal" class="bg-green-500 text-white py-3 px-8 rounded-full animate-bounce">GET Visualisasi Data</a>
         </div>
-        <div class="flex-1 text-center lg:text-right">
-            <img src="{{ asset('images/Pancacita.png') }}" alt="Pemerintah Aceh Logo" class="mx-auto w-32 md:w-48 shadow-lg transform transition duration-300 hover:scale-105">
+        <div class="p-4">
+    <div class="flex flex-col grid-cols-9 p-2 mx-auto md:grid">
+        <!-- First Event -->
+       <!-- First Event -->
+<div class="flex md:contents flex-row-reverse timeline-item delay-300">
+    <a href="/komputer" class="relative p-4 my-6 text-black bg-green-200 rounded-xl col-start-1 col-end-5 mr-auto md:mr-0 md:ml-auto hover:bg-green-600 transition duration-300 ease-in-out">
+        <h3 class="text-lg font-semibold lg:text-xl">Visualization Komputer Data</h3>
+        <p class="mt-2 leading-6">Visualisai yang dibuat berdasarkan data asset komputer yang terdapat di Bappeda Aceh</p>
+    </a>
+    <div class="relative col-start-5 col-end-6 mr-7 md:mx-auto">
+        <div class="flex items-center justify-center w-6 h-full">
+            <div class="w-1 h-full bg-green-300 rounded-t-full bg-gradient-to-b from-green-400 to-green-300">
+            </div>
         </div>
+        <div class="absolute w-6 h-6 -mt-3 bg-white border-4 border-green-400 rounded-full top-1/2"></div>
+    </div>
+</div>
+
+<!-- Second Event -->
+<div class="flex md:contents timeline-item delay-600">
+    <div class="relative col-start-5 col-end-6 mr-7 md:mx-auto">
+        <div class="flex items-center justify-center w-6 h-full">
+            <div class="w-1 h-full bg-green-300"></div>
+        </div>
+        <div class="absolute w-6 h-6 -mt-3 bg-white border-4 border-green-400 rounded-full top-1/2"></div>
+    </div>
+    <a href="your-link-2.html" class="relative p-4 my-6 text-gray-800 bg-white rounded-xl col-start-6 col-end-10 mr-auto hover:bg-green-50 transition duration-300 ease-in-out">
+        <h3 class="text-lg font-semibold lg:text-xl">New Event 2</h3>
+        <p class="mt-2 leading-6">Description of the second event.</p>
+    </a>
+</div>
+
+<!-- Third Event -->
+<div class="flex md:contents flex-row-reverse timeline-item delay-900">
+    <a href="your-link-3.html" class="relative p-4 my-6 text-gray-800 bg-white rounded-xl col-start-1 col-end-5 mr-auto md:mr-0 md:ml-auto hover:bg-green-50 transition duration-300 ease-in-out">
+        <h3 class="text-lg font-semibold lg:text-xl">New Event 3</h3>
+        <p class="mt-2 leading-6">Description of the third event.</p>
+    </a>
+    <div class="relative col-start-5 col-end-6 mr-7 md:mx-auto">
+        <div class="flex items-center justify-center w-6 h-full">
+            <div class="w-1 h-full bg-green-300 rounded-t-full bg-gradient-to-b from-green-400 to-green-300">
+            </div>
+        </div>
+        <div class="absolute w-6 h-6 -mt-3 bg-white border-4 border-green-400 rounded-full top-1/2"></div>
+    </div>
+</div>
+
+<!-- Fourth Event -->
+<div class="flex md:contents timeline-item delay-1200">
+    <div class="relative col-start-5 col-end-6 mr-7 md:mx-auto">
+        <div class="flex items-center justify-center w-6 h-full">
+            <div class="w-1 h-full bg-green-300"></div>
+        </div>
+        <div class="absolute w-6 h-6 -mt-3 bg-white border-4 border-green-400 rounded-full top-1/2"></div>
+    </div>
+    <a href="your-link-4.html" class="relative p-4 my-6 text-gray-800 bg-white rounded-xl col-start-6 col-end-10 mr-auto hover:bg-green-50 transition duration-300 ease-in-out">
+        <h3 class="text-lg font-semibold lg:text-xl">New Event 4</h3>
+        <p class="mt-2 leading-6">Description of the fourth event.</p>
+    </a>
+</div>
+
+    </div>
+</div>
+
+</div>
     </div>
 
-    <div class="container mx-auto text-center py-16">
-        <h2 class="text-2xl font-bold text-green-800 mb-4 shadow-2xl"> Asset Transportasi BAPPEDA ACEH</h2>
-    </div>
-    <div class="overflow-x-auto px-4 lg:px-24 mb-16 scrollable-table">
-        <table class="min-w-full divide-y divide-gray-200 shadow-2xl">
-            <caption class="caption-bottom mt-5">
-                Table 1 Data Asset Transportasi Bappeda Aceh
-            </caption>
-            <!-- Table header -->
-            <thead class="bg-gray-50">
-                <tr>
-                    <th class="border border-slate-300 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
-                    <th class="border border-slate-300 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                    <th class="border border-slate-300 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Asset</th>
-                    <th class="border border-slate-300 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
-                    <th class="border border-slate-300 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tahun</th>
-                </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-                <!-- PHP code to loop through CSV data and populate rows -->
-                @php
-                    // Path to your CSV file
-                    $csvFile = storage_path('app/public/Transportasi-Bappeda-Aceh.csv');
+    
 
-                    // Check if the file exists
-                    if (file_exists($csvFile)) {
-                        // Open and read the CSV file
-                        $file = fopen($csvFile, 'r');
+    <!-- Modal -->
+    <div id="dataModal">
+        <div class="modal-content text-center">
+            <h2 class="text-2xl font-bold mb-4 text-green-500">Pilih Halaman Data</h2>
+            <ul class="text-black space-y-2">
+                <li>
+                    <a href="/komputer" class="text-black hover:text-gray-800">Komputer</a>
+                </li>
+                <li>
+                    <a href="/dashboard" class="text-black hover:text-gray-800">Transpotasi</a>
+                </li>
+                <li>
+                    <a href="/kantor" class="text-black hover:text-gray-800">Alat Kantor</a>
+                </li>
+            </ul>
 
-                        // Initialize counter
-                        $count = 1;
-
-                        // Loop through each row in the CSV file
-                        while (($data = fgetcsv($file)) !== FALSE) {
-                            // Skip the header row
-                            if ($count > 1) {
-                                echo "<tr>";
-                                echo "<th class='border border-slate-300 px-6 py-4 whitespace-nowrap'>" . ($count - 1) . "</th>"; // Display row number
-                                echo "<td class='border border-slate-300 px-6 py-4 whitespace-nowrap'>" . $data[0] . "</td>"; // Display Name column
-                                echo "<td class='border border-slate-300 px-6 py-4 whitespace-nowrap'>" . $data[1] . "</td>"; // Display Asset column
-                                echo "<td class='border border-slate-300 px-6 py-4 whitespace-nowrap'>" . $data[2] . "</td>"; // Display Department column
-                                echo "<td class='border border-slate-300 px-6 py-4 whitespace-nowrap'>" . $data[6] . "</td>"; // Display Tahun column
-                                echo "</tr>";
-                            }
-                            $count++;
-                        }
-                        fclose($file); // Close the file
-                    } else {
-                        echo "<tr><td colspan='5' class='border border-slate-300 px-6 py-4 text-center'>CSV file not found!</td></tr>";
-                    }
-                @endphp
-            </tbody>
-        </table>
+            <button id="closeModal" class="close-button bg-green-600 text-white hover:bg-green-700">Close</button>
+        </div>
     </div>
 
     @include('components/footer')
 
     <script>
-        // Function to toggle the theme
-        function toggleTheme() {
-            const body = document.body;
-            const themeToggle = document.getElementById('themeToggle');
-            
-            // Determine the new theme based on the toggle's checked status
-            const newTheme = themeToggle.checked ? 'dark' : 'light';
-            body.setAttribute('data-theme', newTheme);
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('dataModal');
+            const openModalButton = document.getElementById('openModal');
+            const closeModalButton = document.getElementById('closeModal');
 
-            // Save theme preference in local storage
-            localStorage.setItem('theme', newTheme);
-        }
+            openModalButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                modal.classList.add('show');
+            });
 
-        // Load saved theme preference on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            const themeToggle = document.getElementById('themeToggle');
-            
-            // Set the body's data-theme attribute to the saved theme
-            document.body.setAttribute('data-theme', savedTheme);
-            
-            // Set the toggle's checked status based on the saved theme
-            if (themeToggle) {
-                themeToggle.checked = (savedTheme === 'dark');
-                themeToggle.addEventListener('change', toggleTheme);
-            }
+            closeModalButton.addEventListener('click', function() {
+                modal.classList.remove('show');
+            });
+
+            modal.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.classList.remove('show');
+                }
+            });
         });
     </script>
 </body>

@@ -13,6 +13,8 @@ use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\ViewRequestPageController;
 
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\KomputerController;
+use App\Http\Controllers\KantorController;
 
 use App\Http\Middleware\AdminMiddleware;
 
@@ -56,3 +58,5 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/viewrequest', [ViewRequestPageController::class, 'showviewrequestpage'])->name('viewrequest');
 
 });
+Route::get('/komputer', [KomputerController::class, 'index'])->name('komputer');
+Route::get('/kantor', [KantorController::class, 'index'])->name('kantor');

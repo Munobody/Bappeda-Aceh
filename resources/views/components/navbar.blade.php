@@ -64,19 +64,25 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
           </svg>
         </button>
-
-        <!-- Logo -->
         <a href="#" class="hidden lg:block">
           <img src="{{ asset('images/logo 2.png') }}" alt="Logo BAPPEDA ACEH" class="h-10 w-auto">
         </a>
       </div>
-
       <div class="navbar-center hidden lg:flex">
-        <ul class="navbar-menu flex items-center space-x-6">
-          <li><a href="/home" class="text-sm text-gray-700 hover:text-gray-900" href="#">SI-IRA</a></li>
-          <li><a class="text-sm text-gray-700 hover:text-gray-900" href="/">Data</a></li>
-        </ul>
-      </div>
+  <ul class="navbar-menu flex items-center space-x-6">
+    <li>
+      <a href="/home" class="text-sm text-gray-700 hover:text-gray-900">SI-IRA</a>
+    </li>
+    <div class=" dropdown dropdown-hover">
+      <a href="/">
+      <label tabindex="0" class="btn btn-ghost flex items-center text-sm text-gray-700 hover:text-gray-900">
+        Data
+      </label>
+      </a>
+    </div>
+  </ul>
+</div>
+
 
       <div class="navbar-end flex items-center">
         <!-- Login Icon Dropdown -->
