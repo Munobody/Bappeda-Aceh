@@ -18,9 +18,12 @@
 }
 
 
-        body {
-            background: linear-gradient(90deg, #fff 0%, #fff 100%);
-            background-size: 400% 400%;
+body {
+            background-image: url('{{ asset('images/bg.jpg') }}'); /* Path to your background image */
+            background-size: cover; /* Cover the entire page */
+            background-position: center; /* Center the image */
+            background-attachment: fixed; /* Fix the image in place */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
             animation: waveBackgroundAnimation 10s ease infinite;
         }
 

@@ -19,9 +19,13 @@
             margin-bottom: 20px;
         }
 
-        body {
-            background: linear-gradient(90deg, #fff 0%, #fff 100%);
-            background-size: 400% 400%;
+        
+body {
+            background-image: url('{{ asset('images/bg.jpg') }}'); /* Path to your background image */
+            background-size: cover; /* Cover the entire page */
+            background-position: center; /* Center the image */
+            background-attachment: fixed; /* Fix the image in place */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
             animation: waveBackgroundAnimation 10s ease infinite;
         }
 
@@ -122,6 +126,10 @@
         <div class="chart-container">
             <canvas id="myChart"></canvas>
         </div>
+
+        <div>
+            <h1 class="text-4xl text-center text-green-600 font-bold"> Keterangan Data</h1>
+        </div>
         
         <!-- Data Table -->
         <div class="mt-12">
@@ -140,14 +148,15 @@
                 <!-- Rows will be dynamically inserted here -->
             </tbody>
         </table>
-    </div>
-</div>
-
-        </div>
+    </div>  
+  </div>
         <div class="back-button">
             <a href="/" class="btn-back">Back</a>
         </div>
     </div>
+</div>
+
+    
 
     <!-- Modal Password -->
     <div id="passwordModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
@@ -160,7 +169,7 @@
             </div>
         </div>
     </div>
-
+    @include('components/footer')
     <script>
 document.addEventListener('DOMContentLoaded', function() {
     var data = @json($processedData); // Pass the processed data to the view
