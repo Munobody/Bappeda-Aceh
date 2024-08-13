@@ -13,6 +13,7 @@ use App\Http\Controllers\ViewRequestPageController;
 
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\KomputerController;
+use App\Http\Controllers\KantorController;
 
 Route::get('/', function () {
     return view('app');
@@ -41,3 +42,4 @@ Route::get('/download', [ViewRequestPageController::class, 'downloadfile']);
 Route::get('/Edit', [MeetingRoomPageController::class, 'showeditpage']);
 Route::get('/home', [HomePageController::class, 'showhomepage']);
 Route::get('/komputer', [KomputerController::class, 'index'])->name('komputer');
+Route::get('/kantor', [KantorController::class, 'index'])->name('kantor');

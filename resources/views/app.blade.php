@@ -159,19 +159,18 @@
 </head>
 <body>
     @include('/components/navbar')
-    <div class="container mx-auto py-16 flex flex-col lg:flex-row items-center hero-section">
-        <div class="text-left flex-1 p-4 lg:p-10">
-            <div class="inline-block bg-green-100 text-green-800 py-2 px-4 rounded-full text-sm mb-4 animate-fadeIn">
-                New Visualitation Data For BAPPEDA ACEH
-            </div>
-            <h1 class="text-4xl md:text-7xl font-bold text-green-800 mb-4 animate-slideInLeft">Data Visualitation</h1>
-            <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-10 animate-slideInLeft delay-500">BAPPEDA ACEH</h1>
-            <a href="#" id="openModal" class="bg-green-500 text-white py-3 px-8 rounded-full animate-bounce">GET Visualisasi Data</a>
+    <div class="container mx-auto py-16 flex flex-col items-center justify-center hero-section">
+    <div class="text-center flex-1 p-4 lg:p-10">
+        <div class="inline-block bg-green-100 text-green-800 py-2 px-4 rounded-full text-sm mb-4 animate-fadeIn">
+            New Visualitation Data For BAPPEDA ACEH
         </div>
-        <div class="flex-1 text-center lg:text-right">
-            <img src="{{ asset('images/Pancacita.png') }}" alt="Pemerintah Aceh Logo" class="mx-auto w-32 md:w-48 shadow-lg transform transition duration-300 hover:scale-105">
-        </div>
+        <h1 class="text-4xl md:text-7xl font-bold text-green-800 mb-4 animate-slideInLeft">Data Visualitation</h1>
+        <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-10 animate-slideInLeft delay-500">BAPPEDA ACEH</h1>
+        <img src="{{ asset('images/your-image.jpg') }}" alt="BAPPEDA ACEH" class="mb-10 w-full max-w-md mx-auto rounded-lg shadow-lg">
+        <a href="#" id="openModal" class="bg-green-500 text-white py-3 px-8 rounded-full animate-bounce">GET Visualisasi Data</a>
     </div>
+</div>
+
 
     <!-- Modal -->
     <div id="dataModal">
@@ -179,13 +178,13 @@
         <h2 class="text-2xl font-bold mb-4 text-green-500">Pilih Halaman Data</h2>
         <ul class="text-black space-y-2">
     <li>
-        <a href="/komputer" class="font-bold text-black hover:text-gray-800">Komputer</a>
+        <a href="/komputer" class="text-black hover:text-gray-800">Komputer</a>
     </li>
     <li>
         <a href="/dashboard" class="text-black hover:text-gray-800">Transpotasi</a>
     </li>
     <li>
-        <a href="/page3" class="text-blackhover:text-gray-800">Halaman Data 3</a>
+        <a href="/kantor" class="text-blackhover:text-gray-800">Alat Kantor</a>
     </li>
 </ul>
 
