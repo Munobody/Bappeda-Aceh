@@ -160,7 +160,7 @@
                             </ul>
                         </td>
                         <td class="py-2 px-4 border-b">
-                        <a href="/booking?id=7" class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600 inline-block text-center">Booking</a>
+                        <a href="/booking?id={{$data->id}}" class="bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600 inline-block text-center">Booking</a>
                         </td>
                     </tr>
                     @endforeach

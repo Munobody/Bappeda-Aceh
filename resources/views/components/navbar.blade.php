@@ -88,8 +88,19 @@
           </button>
           <div id="admin-menu" class="hidden absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg">
             <ul class="py-2">
+              @if(Auth::check())
+              <li><a href="/admin" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a></li>
+              <li>
+                <form action="/admin/logout" method="POST" class="inline">
+                  @csrf
+                  <button type="submit" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 w-full text-left">
+                    Logout
+                  </button>
+                </form>
+              </li>
+              @else
               <li><a href="/login" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Login as Admin</a></li>
-              <li><a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</a></li>
+              @endif
             </ul>
           </div>
         </div>

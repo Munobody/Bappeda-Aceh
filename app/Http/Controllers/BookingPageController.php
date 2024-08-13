@@ -8,6 +8,9 @@ use App\Models\RuangRapat;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Mail\BookingRequestNotification;
+use Illuminate\Support\Facades\Mail;
+
 
 class BookingPageController extends Controller
 {
@@ -97,6 +100,10 @@ class BookingPageController extends Controller
         $booking->status = $status;
         $booking->surat = $relativePath;
         $booking->save();
+
+        $to = '050203sharahiya@gmail.com';
+
+        Mail::to($to)->send(new BookingRequestNotification($booking));
 
         return back()->with('success', 'File uploaded successfully!');
     }

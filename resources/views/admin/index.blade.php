@@ -184,6 +184,18 @@
       animation: bounce 1s infinite;
     }
 
+    .form-container {
+      max-width: 500px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #f9fafb; /* Gray-50 */
+      border-radius: 0.75rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .form-container input:disabled {
+      background-color: #e5e7eb; /* Gray-200 */
+      cursor: not-allowed;
+
     @keyframes bounce {
       0%, 20%, 50%, 80%, 100% {
         transform: translateY(0);
@@ -222,87 +234,56 @@
   </style>
 </head>
 <body>
+
 @include('/components/navbar') 
-<div class="container mx-auto py-12 flex items-center justify-center hero-section">
-    <div class="text-center flex-1 p-4 lg:p-12">
-        <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4 animate-slideInLeft">Si - IRA</h1>
-        <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-8 animate-slideInLeft delay-500">BAPPEDA ACEH</h1>
-        <a href="/request" class="bg-green-500 text-white py-3 px-8 rounded-full animate-bounce">Booking Meeting Room</a>
-    </div>
+
+
+<div class="form-container mt-40 mb-20">
+    @if(session('status'))
+    <div id="successModal" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 hidden">
+  <!-- Modal Container -->
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm mx-auto">
+    <h3 class="text-xl font-semibold mb-4">Update Berhasil</h3>
+    <p class="text-gray-700 mb-4">Profil admin Anda telah diperbarui.</p>
+    <button id="closeModal" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      Tutup
+    </button>
+  </div>
 </div>
-
- 
-          @php
-          $index=1;
-          @endphp
-
-    <ul class="timeline">
-      @foreach($booking as $data)
-      @if($index>5)
-      @php
-      break 
-      @endphp
-      @endif
-      <li style="--i: {{$index++}}">
-        <div class="timeline-content">
-          <time datetime="2024-08-02">{{ $data->jadwal_mulai_formatted }} </time>
-          <p class="location">{{ $data->jam}}</p>
-          <h2 class="text-xl font-bold">{{ $data->nama_bidang }}</h2>
-          <p class="location">{{ $data->RuangRapat->nama }}</p>
-          <p class="description">{{ $data->agenda }}</p>
-        </div>
-      </li>
-      
-      @endforeach
-    </ul>
+    @endif
+    <h2 class="text-2xl font-bold mb-4">Profil Admin</h2>
+    <form id="adminForm" action="/admin/update" method="POST">
+      @csrf
+      <div class="mb-4">
+        <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username:</label>
+        <input type="username" id="username" name="username" value="{{$data->username}}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      </div>
+      <div class="mb-4">
+        <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Ketik untuk ganti password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      </div>
+      <button type="submit" id="enableButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Simpan</button>
+    </form>
   </div>
 
-  <!-- Waiting List Section -->
-  <div class="waiting-list container mx-auto py-12 px-32">
-    <h2 class="text-2xl md:text-4xl font-bold mb-8 text-green-800 text-center">Waiting List</h2>
-    <table class="waiting-list-table mx-auto">
-        <thead>
-          <tr>
-            <th class="py-3 px-4">No</th>
-            <th class="py-3 px-4">Judul Rapat</th>
-            <th class="py-3 px-4">Bidang</th>
-            <th class="py-3 px-4">Nama Ruang Rapat</th>
-            <th class="py-3 px-4">Hari/Tanggal</th>
-            <th class="py-3 px-4">Jam</th>
-            <th class="py-3 px-4">Status</th>   
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Example Row -->
+  <script>
+      // Close the modal when the close button is clicked
+  document.getElementById('closeModal').addEventListener('click', function() {
+    var successModal = document.getElementById('successModal');
+    successModal.classList.add('hidden');
+  });
+  </script>
 
-          @php
-          $row = 0;
-          $index=1;
-          @endphp
+@if (session('status'))
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('successModal').classList.remove('hidden');
+    });
+  </script>
+@endif
 
-           @foreach ($booking as $data)
-           @php
-           if($row < 5){
-             $row++;
-            continue;
-           }
-           @endphp
-           <tr>
-            <td class="py-3 px-4">{{ $index++}}</td>
-            <td class="py-3 px-4">{{ $data->agenda}}</td>
-            <td class="py-3 px-4">{{ $data->nama_bidang}}</td>
-            <td class="py-3 px-4">{{ $data->RuangRapat->nama}}</td>
-            <td class="py-3 px-4">{{$data->jadwal_mulai_formatted}}</td>
-            <td class="py-3 px-4">{{$data->jam}}</td>
-            <td class="py-3 px-4">{{$data->status}}</td>
-          </tr>
-           @endforeach
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  
+   @include('components/footer')
 </body>
-@include('components/footer')
 </html>
+@include('/components/navbar') 
+

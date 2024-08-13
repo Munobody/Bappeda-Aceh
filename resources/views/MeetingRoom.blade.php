@@ -181,7 +181,7 @@
     </div>
 
     <!-- Table Section -->
-    <div class="container mx-auto py-6 px-20 mt-[-12rem] ">
+    <div class="container mx-auto py-6 px-16 mt-[-12rem] ">
         <div class="heading-button-container flex justify-between">
             <div class="button-container">
                 <a href="/Room">+ Ruang Rapat</a>
