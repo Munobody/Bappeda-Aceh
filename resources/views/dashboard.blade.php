@@ -155,8 +155,8 @@
             <h2 class="text-xl font-bold mb-4">Masukkan Password</h2>
             <input type="password" id="passwordInput" class="border border-gray-300 rounded w-full p-2 mb-4" placeholder="Password">
             <div class="flex justify-end">
-                <button id="cancelButton" class="bg-gray-300 text-gray-800 py-2 px-4 rounded mr-2">Batal</button>
-                <button id="submitPasswordButton" class="bg-blue-600 text-white py-2 px-4 rounded">Submit</button>
+                <button id="cancelButton" class="bg-[#508C9B] text-white py-2 px-4 rounded mr-2">Batal</button>
+                <button id="submitPasswordButton" class="bg-[#134B70] text-white py-2 px-4 rounded">Submit</button>
             </div>
         </div>
     </div>
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var ctx = document.getElementById('myChart').getContext('2d');
 
     var myChart = new Chart(ctx, {
-        type: 'pie',
+        type: 'doughnut',
         data: {
             labels: allMerekLabels,
             datasets: datasets,
