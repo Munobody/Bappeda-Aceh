@@ -137,11 +137,11 @@
                 @csrf
                 <div class="mb-4">
                     <label for="room_name" class="block text-gray-700">Nama Ruang Rapat</label>
-                    <input type="text" id="room_name" name="room_name" class="w-full p-2 border border-gray-300 rounded" required>
+                    <input autocomplete="off" type="text" id="room_name" name="room_name" class="w-full p-2 border border-gray-300 rounded" required>
                 </div>
                 <div class="mb-4">
                     <label for="location" class="block text-gray-700">Lokasi</label>
-                    <input type="text" id="location" name="location" class="w-full p-2 border border-gray-300 rounded" required>
+                    <input autocomplete="off" type="text" id="location" name="location" class="w-full p-2 border border-gray-300 rounded" required>
                 </div>
                 <div class="mb-4">
                     <label for="facilities" class="block text-gray-700">Fasilitas</label>
@@ -153,11 +153,11 @@
                 </div>
                 <div class="mb-4">
                     <label for="operator" class="block text-gray-700">operator</label>
-                    <input type="text" id="operator" name="operator" class="w-full p-2 border border-gray-300 rounded" required>
+                    <input autocomplete="off" type="text" id="operator" name="operator" class="w-full p-2 border border-gray-300 rounded" required>
                 </div>
                 <div class="mb-4">
                     <label for="cs" class="block text-gray-700">CS</label>
-                    <input type="text" id="cs" name="cs" class="w-full p-2 border border-gray-300 rounded" required>
+                    <input autocomplete="off" type="text" id="cs" name="cs" class="w-full p-2 border border-gray-300 rounded" required>
                 </div>
                 <button type="submit" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Submit</button>
             </form>

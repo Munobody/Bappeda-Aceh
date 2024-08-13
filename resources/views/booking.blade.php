@@ -303,11 +303,11 @@
             <input type="hidden" id="ruang_rapat_id" name="ruang_rapat_id" value="{{ request()->get('id')}}" required>
             <div class="mb-4">
                 <label for="nama-bidang" class="block text-gray-700 font-bold mb-2">Nama Penanggung Jawab</label>
-                <input type="text" id="nama-penanggung-jawab" name="penanggung_jawab" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                <input autocomplete="off" type="text" id="nama-penanggung-jawab" name="penanggung_jawab" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
             </div>
             <div class="mb-4">
                 <label for="nama-bidang" class="block text-gray-700 font-bold mb-2">Nama Bidang Penyelenggara</label>
-                <input type="text" id="nama-bidang" name="nama_bidang" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                <input autocomplete="off" type="text" id="nama-bidang" name="nama_bidang" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
             </div>
             <!-- Deskripsi Singkat Ruang Rapat -->
             <div class="mb-4">

@@ -122,7 +122,7 @@
 <body>
     @include('/components/navbar') 
 
-    <div class="flex items-center justify-center h-screen">
+    <div class="flex items-center justify-center mb-20 mt-36">
         <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
             <h1 class="text-2xl font-semibold text-center mb-6">Admin Login</h1>
             <form action="/login" method="POST" class="space-y-6">
@@ -130,19 +130,23 @@
                 <div>
                     <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
                     <input type="text" id="username" name="username" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                   
                 </div>
                 <div>
                     <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                     <input type="password" id="password" name="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                    @error('username')
+                        <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div>
-                <a href="/MeetingRoom" class="w-full inline-block px-4 py-2 bg-green-600 text-white font-semibold rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-800 text-center">Login</a>
+                <button type="submit" name="submit" class="w-full inline-block px-4 py-2 bg-green-600 text-white font-semibold rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-800 text-center">Login</button>
                 </div>
             </form>
         </div>
     </div>
+    @include('components/footer')
 </body>
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     @vite('resources/js/app.js')
-    @include('components/footer')
 </html>
