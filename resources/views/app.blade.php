@@ -8,9 +8,8 @@
     @vite('resources/css/app.css')
     <style>
         body {
-            background: linear-gradient(90deg, #fff 0%, #fff 100%);
-            background-size: 400% 400%;
-            animation: waveBackgroundAnimation 10s ease infinite;
+            background: url('{{ asset('images/bg.jpg') }}') no-repeat center center fixed; 
+            background-size: cover; /* Make sure the background covers the entire viewport */
             transition: background 0.5s, color 0.5s;
         }
 
@@ -155,44 +154,137 @@
             border-radius: 0.25rem;
             cursor: pointer;
         }
+
+        /* Timeline Line Color */
+.bg-green-300 {
+    background-color: #34d399; /* Ganti dengan warna hijau yang diinginkan */
+}
+
+/* Timeline Animation */
+@keyframes fadeInTimeline {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.timeline-item {
+    animation: fadeInTimeline 1s ease-out;
+}
+
+/* Timeline Item Animation Delay */
+.timeline-item.delay-300 {
+    animation-delay: 0.3s;
+}
+.timeline-item.delay-600 {
+    animation-delay: 0.6s;
+}
     </style>
 </head>
 <body>
     @include('/components/navbar')
     <div class="container mx-auto py-16 flex flex-col items-center justify-center hero-section">
-    <div class="text-center flex-1 p-4 lg:p-10">
-        <div class="inline-block bg-green-100 text-green-800 py-2 px-4 rounded-full text-sm mb-4 animate-fadeIn">
-            New Visualitation Data For BAPPEDA ACEH
+        <div class="text-center flex-1 p-4 lg:p-10">
+            <div class="inline-block bg-green-100 text-green-800 py-2 px-4 rounded-full text-sm mb-4 animate-fadeIn">
+                New Visualitation Data For BAPPEDA ACEH
+            </div>
+            <h1 class="text-4xl md:text-7xl font-bold text-green-800 mb-4 animate-slideInLeft">Visualisasi Data</h1>
+            <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-10 animate-slideInLeft delay-500">BAPPEDA ACEH</h1>
+            <img src="{{ asset('images/pancacita.png') }}" alt="BAPPEDA ACEH" class="mb-10 w-full max-w-md mx-auto rounded-lg ">
+            <a href="#" id="openModal" class="bg-green-500 text-white py-3 px-8 rounded-full animate-bounce">GET Visualisasi Data</a>
         </div>
-        <h1 class="text-4xl md:text-7xl font-bold text-green-800 mb-4 animate-slideInLeft">Data Visualitation</h1>
-        <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-10 animate-slideInLeft delay-500">BAPPEDA ACEH</h1>
-        <img src="{{ asset('images/your-image.jpg') }}" alt="BAPPEDA ACEH" class="mb-10 w-full max-w-md mx-auto rounded-lg shadow-lg">
-        <a href="#" id="openModal" class="bg-green-500 text-white py-3 px-8 rounded-full animate-bounce">GET Visualisasi Data</a>
+        <div class="p-4">
+    <div class="flex flex-col grid-cols-9 p-2 mx-auto md:grid">
+        <!-- First Event -->
+       <!-- First Event -->
+<div class="flex md:contents flex-row-reverse timeline-item delay-300">
+    <a href="/komputer" class="relative p-4 my-6 text-black bg-green-200 rounded-xl col-start-1 col-end-5 mr-auto md:mr-0 md:ml-auto hover:bg-green-600 transition duration-300 ease-in-out">
+        <h3 class="text-lg font-semibold lg:text-xl">Visualization Komputer Data</h3>
+        <p class="mt-2 leading-6">Visualisai yang dibuat berdasarkan data asset komputer yang terdapat di Bappeda Aceh</p>
+    </a>
+    <div class="relative col-start-5 col-end-6 mr-7 md:mx-auto">
+        <div class="flex items-center justify-center w-6 h-full">
+            <div class="w-1 h-full bg-green-300 rounded-t-full bg-gradient-to-b from-green-400 to-green-300">
+            </div>
+        </div>
+        <div class="absolute w-6 h-6 -mt-3 bg-white border-4 border-green-400 rounded-full top-1/2"></div>
     </div>
 </div>
 
+<!-- Second Event -->
+<div class="flex md:contents timeline-item delay-600">
+    <div class="relative col-start-5 col-end-6 mr-7 md:mx-auto">
+        <div class="flex items-center justify-center w-6 h-full">
+            <div class="w-1 h-full bg-green-300"></div>
+        </div>
+        <div class="absolute w-6 h-6 -mt-3 bg-white border-4 border-green-400 rounded-full top-1/2"></div>
+    </div>
+    <a href="your-link-2.html" class="relative p-4 my-6 text-gray-800 bg-white rounded-xl col-start-6 col-end-10 mr-auto hover:bg-green-50 transition duration-300 ease-in-out">
+        <h3 class="text-lg font-semibold lg:text-xl">New Event 2</h3>
+        <p class="mt-2 leading-6">Description of the second event.</p>
+    </a>
+</div>
+
+<!-- Third Event -->
+<div class="flex md:contents flex-row-reverse timeline-item delay-900">
+    <a href="your-link-3.html" class="relative p-4 my-6 text-gray-800 bg-white rounded-xl col-start-1 col-end-5 mr-auto md:mr-0 md:ml-auto hover:bg-green-50 transition duration-300 ease-in-out">
+        <h3 class="text-lg font-semibold lg:text-xl">New Event 3</h3>
+        <p class="mt-2 leading-6">Description of the third event.</p>
+    </a>
+    <div class="relative col-start-5 col-end-6 mr-7 md:mx-auto">
+        <div class="flex items-center justify-center w-6 h-full">
+            <div class="w-1 h-full bg-green-300 rounded-t-full bg-gradient-to-b from-green-400 to-green-300">
+            </div>
+        </div>
+        <div class="absolute w-6 h-6 -mt-3 bg-white border-4 border-green-400 rounded-full top-1/2"></div>
+    </div>
+</div>
+
+<!-- Fourth Event -->
+<div class="flex md:contents timeline-item delay-1200">
+    <div class="relative col-start-5 col-end-6 mr-7 md:mx-auto">
+        <div class="flex items-center justify-center w-6 h-full">
+            <div class="w-1 h-full bg-green-300"></div>
+        </div>
+        <div class="absolute w-6 h-6 -mt-3 bg-white border-4 border-green-400 rounded-full top-1/2"></div>
+    </div>
+    <a href="your-link-4.html" class="relative p-4 my-6 text-gray-800 bg-white rounded-xl col-start-6 col-end-10 mr-auto hover:bg-green-50 transition duration-300 ease-in-out">
+        <h3 class="text-lg font-semibold lg:text-xl">New Event 4</h3>
+        <p class="mt-2 leading-6">Description of the fourth event.</p>
+    </a>
+</div>
+
+    </div>
+</div>
+
+</div>
+    </div>
+
+    
 
     <!-- Modal -->
     <div id="dataModal">
-    <div class="modal-content text-center">
-        <h2 class="text-2xl font-bold mb-4 text-green-500">Pilih Halaman Data</h2>
-        <ul class="text-black space-y-2">
-    <li>
-        <a href="/komputer" class="text-black hover:text-gray-800">Komputer</a>
-    </li>
-    <li>
-        <a href="/dashboard" class="text-black hover:text-gray-800">Transpotasi</a>
-    </li>
-    <li>
-        <a href="/kantor" class="text-blackhover:text-gray-800">Alat Kantor</a>
-    </li>
-</ul>
+        <div class="modal-content text-center">
+            <h2 class="text-2xl font-bold mb-4 text-green-500">Pilih Halaman Data</h2>
+            <ul class="text-black space-y-2">
+                <li>
+                    <a href="/komputer" class="text-black hover:text-gray-800">Komputer</a>
+                </li>
+                <li>
+                    <a href="/dashboard" class="text-black hover:text-gray-800">Transpotasi</a>
+                </li>
+                <li>
+                    <a href="/kantor" class="text-black hover:text-gray-800">Alat Kantor</a>
+                </li>
+            </ul>
 
-        <button id="closeModal" class="close-button bg-green-600 text-white hover:bg-green-700">Close</button>
+            <button id="closeModal" class="close-button bg-green-600 text-white hover:bg-green-700">Close</button>
+        </div>
     </div>
-</div>
-
-
 
     @include('components/footer')
 
