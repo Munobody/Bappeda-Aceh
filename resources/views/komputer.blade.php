@@ -10,33 +10,19 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .chart-container {
-    width: 100%;
-    max-width: 1200px; /* Ubah max-width sesuai kebutuhan */
-    height: 800px; /* Ubah height sesuai kebutuhan */
-    margin: 0 auto;
-    margin-bottom: 20px;
-}
-
-
-body {
-            background-image: url('{{ asset('images/bg.jpg') }}'); /* Path to your background image */
-            background-size: cover; /* Cover the entire page */
-            background-position: center; /* Center the image */
-            background-attachment: fixed; /* Fix the image in place */
-            background-repeat: no-repeat; /* Prevent the image from repeating */
-            animation: waveBackgroundAnimation 10s ease infinite;
+            width: 100%;
+            max-width: 1200px; /* Ubah max-width sesuai kebutuhan */
+            height: 500px; /* Ubah height sesuai kebutuhan */
+            margin: 0 auto;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        @keyframes waveBackgroundAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+        .chart-legend {
+            margin: 10px 0; /* Jarak lebih dekat dengan chart */
+            text-align: center;
         }
 
         .type-table {
@@ -51,23 +37,24 @@ body {
         }
 
         .type-table th, .type-table td {
+            text-align: center;
             border: 1px solid #ddd;
             padding: 8px;
             transition: background-color 0.3s, box-shadow 0.3s;
         }
 
         .type-table th {
-            background-color: #f2f2f2;
-            text-align: left;
+            background-color: #34d399;
+            text-align: center;
             box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1); /* Inner shadow for header */
         }
 
         .type-table tr:nth-child(even) {
-            background: linear-gradient(to bottom, #f9f9f9, #ffffff);
+            background: linear-gradient(to bottom, #ecfdf5, #ffffff);
         }
 
         .type-table tr:hover {
-            background-color: rgba(0, 123, 255, 0.1);
+            background-color: #d1fae5;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow on hover */
         }
 
@@ -83,7 +70,7 @@ body {
         }
 
         .btn-back {
-            background-color: #007bff;
+            background-color: #0f766e;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -94,7 +81,7 @@ body {
         }
 
         .btn-back:hover {
-            background-color: #0056b3;
+            background-color: #2dd4bf;
         }
 
         @keyframes fadeInUp {
@@ -112,19 +99,47 @@ body {
             transform: scale(1.1); /* Slightly enlarge the bar on hover */
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow for 3D effect */
         }
+
+        .legend-item {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: #f4f4f4;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px; /* Adjust height for smaller screens */
+            }
+
+            .chart-legend {
+                margin: 5px 0; /* Adjust margin for smaller screens */
+            }
+
+            .type-table-container {
+                margin-top: 10px; /* Adjust margin for smaller screens */
+            }
+        }
     </style>
 </head>
 <body>
     @include('components/navbar')
-    @include('components/messages')
 
     <div class="container mx-auto py-16">
-        <h2 class="text-2xl font-bold text-green-800 mb-4 text-center">BAPPEDA ACEH - Data Visualisasi Barang</h2>
+        <h2 class="text-2xl font-bold text-green-800 mb-4 text-center mt-12">BAPPEDA ACEH</h2>
+        <h2 class="text-2xl font-bold text-green-800 mb-4 text-center ">Data Visualisasi Asset Komputer</h2>
         <div class="chart-container">
             <canvas id="myChart"></canvas>
         </div>
-        <div class="mt-12">
-            <h3 class="text-xl font-semibold text-center">Keterangan Barang</h3>
+        <div class="chart-legend">
+            <h3 class="text-xl font-semibold mb-2">Keterangan Data:</h3>
+            <div id="legendContainer"></div>
+            <h1 class="font-bold text-xl text-emerald-800 mt-2">Jumlah Keseluruhan Data: <span id="totalDataCount"></span></h1>
+        </div>
+        <div class="mt-2">
+            <h3 class="text-2xl font-semibold text-center text-emerald-800">Keterangan Tabel</h3>
             <div class="type-table-container" id="typeTableContainer">
                 <table class="type-table" id="typeTable">
                     <thead>
@@ -157,6 +172,8 @@ body {
         </div>
     </div>
 
+    @include('components/footer')
+
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         var data = @json($processedData); // Pass the processed data to the view
@@ -169,6 +186,8 @@ body {
         var totals = labels.map(function(key) {
             return data[key].count;
         });
+
+        var totalCount = totals.reduce((a, b) => a + b, 0);
 
         function getRandomColor() {
             var r = Math.floor(Math.random() * 256);
@@ -271,6 +290,19 @@ body {
                 });
             }
         }
+
+        // Generate legend items
+        var legendContainer = document.getElementById('legendContainer');
+        labels.forEach(function(label, index) {
+            var total = totals[index];
+            var percentage = ((total / totalCount) * 100).toFixed(2);
+            var item = document.createElement('div');
+            item.className = 'legend-item';
+            item.innerHTML = `<span style="background-color: ${backgroundColors[index]}; padding: 5px; border-radius: 5px; display: inline-block; width: 15px; height: 15px; margin-right: 5px;"></span> ${label}: ${total} (${percentage}%)`;
+            legendContainer.appendChild(item);
+        });
+
+        document.getElementById('totalDataCount').textContent = totalCount;
     });
     </script>
 </body>

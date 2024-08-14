@@ -56,7 +56,7 @@
 </head>
 <body class="bg-white text-black">
   <div class="flex justify-center">
-    <div class="navbar backdrop-blur-lg bg-green-100 shadow-lg rounded-lg fixed top-0 z-10 py-2 px-5 max-w-screen-xl w-full mt-3 flex justify-between items-center">
+    <div class="navbar backdrop-blur-lg bg-emerald-400 shadow-lg rounded-lg fixed top-0 z-10 py-2 px-5 max-w-screen-xl w-full mt-3 flex justify-between items-center">
       <div class="navbar-start flex items-center">
         <!-- Mobile Menu Button -->
         <button class="lg:hidden btn btn-ghost btn-circle" onclick="toggleMenu()">

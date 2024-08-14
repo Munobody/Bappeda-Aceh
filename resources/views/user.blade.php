@@ -14,16 +14,16 @@
             max-width: 800px;
             height: 600px;
             margin: 0 auto;
-            margin-bottom: 40px; /* Tambah jarak bawah */
+            margin-bottom: 40px;
             display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            border-radius: 10px; /* Optional: rounded corners */
-            background: #fff; /* Optional: background color */
-            padding: 20px; /* Optional: padding for better spacing */
-            opacity: 0; /* Initially hidden */
-            transform: scale(0.9); /* Slightly scaled down */
-            animation: fadeInScale 1s forwards; /* Animation when appearing */
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            background: #fff;
+            padding: 20px;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: fadeInScale 1s forwards;
         }
 
         @keyframes fadeInScale {
@@ -34,28 +34,7 @@
         }
 
         canvas {
-            display: block; /* Ensure the canvas takes full space of its container */
-        }
-
-        body {
-            background-image: url('{{ asset('images/bg.jpg') }}'); /* Path to your background image */
-            background-size: cover; /* Cover the entire page */
-            background-position: center; /* Center the image */
-            background-attachment: fixed; /* Fix the image in place */
-            background-repeat: no-repeat; /* Prevent the image from repeating */
-            animation: waveBackgroundAnimation 10s ease infinite;
-        }
-
-        @keyframes waveBackgroundAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+            display: block;
         }
 
         .type-table {
@@ -93,6 +72,7 @@
         .type-table-container {
             margin-top: 20px;
             display: none;
+            overflow-x: auto;
         }
 
         .back-button {
@@ -102,7 +82,7 @@
         }
 
         .btn-back {
-            background-color: #007bff;
+            background-color: #0f766e;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -113,7 +93,7 @@
         }
 
         .btn-back:hover {
-            background-color: #0056b3;
+            background-color: #2dd4bf;
         }
 
         @keyframes fadeInUp {
@@ -123,31 +103,17 @@
             }
         }
 
-        .chart-bar {
-            transition: all 0.3s ease;
-        }
-
-        .chart-bar:hover {
-            transform: scale(1.2); /* Increased scale for hover */
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4); /* Increased shadow for hover */
-        }
-
-        .chart-bar:active {
-            transform: scale(1.1); /* Slightly smaller scale for click */
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Shadow effect for click */
-        }
-
         .chart-legend {
-            margin-top: 20px; /* Tambah jarak atas untuk memberi jarak dari chart */
-            text-align: center; /* Center align text */
+            margin-top: 20px;
+            text-align: center;
         }
 
         .chart-legend p {
-            margin: 10px 0; /* Jarak antar elemen dalam keterangan */
+            margin: 10px 0;
         }
 
         .chart-legend span {
-            font-weight: bold; /* Agar teks persentase lebih menonjol */
+            font-weight: bold;
         }
         
         .search-container {
@@ -163,47 +129,127 @@
 
         .search-results {
             margin-top: 20px;
+            display: none;
         }
 
+        .glow {
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            border-radius: 100%;
+        }
+
+        .glow-1 {
+            animation: glow1 4s linear infinite;
+        }
+
+        .glow-2 {
+            animation: glow2 4s linear infinite;
+            animation-delay: 100ms;
+        }
+
+        .glow-3 {
+            animation: glow3 4s linear infinite;
+            animation-delay: 200ms;
+        }
+
+        .glow-4 {
+            animation: glow4 4s linear infinite;
+            animation-delay: 300ms;
+        }
+
+        @keyframes glow1 {
+            0% { transform: translate(10%, 10%) scale(1); }
+            25% { transform: translate(-10%, 10%) scale(1); }
+            50% { transform: translate(-10%, -10%) scale(1); }
+            75% { transform: translate(10%, -10%) scale(1); }
+            100% { transform: translate(10%, 10%) scale(1); }
+        }
+
+        @keyframes glow2 {
+            0% { transform: translate(-10%, 10%) scale(1); }
+            25% { transform: translate(-10%, -10%) scale(1); }
+            50% { transform: translate(10%, -10%) scale(1); }
+            75% { transform: translate(10%, 10%) scale(1); }
+            100% { transform: translate(-10%, 10%) scale(1); }
+        }
+
+        @keyframes glow3 {
+            0% { transform: translate(-10%, -10%) scale(1); }
+            25% { transform: translate(10%, -10%) scale(1); }
+            50% { transform: translate(10%, 10%) scale(1); }
+            75% { transform: translate(-10%, 10%) scale(1); }
+            100% { transform: translate(-10%, -10%) scale(1); }
+        }
+
+        @keyframes glow4 {
+            0% { transform: translate(10%, -10%) scale(1); }
+            25% { transform: translate(10%, 10%) scale(1); }
+            50% { transform: translate(-10%, 10%) scale(1); }
+            75% { transform: translate(-10%, -10%) scale(1); }
+            100% { transform: translate(10%, -10%) scale(1); }
+        }
+
+        @media (max-width: 640px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
     </style>
 </head>
-<body>
+<body class="bg-gray-100">
     @include('components/navbar')
 
-    <div class="container mx-auto py-32">
-        <h2 class="text-4xl font-bold text-green-800 mb-4 text-center">BAPPEDA ACEH - Data Visualisasi Barang</h2>
+    <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 mt-40">
+        <h2 class="text-3xl sm:text-4xl font-bold text-green-800 text-center">BAPPEDA ACEH </h2>
+        <h2 class="text-3xl sm:text-4xl font-bold text-green-800 text-center">Data Peminjaman Barang Pegawai</h2>
+        
 
-
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="Cari pengguna...">
+        <div class="flex flex-col justify-center mb-2">
+            <div class="relative p-4 sm:p-12 w-full sm:max-w-2xl mx-auto">
+            <h2 class="text-xl sm:text-xl font-bold text-green-800 text-center">Search Here</h2>
+                <div class="overflow-hidden z-0 rounded-full relative p-3">
+                    <form role="form" class="relative flex z-50 bg-white rounded-full">
+                        <input type="text" id="searchInput" placeholder="Masukkan pencarian Anda di sini" class="rounded-full flex-1 px-6 py-4 text-gray-700 focus:outline-none">
+                        <button type="button" id="searchButton" class="bg-green-800 text-white rounded-full font-semibold px-8 py-4 hover:bg-green-400 focus:bg-indigo-600 focus:outline-none">Cari</button>
+                    </form>
+                    <div class="glow glow-1 z-10 bg-teal-800 absolute"></div>
+                    <div class="glow glow-2 z-20 bg-emerald-400 absolute"></div>
+                    <div class="glow glow-3 z-30 bg-emerald-600 absolute"></div>
+                    <div class="glow glow-4 z-40 bg-teal-500 absolute"></div>
+                </div>
+            </div>
         </div>
 
         <div class="search-results">
-            <h3 class="text-xl font-semibold">Hasil Pencarian:</h3>
-            <table class="type-table" id="searchResultsTable">
-                <thead>
-                    <tr>
-                        <th>Sub Kategori</th>
-                        <th>Nama Barang</th>
-                        <th>Merek/Tipe</th>
-                        <th>Pengguna</th>
-                        <th>Bidang</th>
-                    </tr>
-                </thead>
-                <tbody id="searchResultsBody">
-                    <!-- Rows will be inserted dynamically here -->
-                </tbody>
-            </table>
+            <h3 class="text-xl font-semibold mb-4">Hasil Pencarian:</h3>
+            <div class="overflow-x-auto">
+                <table class="type-table w-full" id="searchResultsTable">
+                    <thead>
+                        <tr>
+                            <th>Sub Kategori</th>
+                            <th>Nama Barang</th>
+                            <th>Merek/Tipe</th>
+                            <th>Pengguna</th>
+                            <th>Bidang</th>
+                        </tr>
+                    </thead>
+                    <tbody id="searchResultsBody">
+                        <!-- Rows will be inserted dynamically here -->
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <div class="chart-container mt-20">
+        <div class="chart-container mt-12">
             <canvas id="myChart"></canvas>
         </div>
         <div class="chart-legend">
             <p>Jumlah Keseluruhan Data: <span id="totalDataCount"></span></p>
         </div>
         <div class="mt-12">
-            <h3 class="text-xl font-semibold text-center">Keterangan Barang</h3>
+            <h3 class="text-xl font-semibold text-center mb-4">Keterangan Barang</h3>
             <div class="type-table-container" id="typeTableContainer">
                 <table class="type-table" id="typeTable">
                     <thead>
@@ -223,7 +269,7 @@
             </div>
         </div>
         <div class="back-button">
-            <a href="/" class="btn-back">Back</a>
+            <a href="/" class="btn-back bg-emerald-600">Kembali</a>
         </div>
 
         <!-- Modal Password -->
@@ -238,7 +284,7 @@
             </div>
         </div>
     </div>
-
+    @include('components/footer')
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         var data = @json($processedData);
@@ -250,7 +296,6 @@
             return data[key].count;
         });
 
-        // Use solid colors instead of gradients
         var paletteColors = [
             'rgba(255, 99, 132, 0.6)',
             'rgba(54, 162, 235, 0.6)',
@@ -264,77 +309,75 @@
         var totalItems = totals.reduce(function(a, b) { return a + b; }, 0);
 
         var myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: labels,
-        datasets: [{
-            label: 'Jumlah Barang',
-            data: totals,
-            backgroundColor: paletteColors,
-            borderColor: paletteColors,
-            borderWidth: 1,
-            hoverOffset: 4
-        }],
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'bottom', // Letakkan legenda di bawah
-                labels: {
-                    padding: 20 // Jarak antara label dan chart
-                }
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Jumlah Barang',
+                    data: totals,
+                    backgroundColor: paletteColors,
+                    borderColor: paletteColors,
+                    borderWidth: 1,
+                    hoverOffset: 4
+                }],
             },
-            tooltip: {
-                callbacks: {
-                    label: function(context) {
-                        var label = context.label || '';
-                        var value = context.raw || 0;
-                        var percentage = ((value / totalItems) * 100).toFixed(2);
-                        return label + ': ' + value + ' (' + percentage + '%)';
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                var label = context.label || '';
+                                var value = context.raw || 0;
+                                var percentage = ((value / totalItems) * 100).toFixed(2);
+                                return label + ': ' + value + ' (' + percentage + '%)';
+                            }
+                        }
+                    }
+                },
+                layout: {
+                    padding: {
+                        bottom: 30
+                    }
+                },
+                elements: {
+                    arc: {
+                        borderWidth: 1,
+                        borderColor: 'rgba(255, 255, 255, 0.8)'
+                    }
+                },
+                onClick: function(evt, activeElements) {
+                    if (!isAuthenticated) {
+                        var passwordModal = document.getElementById('passwordModal');
+                        passwordModal.classList.remove('hidden');
+
+                        document.getElementById('submitPasswordButton').onclick = function() {
+                            var enteredPassword = document.getElementById('passwordInput').value;
+                            if (enteredPassword === correctPassword) {
+                                isAuthenticated = true;
+                                passwordModal.classList.add('hidden');
+                                showTableData(activeElements);
+                            } else {
+                                alert('Password salah! Silakan coba lagi.');
+                            }
+                        };
+
+                        document.getElementById('cancelButton').onclick = function() {
+                            passwordModal.classList.add('hidden');
+                        };
+                    } else {
+                        showTableData(activeElements);
                     }
                 }
             }
-        },
-        layout: {
-            padding: {
-                bottom: 30 // Jarak antara chart dan legenda
-            }
-        },
-        elements: {
-            arc: {
-                borderWidth: 1,
-                borderColor: 'rgba(255, 255, 255, 0.8)'
-            }
-        },
-        onClick: function(evt, activeElements) {
-            if (!isAuthenticated) {
-                var passwordModal = document.getElementById('passwordModal');
-                passwordModal.classList.remove('hidden');
+        });  
 
-                document.getElementById('submitPasswordButton').onclick = function() {
-                    var enteredPassword = document.getElementById('passwordInput').value;
-                    if (enteredPassword === correctPassword) {
-                        isAuthenticated = true;
-                        passwordModal.classList.add('hidden');
-                        showTableData(activeElements);
-                    } else {
-                        alert('Password salah! Silakan coba lagi.');
-                    }
-                };
-
-                document.getElementById('cancelButton').onclick = function() {
-                    passwordModal.classList.add('hidden');
-                };
-            } else {
-                showTableData(activeElements);
-            }
-        }
-    }
-});  
-
-
-        // Display Data Table
         function populateTable() {
             var typeTableBody = document.getElementById('typeTableBody');
             typeTableBody.innerHTML = '';
@@ -356,83 +399,87 @@
 
         populateTable();
 
-        // Search Feature
         var searchInput = document.getElementById('searchInput');
+        var searchButton = document.getElementById('searchButton');
         var searchResultsBody = document.getElementById('searchResultsBody');
+        var searchResults = document.querySelector('.search-results');
 
-        searchInput.addEventListener('input', function() {
-            var searchTerm = searchInput.value;
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            var searchTerm = searchInput.value.trim();
+            if (searchTerm === '') {
+                searchResults.style.display = 'none';
+                return;
+            }
+
             fetch('{{ route('user.search') }}?searchTerm=' + encodeURIComponent(searchTerm))
                 .then(response => response.json())
                 .then(data => {
                     searchResultsBody.innerHTML = '';
-                    data.results.forEach(result => {
-                        var row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${result['Sub Kategori']}</td>
-                            <td>${result['Nama Barang']}</td>
-                            <td>${result['Merek/Tipe']}</td>
-                            <td>${result['Pengguna']}</td>
-                            <td>${result['Bidang']}</td>
-                        `;
-                        searchResultsBody.appendChild(row);
-                    });
+                    if (data.results.length > 0) {
+                        data.results.forEach(result => {
+                            var row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${result['Sub Kategori']}</td>
+                                <td>${result['Nama Barang']}</td>
+                                <td>${result['Merek/Tipe']}</td>
+                                <td>${result['Pengguna']}</td>
+                                <td>${result['Bidang']}</td>
+                            `;
+                            searchResultsBody.appendChild(row);
+                        });
+                        searchResults.style.display = 'block';
+                    } else {
+                        searchResults.style.display = 'none';
+                        alert('Tidak ada hasil yang ditemukan untuk pencarian ini.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Terjadi kesalahan saat melakukan pencarian. Silakan coba lagi.');
                 });
-        });
-
+        }
 
         function showTableData(activeElements) {
             if (activeElements.length > 0) {
                 var chartElement = activeElements[0];
-                var category = chartElement.index;
-                showCategoryDetails(labels[category]);
+                var category = labels[chartElement.index];
+                showCategoryDetails(category);
             }
         }
 
         function showCategoryDetails(category) {
-    var details = data[category].details;
-    var typeTableBody = document.getElementById('typeTableBody');
+            var details = data[category].details;
+            var typeTableBody = document.getElementById('typeTableBody');
 
-    typeTableBody.innerHTML = '';
+            typeTableBody.innerHTML = '';
 
-    details.forEach(function(detail) {
-        var row = document.createElement('tr');
+            details.forEach(function(detail) {
+                var row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${category}</td>
+                    <td>${detail['Sub Kategori']}</td>
+                    <td>${detail['Nama Barang']}</td>
+                    <td>${detail['Merek/Tipe']}</td>
+                    <td>${detail['Pengguna']}</td>
+                    <td>${detail['Bidang']}</td>
+                `;
+                typeTableBody.appendChild(row);
+            });
 
-        var kategoriCell = document.createElement('td');
-        kategoriCell.textContent = category;
-        row.appendChild(kategoriCell);
-
-        var subKategoriCell = document.createElement('td');
-        subKategoriCell.textContent = detail['Sub Kategori'];
-        row.appendChild(subKategoriCell);
-
-        var namaBarangCell = document.createElement('td');
-        namaBarangCell.textContent = detail['Nama Barang'];
-        row.appendChild(namaBarangCell);
-
-        var merekTipeCell = document.createElement('td');
-        merekTipeCell.textContent = detail['Merek/Tipe'];
-        row.appendChild(merekTipeCell);
-
-        var penggunaCell = document.createElement('td');
-        penggunaCell.textContent = detail['Pengguna'];
-        row.appendChild(penggunaCell);
-
-        var bidangCell = document.createElement('td');
-        bidangCell.textContent = detail['Bidang'];
-        row.appendChild(bidangCell);
-
-        typeTableBody.appendChild(row);
-    });
-
-    var typeTableContainer = document.getElementById('typeTableContainer');
-    typeTableContainer.style.display = 'block';
-}
-
+            var typeTableContainer = document.getElementById('typeTableContainer');
+            typeTableContainer.style.display = 'block';
+        }
 
         document.getElementById('totalDataCount').textContent = totalItems;
 
-        // Update legend with percentages
         function updateLegend() {
             var legend = document.querySelector('.chart-legend');
             legend.innerHTML = '<p>Jumlah Keseluruhan Data: <span id="totalDataCount">' + totalItems + '</span></p>';

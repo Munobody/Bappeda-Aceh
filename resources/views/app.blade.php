@@ -74,7 +74,7 @@
             <div class="flex flex-col grid-cols-9 p-2 mx-auto md:grid">
                 <!-- First Event -->
                 <div class="flex md:contents flex-row-reverse timeline-item delay-300">
-                    <a href="/komputer" class="relative p-4 my-6 text-black bg-white rounded-xl col-start-1 col-end-5 mr-auto md:mr-0 md:ml-auto hover:bg-green-600 transition duration-300 ease-in-out shadow-2xl">
+                    <a href="/komputer" class="relative p-4 my-6 text-black bg-white rounded-xl col-start-1 col-end-5 mr-auto md:mr-0 md:ml-auto hover:bg-green-200 transition duration-300 ease-in-out shadow-2xl">
                         <h3 class="text-lg font-semibold lg:text-xl">Visualization Komputer Data</h3>
                         <p class="mt-2 leading-6">Visualisasi yang dibuat berdasarkan data asset komputer yang terdapat di Bappeda Aceh</p>
                     </a>
@@ -95,7 +95,7 @@
                         </div>
                         <div class="absolute w-6 h-6 -mt-3 bg-white border-4 border-green-400 rounded-full top-1/2"></div>
                     </div>
-                    <a href="/kantor" class="relative p-4 my-6 text-black bg-white rounded-xl col-start-6 col-end-10 mr-auto hover:bg-green-400 transition duration-300 ease-in-out shadow-2xl">
+                    <a href="/kantor" class="relative p-4 my-6 text-black bg-white rounded-xl col-start-6 col-end-10 mr-auto hover:bg-green-200 transition duration-300 ease-in-out shadow-2xl">
                         <h3 class="text-lg font-semibold lg:text-xl">Visualization Alat Kantor Data</h3>
                         <p class="mt-2 leading-6">Visualisasi yang dibuat berdasarkan data asset Peralatan yang terdapat di Bappeda Aceh</p>
                     </a>
@@ -103,7 +103,7 @@
 
                 <!-- Third Event -->
                 <div class="flex md:contents flex-row-reverse timeline-item delay-900">
-                    <a href="/dashboard" class="relative p-4 my-6 text-black bg-white rounded-xl col-start-1 col-end-5 mr-auto md:mr-0 md:ml-auto hover:bg-green-400 transition duration-300 ease-in-out shadow-2xl">
+                    <a href="/dashboard" class="relative p-4 my-6 text-black bg-white rounded-xl col-start-1 col-end-5 mr-auto md:mr-0 md:ml-auto hover:bg-green-200 transition duration-300 ease-in-out shadow-2xl">
                         <h3 class="text-lg font-semibold lg:text-xl">Visualization Transportasi Data</h3>
                         <p class="mt-2 leading-6">Visualisasi yang dibuat berdasarkan data asset transportasi yang terdapat di Bappeda Aceh</p>
                     </a>
@@ -124,7 +124,7 @@
                         </div>
                         <div class="absolute w-6 h-6 -mt-3 bg-white border-4 border-green-400 rounded-full top-1/2"></div>
                     </div>
-                    <a href="your-link-4.html" class="relative p-4 my-6 text-gray-800 bg-white rounded-xl col-start-6 col-end-10 mr-auto hover:bg-green-400 transition duration-300 ease-in-out shadow-2xl">
+                    <a href="/user" class="relative p-4 my-6 text-gray-800 bg-white rounded-xl col-start-6 col-end-10 mr-auto hover:bg-green-200 transition duration-300 ease-in-out shadow-2xl">
                         <h3 class="text-lg font-semibold lg:text-xl">Visualisasi Data Pemakaian Barang</h3>
                         <p class="mt-2 leading-6">Visualisai yang dibuat berdasarkan data peminjaman pegawai Bappeda Aceh</p>
                     </a>
@@ -132,27 +132,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal -->
-    <!-- <div id="dataModal">
-        <div class="modal-content text-center">
-            <h2 class="text-2xl font-bold mb-4 text-green-500">Pilih Halaman Data</h2>
-            <ul class="text-black space-y-2">
-                <li>
-                    <a href="/komputer" class="text-black hover:text-gray-800">Komputer</a>
-                </li>
-                <li>
-                    <a href="/dashboard" class="text-black hover:text-gray-800">Transportasi</a>
-                </li>
-                <li>
-                    <a href="/kantor" class="text-black hover:text-gray-800">Alat Kantor</a>
-                </li>
-            </ul>
-
-            <button id="closeModal" class="close-button bg-green-600 text-white hover:bg-green-700">Close</button>
-        </div>
-    </div> -->
-
     @include('components/footer')
 
     <script>

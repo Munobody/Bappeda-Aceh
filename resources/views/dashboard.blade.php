@@ -19,16 +19,6 @@
             margin-bottom: 20px;
         }
 
-        
-body {
-            background-image: url('{{ asset('images/bg.jpg') }}'); /* Path to your background image */
-            background-size: cover; /* Cover the entire page */
-            background-position: center; /* Center the image */
-            background-attachment: fixed; /* Fix the image in place */
-            background-repeat: no-repeat; /* Prevent the image from repeating */
-            animation: waveBackgroundAnimation 10s ease infinite;
-        }
-
         @keyframes waveBackgroundAnimation {
             0% {
                 background-position: 0% 50%;
@@ -114,6 +104,19 @@ body {
             transform: scale(1.1);
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
         }
+
+        .chart-legend {
+    margin: 10px 0; /* Adjust the margin as needed */
+    text-align: center;
+}
+
+.legend-item {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+}
     </style>
 </head>
 <body>
@@ -127,9 +130,13 @@ body {
             <canvas id="myChart"></canvas>
         </div>
 
-        <div>
-            <h1 class="text-4xl text-center text-green-600 font-bold"> Keterangan Data</h1>
-        </div>
+      <!-- Add this block below your chart container in the second snippet -->
+<div class="chart-legend">
+    <h3 class="text-xl font-semibold mb-2">Keterangan Data:</h3>
+    <div id="legendContainer"></div>
+    <h1 class="font-bold text-xl text-emerald-800 mt-2">Jumlah Keseluruhan Data: <span id="totalDataCount"></span></h1>
+</div>
+
         
         <!-- Data Table -->
         <div class="mt-12">
@@ -288,6 +295,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+// Generate legend items
+var legendContainer = document.getElementById('legendContainer');
+    var allLabels = allMerekLabels; // Assuming labels are the same as legend items
+    var allData = datasets[0].data; // Assuming first dataset contains the data for legend
+    var backgroundColors = datasets[0].backgroundColor;
+
+    allLabels.forEach(function(label, index) {
+        var total = allData[index];
+        var percentage = ((total / totalDataCount) * 100).toFixed(2);
+        var item = document.createElement('div');
+        item.className = 'legend-item';
+        item.innerHTML = `<span style="background-color: ${backgroundColors[index]}; padding: 5px; border-radius: 5px; display: inline-block; width: 15px; height: 15px; margin-right: 5px;"></span> ${label}: ${total} (${percentage}%)`;
+        legendContainer.appendChild(item);
+    });
+
+    document.getElementById('totalDataCount').textContent = totalDataCount;
 
     document.getElementById('myChart').addEventListener('click', function(evt) {
         var activePoints = myChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, false);
