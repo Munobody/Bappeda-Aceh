@@ -65,7 +65,7 @@
           </svg>
         </button>
         <a href="#" class="hidden lg:block">
-          <img src="{{ asset('images/logo 2.png') }}" alt="Logo BAPPEDA ACEH" class="h-10 w-auto">
+          <img src="{{ asset('images/pancacita.png') }}" alt="Logo BAPPEDA ACEH" class="h-10 w-auto">
         </a>
       </div>
       <div class="navbar-center hidden lg:flex">

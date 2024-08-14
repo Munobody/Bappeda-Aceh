@@ -8,181 +8,51 @@
     @vite('resources/css/app.css')
     <style>
         body {
-            background: url('{{ asset('images/bg.jpg') }}') no-repeat center center fixed; 
-            background-size: cover; /* Make sure the background covers the entire viewport */
+            background-size: cover; 
             transition: background 0.5s, color 0.5s;
         }
 
-        @keyframes waveBackgroundAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        @keyframes fadeIn {
+        @keyframes slideDown {
             from {
+                max-height: 0;
                 opacity: 0;
             }
             to {
+                max-height: 1000px; /* Ensure this value is large enough to cover the timeline's height */
                 opacity: 1;
             }
         }
 
-        @keyframes slideInLeft {
+        @keyframes fadeInTimeline {
             from {
-                transform: translateX(-100%);
                 opacity: 0;
+                transform: translateY(20px);
             }
             to {
-                transform: translateX(0);
                 opacity: 1;
-            }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
             }
-            40% {
-                transform: translateY(-30px);
-            }
-            60% {
-                transform: translateY(-15px);
-            }
         }
 
-        .animate-fadeIn {
-            animation: fadeIn 1s ease-out;
+        .timeline-container {
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 1s ease, opacity 1s ease;
         }
 
-        .animate-slideInLeft {
-            animation: slideInLeft 1s ease-out;
+        .timeline-container.show {
+            animation: slideDown 1s ease forwards;
+            opacity: 1;
         }
 
-        .animate-slideInLeft.delay-500 {
-            animation-delay: 0.5s;
+        .timeline-item {
+            opacity: 0;
         }
 
-        .animate-bounce {
-            animation: bounce 2s infinite;
+        .timeline-item.show {
+            animation: fadeInTimeline 1s ease forwards;
         }
-
-        [data-theme="dark"] {
-            background: #121212;
-            color: #ffffff;
-        }
-
-        .scrollable-table {
-            max-height: 400px; /* Set the height of the table container */
-            overflow-y: auto; /* Add vertical scrollbar */
-        }
-
-        /* Table styling */
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            border: 1px solid #cbd5e1; /* Border color for cells */
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f1f5f9; /* Background color for header cells */
-            color: #334155; /* Text color for header cells */
-            font-weight: bold;
-        }
-
-        tbody tr:nth-child(even) {
-            background-color: #f9fafb; /* Background color for alternate rows */
-        }
-
-        caption {
-            padding: 8px;
-            font-weight: bold;
-            color: #334155; /* Text color for caption */
-        }
-
-        /* Modal Styling */
-        #dataModal {
-            display: none; /* Initially hidden */
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #dataModal.show {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            max-width: 90%;
-            width: 400px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .modal-content a {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #134B70; /* Link color */
-            text-decoration: none;
-        }
-
-        .close-button {
-            margin-top: 1rem;
-            background-color: #ef4444; /* Red color */
-            color: white;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 0.25rem;
-            cursor: pointer;
-        }
-
-        /* Timeline Line Color */
-.bg-green-300 {
-    background-color: #34d399; /* Ganti dengan warna hijau yang diinginkan */
-}
-
-/* Timeline Animation */
-@keyframes fadeInTimeline {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.timeline-item {
-    animation: fadeInTimeline 1s ease-out;
-}
-
-/* Timeline Item Animation Delay */
-.timeline-item.delay-300 {
-    animation-delay: 0.3s;
-}
-.timeline-item.delay-600 {
-    animation-delay: 0.6s;
-}
     </style>
 </head>
 <body>
@@ -194,80 +64,77 @@
             </div>
             <h1 class="text-4xl md:text-7xl font-bold text-green-800 mb-4 animate-slideInLeft">Visualisasi Data</h1>
             <h1 class="text-2xl md:text-4xl font-bold text-green-800 mb-10 animate-slideInLeft delay-500">BAPPEDA ACEH</h1>
-            <img src="{{ asset('images/pancacita.png') }}" alt="BAPPEDA ACEH" class="mb-10 w-full max-w-md mx-auto rounded-lg ">
-            <a href="#" id="openModal" class="bg-green-500 text-white py-3 px-8 rounded-full animate-bounce">GET Visualisasi Data</a>
+            <p></p>
+            <a href="#" id="openModal" class="bg-green-500 text-white py-3 px-8 rounded-full animate-bounce text-xl">GET Visualisasi Data</a>
+            <img src="{{ asset('images/pancacita.png') }}" alt="BAPPEDA ACEH" class="mb-10 w-full max-w-md mx-auto rounded-lg">
         </div>
-        <div class="p-4">
-    <div class="flex flex-col grid-cols-9 p-2 mx-auto md:grid">
-        <!-- First Event -->
-       <!-- First Event -->
-<div class="flex md:contents flex-row-reverse timeline-item delay-300">
-    <a href="/komputer" class="relative p-4 my-6 text-black bg-green-200 rounded-xl col-start-1 col-end-5 mr-auto md:mr-0 md:ml-auto hover:bg-green-600 transition duration-300 ease-in-out">
-        <h3 class="text-lg font-semibold lg:text-xl">Visualization Komputer Data</h3>
-        <p class="mt-2 leading-6">Visualisai yang dibuat berdasarkan data asset komputer yang terdapat di Bappeda Aceh</p>
-    </a>
-    <div class="relative col-start-5 col-end-6 mr-7 md:mx-auto">
-        <div class="flex items-center justify-center w-6 h-full">
-            <div class="w-1 h-full bg-green-300 rounded-t-full bg-gradient-to-b from-green-400 to-green-300">
+        
+        <!-- Timeline Container -->
+        <div id="timelineContainer" class="timeline-container p-4">
+            <div class="flex flex-col grid-cols-9 p-2 mx-auto md:grid">
+                <!-- First Event -->
+                <div class="flex md:contents flex-row-reverse timeline-item delay-300">
+                    <a href="/komputer" class="relative p-4 my-6 text-black bg-white rounded-xl col-start-1 col-end-5 mr-auto md:mr-0 md:ml-auto hover:bg-green-600 transition duration-300 ease-in-out shadow-2xl">
+                        <h3 class="text-lg font-semibold lg:text-xl">Visualization Komputer Data</h3>
+                        <p class="mt-2 leading-6">Visualisasi yang dibuat berdasarkan data asset komputer yang terdapat di Bappeda Aceh</p>
+                    </a>
+                    <div class="relative col-start-5 col-end-6 mr-7 md:mx-auto">
+                        <div class="flex items-center justify-center w-6 h-full">
+                            <div class="w-1 h-full bg-green-300 rounded-t-full bg-gradient-to-b from-green-400 to-green-300">
+                            </div>
+                        </div>
+                        <div class="absolute w-6 h-6 -mt-3 bg-white border-4 border-green-400 rounded-full top-1/2"></div>
+                    </div>
+                </div>
+
+                <!-- Second Event -->
+                <div class="flex md:contents timeline-item delay-600">
+                    <div class="relative col-start-5 col-end-6 mr-7 md:mx-auto">
+                        <div class="flex items-center justify-center w-6 h-full">
+                            <div class="w-1 h-full bg-green-300"></div>
+                        </div>
+                        <div class="absolute w-6 h-6 -mt-3 bg-white border-4 border-green-400 rounded-full top-1/2"></div>
+                    </div>
+                    <a href="/kantor" class="relative p-4 my-6 text-black bg-white rounded-xl col-start-6 col-end-10 mr-auto hover:bg-green-400 transition duration-300 ease-in-out shadow-2xl">
+                        <h3 class="text-lg font-semibold lg:text-xl">Visualization Alat Kantor Data</h3>
+                        <p class="mt-2 leading-6">Visualisasi yang dibuat berdasarkan data asset Peralatan yang terdapat di Bappeda Aceh</p>
+                    </a>
+                </div>
+
+                <!-- Third Event -->
+                <div class="flex md:contents flex-row-reverse timeline-item delay-900">
+                    <a href="/dashboard" class="relative p-4 my-6 text-black bg-white rounded-xl col-start-1 col-end-5 mr-auto md:mr-0 md:ml-auto hover:bg-green-400 transition duration-300 ease-in-out shadow-2xl">
+                        <h3 class="text-lg font-semibold lg:text-xl">Visualization Transportasi Data</h3>
+                        <p class="mt-2 leading-6">Visualisasi yang dibuat berdasarkan data asset transportasi yang terdapat di Bappeda Aceh</p>
+                    </a>
+                    <div class="relative col-start-5 col-end-6 mr-7 md:mx-auto">
+                        <div class="flex items-center justify-center w-6 h-full">
+                            <div class="w-1 h-full bg-green-300 rounded-t-full bg-gradient-to-b from-green-400 to-green-300">
+                            </div>
+                        </div>
+                        <div class="absolute w-6 h-6 -mt-3 bg-white border-4 border-green-400 rounded-full top-1/2"></div>
+                    </div>
+                </div>
+
+                <!-- Fourth Event -->
+                <div class="flex md:contents timeline-item delay-1200">
+                    <div class="relative col-start-5 col-end-6 mr-7 md:mx-auto">
+                        <div class="flex items-center justify-center w-6 h-full">
+                            <div class="w-1 h-full bg-green-300"></div>
+                        </div>
+                        <div class="absolute w-6 h-6 -mt-3 bg-white border-4 border-green-400 rounded-full top-1/2"></div>
+                    </div>
+                    <a href="your-link-4.html" class="relative p-4 my-6 text-gray-800 bg-white rounded-xl col-start-6 col-end-10 mr-auto hover:bg-green-400 transition duration-300 ease-in-out shadow-2xl">
+                        <h3 class="text-lg font-semibold lg:text-xl">Visualisasi Data Pemakaian Barang</h3>
+                        <p class="mt-2 leading-6">Visualisai yang dibuat berdasarkan data peminjaman pegawai Bappeda Aceh</p>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="absolute w-6 h-6 -mt-3 bg-white border-4 border-green-400 rounded-full top-1/2"></div>
     </div>
-</div>
-
-<!-- Second Event -->
-<div class="flex md:contents timeline-item delay-600">
-    <div class="relative col-start-5 col-end-6 mr-7 md:mx-auto">
-        <div class="flex items-center justify-center w-6 h-full">
-            <div class="w-1 h-full bg-green-300"></div>
-        </div>
-        <div class="absolute w-6 h-6 -mt-3 bg-white border-4 border-green-400 rounded-full top-1/2"></div>
-    </div>
-    <a href="your-link-2.html" class="relative p-4 my-6 text-gray-800 bg-white rounded-xl col-start-6 col-end-10 mr-auto hover:bg-green-50 transition duration-300 ease-in-out">
-        <h3 class="text-lg font-semibold lg:text-xl">New Event 2</h3>
-        <p class="mt-2 leading-6">Description of the second event.</p>
-    </a>
-</div>
-
-<!-- Third Event -->
-<div class="flex md:contents flex-row-reverse timeline-item delay-900">
-    <a href="your-link-3.html" class="relative p-4 my-6 text-gray-800 bg-white rounded-xl col-start-1 col-end-5 mr-auto md:mr-0 md:ml-auto hover:bg-green-50 transition duration-300 ease-in-out">
-        <h3 class="text-lg font-semibold lg:text-xl">New Event 3</h3>
-        <p class="mt-2 leading-6">Description of the third event.</p>
-    </a>
-    <div class="relative col-start-5 col-end-6 mr-7 md:mx-auto">
-        <div class="flex items-center justify-center w-6 h-full">
-            <div class="w-1 h-full bg-green-300 rounded-t-full bg-gradient-to-b from-green-400 to-green-300">
-            </div>
-        </div>
-        <div class="absolute w-6 h-6 -mt-3 bg-white border-4 border-green-400 rounded-full top-1/2"></div>
-    </div>
-</div>
-
-<!-- Fourth Event -->
-<div class="flex md:contents timeline-item delay-1200">
-    <div class="relative col-start-5 col-end-6 mr-7 md:mx-auto">
-        <div class="flex items-center justify-center w-6 h-full">
-            <div class="w-1 h-full bg-green-300"></div>
-        </div>
-        <div class="absolute w-6 h-6 -mt-3 bg-white border-4 border-green-400 rounded-full top-1/2"></div>
-    </div>
-    <a href="your-link-4.html" class="relative p-4 my-6 text-gray-800 bg-white rounded-xl col-start-6 col-end-10 mr-auto hover:bg-green-50 transition duration-300 ease-in-out">
-        <h3 class="text-lg font-semibold lg:text-xl">New Event 4</h3>
-        <p class="mt-2 leading-6">Description of the fourth event.</p>
-    </a>
-</div>
-
-    </div>
-</div>
-
-</div>
-    </div>
-
-    
 
     <!-- Modal -->
-    <div id="dataModal">
+    <!-- <div id="dataModal">
         <div class="modal-content text-center">
             <h2 class="text-2xl font-bold mb-4 text-green-500">Pilih Halaman Data</h2>
             <ul class="text-black space-y-2">
@@ -275,7 +142,7 @@
                     <a href="/komputer" class="text-black hover:text-gray-800">Komputer</a>
                 </li>
                 <li>
-                    <a href="/dashboard" class="text-black hover:text-gray-800">Transpotasi</a>
+                    <a href="/dashboard" class="text-black hover:text-gray-800">Transportasi</a>
                 </li>
                 <li>
                     <a href="/kantor" class="text-black hover:text-gray-800">Alat Kantor</a>
@@ -284,29 +151,33 @@
 
             <button id="closeModal" class="close-button bg-green-600 text-white hover:bg-green-700">Close</button>
         </div>
-    </div>
+    </div> -->
 
     @include('components/footer')
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const modal = document.getElementById('dataModal');
             const openModalButton = document.getElementById('openModal');
-            const closeModalButton = document.getElementById('closeModal');
+            const timelineContainer = document.getElementById('timelineContainer');
+            const timelineItems = document.querySelectorAll('.timeline-item');
 
-            openModalButton.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default link behavior
-                modal.classList.add('show');
-            });
+            openModalButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Show the timeline with animation
+                timelineContainer.classList.add('show');
 
-            closeModalButton.addEventListener('click', function() {
-                modal.classList.remove('show');
-            });
+                // Animate each timeline item
+                timelineItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('show');
+                    }, index * 300);
+                });
 
-            modal.addEventListener('click', function(event) {
-                if (event.target === modal) {
-                    modal.classList.remove('show');
-                }
+                // Auto scroll to the timeline
+                setTimeout(() => {
+                    timelineContainer.scrollIntoView({ behavior: 'smooth' });
+                }, 500);
             });
         });
     </script>

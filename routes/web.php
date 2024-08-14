@@ -15,6 +15,8 @@ use App\Http\Controllers\ViewRequestPageController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\KomputerController;
 use App\Http\Controllers\KantorController;
+use App\Http\Controllers\UserController;
+
 
 use App\Http\Middleware\AdminMiddleware;
 
@@ -60,3 +62,5 @@ Route::middleware([AdminMiddleware::class])->group(function () {
 });
 Route::get('/komputer', [KomputerController::class, 'index'])->name('komputer');
 Route::get('/kantor', [KantorController::class, 'index'])->name('kantor');
+Route::get('/user', [UserController::class, 'index'])->name('user');
+Route::get('/user/search', [UserController::class, 'search'])->name('user.search');
