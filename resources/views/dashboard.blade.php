@@ -19,16 +19,6 @@
             margin-bottom: 20px;
         }
 
-        
-body {
-            background-image: url('{{ asset('images/bg.jpg') }}'); /* Path to your background image */
-            background-size: cover; /* Cover the entire page */
-            background-position: center; /* Center the image */
-            background-attachment: fixed; /* Fix the image in place */
-            background-repeat: no-repeat; /* Prevent the image from repeating */
-            animation: waveBackgroundAnimation 10s ease infinite;
-        }
-
         @keyframes waveBackgroundAnimation {
             0% {
                 background-position: 0% 50%;
@@ -53,14 +43,15 @@ body {
         }
 
         .type-table th, .type-table td {
+            text-align: center;
             border: 1px solid #ddd;
             padding: 8px;
             transition: background-color 0.3s, box-shadow 0.3s;
         }
 
         .type-table th {
-            background-color: #f2f2f2;
-            text-align: left;
+            background-color: #34d399;
+            text-align: center;
             box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
         }
 
@@ -69,8 +60,8 @@ body {
         }
 
         .type-table tr:hover {
-            background-color: rgba(0, 123, 255, 0.1);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            background-color: #d1fae5;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow on hover */
         }
 
         .type-table-container {
@@ -85,7 +76,7 @@ body {
         }
 
         .btn-back {
-            background-color: #007bff;
+            background-color: #0f766e;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -114,6 +105,19 @@ body {
             transform: scale(1.1);
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
         }
+
+        .chart-legend {
+    margin: 10px 0; /* Adjust the margin as needed */
+    text-align: center;
+}
+
+.legend-item {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+}
     </style>
 </head>
 <body>
@@ -127,14 +131,18 @@ body {
             <canvas id="myChart"></canvas>
         </div>
 
-        <div>
-            <h1 class="text-4xl text-center text-green-600 font-bold"> Keterangan Data</h1>
-        </div>
+      <!-- Add this block below your chart container in the second snippet -->
+<div class="chart-legend">
+    <h3 class="text-xl font-semibold mb-2">Keterangan Data:</h3>
+    <div id="legendContainer"></div>
+    <h1 class="font-bold text-xl text-emerald-800 mt-2">Jumlah Keseluruhan Data: <span id="totalDataCount"></span></h1>
+</div>
+
         
         <!-- Data Table -->
         <div class="mt-12">
     <div class="type-table-container bg-green-400 rounded-lg overflow-x-auto" id="typeTableContainer">
-        <table class="type-table bg-green-500 text-black w-full border-collapse rounded-lg shadow-md transition-transform duration-500 ease-in-out transform hover:scale-105" id="typeTable">
+        <table class="type-table text-black w-full border-collapse rounded-lg shadow-md transition-transform duration-500 ease-in-out transform hover:scale-105" id="typeTable">
             <thead class="bg-green-600">
                 <tr class="bg-green-800">
                     <th class="p-3 border-b">Kategori</th>
@@ -288,6 +296,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+// Generate legend items
+var legendContainer = document.getElementById('legendContainer');
+    var allLabels = allMerekLabels; // Assuming labels are the same as legend items
+    var allData = datasets[0].data; // Assuming first dataset contains the data for legend
+    var backgroundColors = datasets[0].backgroundColor;
+
+    allLabels.forEach(function(label, index) {
+        var total = allData[index];
+        var percentage = ((total / totalDataCount) * 100).toFixed(2);
+        var item = document.createElement('div');
+        item.className = 'legend-item';
+        item.innerHTML = `<span style="background-color: ${backgroundColors[index]}; padding: 5px; border-radius: 5px; display: inline-block; width: 15px; height: 15px; margin-right: 5px;"></span> ${label}: ${total} (${percentage}%)`;
+        legendContainer.appendChild(item);
+    });
+
+    document.getElementById('totalDataCount').textContent = totalDataCount;
 
     document.getElementById('myChart').addEventListener('click', function(evt) {
         var activePoints = myChart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, false);

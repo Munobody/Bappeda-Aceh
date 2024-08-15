@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAPPEDA Aceh Komputer</title>
+    <title>BAPPEDA Aceh Studio</title>
     <link rel="icon" href="{{ asset('images/pancacita.png') }}" type="image/x-icon">
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
@@ -29,7 +29,7 @@
 
     /* Default styling for other chart containers */
     .chart-container {
-        width: 90%;
+        width: 100%;
         /* Default width for other charts */
         max-width: 1200px;
         /* Max width for larger screens */
@@ -152,9 +152,9 @@
 <body>
     @include('components/navbar')
 
-    <div class="container mx-auto py-16 justify-center">
+    <div class="container mx-auto py-16">
         <h2 class="text-2xl font-bold text-green-800 mb-4 text-center mt-12">BAPPEDA ACEH</h2>
-        <h2 class="text-2xl font-bold text-green-800 mb-4 text-center">Data Visualisasi Komputer</h2>
+        <h2 class="text-2xl font-bold text-green-800 mb-4 text-center">Data Visualisasi Alat Studio, Komunikasi dan Pemancar</h2>
 
         <!-- Kategori Chart -->
         <div class="category-chart-container">

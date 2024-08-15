@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAPPEDA Aceh Komputer</title>
+    <title>BAPPEDA Aceh Alat Lainnya</title>
     <link rel="icon" href="{{ asset('images/pancacita.png') }}" type="image/x-icon">
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
@@ -29,14 +29,14 @@
 
     /* Default styling for other chart containers */
     .chart-container {
-        width: 90%;
+        width: 60%;
         /* Default width for other charts */
         max-width: 1200px;
         /* Max width for larger screens */
         height: 500px;
         /* Default height for other charts */
         margin: 0 auto;
-        margin-bottom: 70px;
+        margin-bottom: 20px;
         /* Increased margin for spacing between charts */
         display: flex;
         flex-direction: column;
@@ -152,16 +152,21 @@
 <body>
     @include('components/navbar')
 
-    <div class="container mx-auto py-16 justify-center">
+    <div class="container mx-auto py-16">
         <h2 class="text-2xl font-bold text-green-800 mb-4 text-center mt-12">BAPPEDA ACEH</h2>
-        <h2 class="text-2xl font-bold text-green-800 mb-4 text-center">Data Visualisasi Komputer</h2>
+        <h2 class="text-2xl font-bold text-green-800 mb-4 text-center">Data Visualisasi Alat Kesehatan dan Alat Produksi</h2>
+
+        <!-- Alat Chart -->
+        <div class="category-chart-container">
+            <h3 class="text-xl font-semibold mb-2">Distribusi Barang Berdasarkan Jenis Alat</h3>
+            <canvas id="alatChart"></canvas>
+        </div>
 
         <!-- Kategori Chart -->
         <div class="category-chart-container">
             <h3 class="text-xl font-semibold mb-2">Distribusi Barang Berdasarkan Kategori</h3>
             <canvas id="categoryChart"></canvas>
         </div>
-
 
         <!-- Sub Kategori Chart -->
         <div class="category-chart-container">
@@ -228,6 +233,7 @@
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         var subCategoryData = @json($subCategoryData);
+        var alatData = @json($alatData);
         var dateDistributionData = @json($dateDistributionData);
         var assetData = @json($processedData);
         var correctPassword = 'Bappeda'; // Ensure this matches the password you are entering
@@ -236,6 +242,60 @@
         // Function to trim and validate the password
         function validatePassword(inputPassword) {
             return inputPassword.trim() === correctPassword;
+        }
+
+        // Render Alat Chart
+        var alatLabels = Object.keys(alatData);
+        var alatValues = Object.values(alatData);
+
+        var alatCtx = document.getElementById('alatChart').getContext('2d');
+        new Chart(alatCtx, {
+            type: 'bar',
+            data: {
+                labels: alatLabels,
+                datasets: [{
+                    label: 'Jumlah Barang per Jenis Alat',
+                    data: alatValues,
+                    backgroundColor: alatLabels.map(() => getRandomColor()),
+                    borderColor: alatLabels.map(() => getRandomColor()),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                var label = context.label || '';
+                                var value = context.raw || 0;
+                                return label + ': ' + value;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        stacked: false,
+                        categoryPercentage: 0.8,
+                        barPercentage: 0.9
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        function getRandomColor() {
+            var r = Math.floor(Math.random() * 256);
+            var g = Math.floor(Math.random() * 256);
+            var b = Math.floor(Math.random() * 256);
+            return `rgba(${r}, ${g}, ${b}, 0.7)`;
         }
 
         // Render Kategori Chart

@@ -37,15 +37,6 @@
             display: block; /* Ensure the canvas takes full space of its container */
         }
 
-        body {
-            background-image: url('{{ asset('images/bg.jpg') }}'); /* Path to your background image */
-            background-size: cover; /* Cover the entire page */
-            background-position: center; /* Center the image */
-            background-attachment: fixed; /* Fix the image in place */
-            background-repeat: no-repeat; /* Prevent the image from repeating */
-            animation: waveBackgroundAnimation 10s ease infinite;
-        }
-
         @keyframes waveBackgroundAnimation {
             0% {
                 background-position: 0% 50%;
@@ -70,23 +61,24 @@
         }
 
         .type-table th, .type-table td {
+            text-align: center;
             border: 1px solid #ddd;
             padding: 8px;
             transition: background-color 0.3s, box-shadow 0.3s;
         }
 
         .type-table th {
-            background-color: #f2f2f2;
-            text-align: left;
+            background-color: #34d399;
+            text-align: center;
             box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
         }
 
         .type-table tr:nth-child(even) {
-            background: linear-gradient(to bottom, #f9f9f9, #ffffff);
+            background: linear-gradient(to bottom, #ecfdf5, #ffffff);
         }
 
         .type-table tr:hover {
-            background-color: rgba(0, 123, 255, 0.2);
+            background-color: #d1fae5;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
@@ -102,7 +94,7 @@
         }
 
         .btn-back {
-            background-color: #007bff;
+            background-color: #0f766e;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -113,7 +105,7 @@
         }
 
         .btn-back:hover {
-            background-color: #0056b3;
+            background-color: #2dd4bf;
         }
 
         @keyframes fadeInUp {
@@ -156,7 +148,8 @@
     @include('components/navbar')
 
     <div class="container mx-auto py-32">
-        <h2 class="text-4xl font-bold text-green-800 mb-4 text-center">BAPPEDA ACEH - Data Visualisasi Barang</h2>
+        <h2 class="text-4xl font-bold text-green-800 mb-4 text-center">BAPPEDA ACEH</h2>
+        <h2 class="text-4xl font-bold text-green-800 mb-4 text-center">Data Visualisasi Alat Kantor</h2>
         <div class="chart-container">
             <canvas id="myChart"></canvas>
         </div>
@@ -198,6 +191,8 @@
         </div>
     </div>
 
+    @include('components/footer')
+
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         var data = @json($processedData);
@@ -223,7 +218,7 @@
         var totalItems = totals.reduce(function(a, b) { return a + b; }, 0);
 
         var myChart = new Chart(ctx, {
-    type: 'doughnut',
+    type: 'pie',
     data: {
         labels: labels,
         datasets: [{

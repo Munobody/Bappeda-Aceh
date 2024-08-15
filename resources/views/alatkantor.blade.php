@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAPPEDA Aceh Komputer</title>
+    <title>BAPPEDA Aceh Alat Kantor</title>
     <link rel="icon" href="{{ asset('images/pancacita.png') }}" type="image/x-icon">
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
@@ -12,7 +12,7 @@
     <style>
     /* Specific styling for the category chart */
     .category-chart-container {
-        width: 60%;
+        width: 70%;
         /* Adjust width as needed */
         max-width: 1000px;
         /* Max width for larger screens */
@@ -27,9 +27,25 @@
         align-items: center;
     }
 
+    .subcategory-chart-container {
+        width: 90%;
+        /* Increase the width as needed */
+        max-width: 1200px;
+        /* Increase max-width for larger screens */
+        height: 500px;
+        /* Increase the height as needed */
+        margin: 0 auto;
+        margin-top: 20px;
+        margin-bottom: 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
     /* Default styling for other chart containers */
     .chart-container {
-        width: 90%;
+        width: 100%;
         /* Default width for other charts */
         max-width: 1200px;
         /* Max width for larger screens */
@@ -42,6 +58,21 @@
         flex-direction: column;
         align-items: center;
     }
+
+    /* Specific styling for Nama Barang Chart */
+    #namaBarangChartContainer {
+        width: 100%;
+        max-width: 400px;
+        /* Increase max width for larger screens */
+        height: 1400px;
+        /* Increase height for Nama Barang chart */
+        margin: 0 auto;
+        margin-bottom: 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
 
     .chart-legend {
         margin: 20px 0;
@@ -152,9 +183,10 @@
 <body>
     @include('components/navbar')
 
-    <div class="container mx-auto py-16 justify-center">
+    <div class="container mx-auto py-16">
         <h2 class="text-2xl font-bold text-green-800 mb-4 text-center mt-12">BAPPEDA ACEH</h2>
-        <h2 class="text-2xl font-bold text-green-800 mb-4 text-center">Data Visualisasi Komputer</h2>
+        <h2 class="text-2xl font-bold text-green-800 mb-4 text-center">Data Visualisasi Alat Kantor dan Rumah Tangga
+        </h2>
 
         <!-- Kategori Chart -->
         <div class="category-chart-container">
@@ -162,9 +194,8 @@
             <canvas id="categoryChart"></canvas>
         </div>
 
-
         <!-- Sub Kategori Chart -->
-        <div class="category-chart-container">
+        <div class="subcategory-chart-container">
             <h3 class="text-xl font-semibold mb-2">Distribusi Barang Berdasarkan Sub Kategori</h3>
             <canvas id="subCategoryChart"></canvas>
         </div>
@@ -424,60 +455,64 @@
         var borderColors = backgroundColors.map(color => color.replace('0.7', '1'));
 
         var ctx = document.getElementById('myChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Jumlah Barang',
-                    data: totals,
-                    backgroundColor: backgroundColors,
-                    borderColor: borderColors,
-                    borderWidth: 1
-                }]
+        var ctx = document.getElementById('myChart').getContext('2d');
+new Chart(ctx, {
+    type: 'bar', // Use 'bar' chart type
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Jumlah Barang',
+            data: totals,
+            backgroundColor: backgroundColors,
+            borderColor: borderColors,
+            borderWidth: 1,
+            barThickness: 6, // Adjust this value to make bars wider
+        }]
+    },
+    options: {
+        indexAxis: 'y', // Make the bar chart horizontal
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top'
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top'
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                var label = context.label || '';
-                                var value = context.raw || 0;
-                                return label + ': ' + value;
-                            }
-                        }
-                    }
-                },
-                onClick: function(evt, activeElements) {
-                    if (!isAuthenticated) {
-                        var passwordModal = document.getElementById('passwordModal');
-                        passwordModal.classList.remove('hidden');
-
-                        document.getElementById('submitPasswordButton').onclick = function() {
-                            var enteredPassword = document.getElementById('passwordInput')
-                                .value;
-                            if (validatePassword(enteredPassword)) {
-                                isAuthenticated = true;
-                                passwordModal.classList.add('hidden');
-                                showTableData(activeElements);
-                            } else {
-                                alert('Password salah! Silakan coba lagi.');
-                            }
-                        };
-
-                        document.getElementById('cancelButton').onclick = function() {
-                            passwordModal.classList.add('hidden');
-                        };
-                    } else {
-                        showTableData(activeElements);
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        var label = context.label || '';
+                        var value = context.raw || 0;
+                        return label + ': ' + value;
                     }
                 }
             }
-        });
+        },
+        onClick: function(evt, activeElements) {
+            if (!isAuthenticated) {
+                var passwordModal = document.getElementById('passwordModal');
+                passwordModal.classList.remove('hidden');
+
+                document.getElementById('submitPasswordButton').onclick = function() {
+                    var enteredPassword = document.getElementById('passwordInput').value;
+                    if (validatePassword(enteredPassword)) {
+                        isAuthenticated = true;
+                        passwordModal.classList.add('hidden');
+                        showTableData(activeElements);
+                    } else {
+                        alert('Password salah! Silakan coba lagi.');
+                    }
+                };
+
+                document.getElementById('cancelButton').onclick = function() {
+                    passwordModal.classList.add('hidden');
+                };
+            } else {
+                showTableData(activeElements);
+            }
+        }
+    }
+});
+
+
 
         function showTableData(activeElements) {
             var typeTableContainer = document.getElementById('typeTableContainer');

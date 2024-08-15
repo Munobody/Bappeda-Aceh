@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class KomputerController extends Controller
+class AlatOlahragaController extends Controller
 {
     public function index()
     {
-        $csvPath = storage_path('app/public/Komputer.csv');
+        $csvPath = storage_path('app/public/Peralatan-Olahraga.csv');
 
         if (!file_exists($csvPath)) {
             abort(404, "CSV file not found at $csvPath");
@@ -22,9 +22,8 @@ class KomputerController extends Controller
         $distributionData = $this->processDistributionData($rows, $headers);
         $subCategoryData = $this->processSubCategoryData($rows, $headers);
         $dateDistributionData = $this->processDateDistributionData($rows, $headers);
-        $categoryData = $this->processCategoryData($rows, $headers); // New
 
-        return view('komputer', compact('processedData', 'distributionData', 'subCategoryData', 'dateDistributionData', 'categoryData'));
+        return view('alatolahraga', compact('processedData', 'distributionData', 'subCategoryData', 'dateDistributionData'));
     }
 
     private function processKomputerData($rows, $headers)
@@ -156,31 +155,4 @@ class KomputerController extends Controller
         return $dateDistribution;
     }
 
-    private function processCategoryData($rows, $headers) // New
-    {
-        $categories = [];
-
-        foreach ($rows as $row) {
-            if (count($headers) !== count($row)) {
-                continue;
-            }
-
-            $item = array_combine($headers, $row);
-
-            if ($item === false || !isset($item['kategori'])) {
-                continue;
-            }
-
-            $category = $item['kategori'];
-
-            if (!isset($categories[$category])) {
-                $categories[$category] = 0;
-            }
-
-            $categories[$category]++;
-        }
-
-        arsort($categories);
-        return $categories;
-    }
 }
