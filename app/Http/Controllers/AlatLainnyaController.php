@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class KomputerController extends Controller
+class AlatLainnyaController extends Controller
 {
     public function index()
     {
-        $csvPath = storage_path('app/public/Komputer.csv');
+        $csvPath = storage_path('app/public/Alat-Lainnya.csv');
 
         if (!file_exists($csvPath)) {
             abort(404, "CSV file not found at $csvPath");
@@ -22,9 +22,10 @@ class KomputerController extends Controller
         $distributionData = $this->processDistributionData($rows, $headers);
         $subCategoryData = $this->processSubCategoryData($rows, $headers);
         $dateDistributionData = $this->processDateDistributionData($rows, $headers);
-        $categoryData = $this->processCategoryData($rows, $headers); // New
+        $categoryData = $this->processCategoryData($rows, $headers); // Updated
+        $alatData = $this->processAlatData($rows, $headers); // Updated
 
-        return view('komputer', compact('processedData', 'distributionData', 'subCategoryData', 'dateDistributionData', 'categoryData'));
+        return view('alatlainnya', compact('processedData', 'distributionData', 'subCategoryData', 'dateDistributionData', 'categoryData', 'alatData'));
     }
 
     private function processKomputerData($rows, $headers)
@@ -156,7 +157,7 @@ class KomputerController extends Controller
         return $dateDistribution;
     }
 
-    private function processCategoryData($rows, $headers) // New
+    private function processCategoryData($rows, $headers) // Updated
     {
         $categories = [];
 
@@ -182,5 +183,33 @@ class KomputerController extends Controller
 
         arsort($categories);
         return $categories;
+    }
+
+    private function processAlatData($rows, $headers) // Updated
+    {
+        $alat = [];
+
+        foreach ($rows as $row) {
+            if (count($headers) !== count($row)) {
+                continue;
+            }
+
+            $item = array_combine($headers, $row);
+
+            if ($item === false || !isset($item['alat'])) {
+                continue;
+            }
+
+            $alatName = $item['alat'];
+
+            if (!isset($alat[$alatName])) {
+                $alat[$alatName] = 0;
+            }
+
+            $alat[$alatName]++;
+        }
+
+        arsort($alat);
+        return $alat;
     }
 }

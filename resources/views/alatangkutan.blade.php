@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAPPEDA Aceh Komputer</title>
+    <title>BAPPEDA Aceh Alat Angkutan</title>
     <link rel="icon" href="{{ asset('images/pancacita.png') }}" type="image/x-icon">
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
@@ -152,9 +152,9 @@
 <body>
     @include('components/navbar')
 
-    <div class="container mx-auto py-16 justify-center">
+    <div class="container mx-auto py-16">
         <h2 class="text-2xl font-bold text-green-800 mb-4 text-center mt-12">BAPPEDA ACEH</h2>
-        <h2 class="text-2xl font-bold text-green-800 mb-4 text-center">Data Visualisasi Komputer</h2>
+        <h2 class="text-2xl font-bold text-green-800 mb-4 text-center">Data Visualisasi Alat Angkutan</h2>
 
         <!-- Kategori Chart -->
         <div class="category-chart-container">
@@ -194,7 +194,8 @@
                     <thead>
                         <tr>
                             <th>Nama Barang</th>
-                            <th>Merk/Tipe</th>
+                            <th>Merek</th>
+                            <th>Tipe</th>
                             <th>Tanggal Perolehan</th>
                         </tr>
                     </thead>
@@ -495,14 +496,17 @@
                     var row = document.createElement('tr');
                     var namaBarangCell = document.createElement('td');
                     var merkTipeCell = document.createElement('td');
+                    var TipeCell = document.createElement('td');
                     var tanggalPerolehanCell = document.createElement('td');
 
                     namaBarangCell.textContent = selectedBarang;
-                    merkTipeCell.textContent = detail['Merek/tipe'] || '-';
+                    merkTipeCell.textContent = detail['Merek'] || '-';
+                    TipeCell.textContent = detail['Tipe'] || '-';
                     tanggalPerolehanCell.textContent = detail['Tanggal Perolehan'] || '-';
 
                     row.appendChild(namaBarangCell);
                     row.appendChild(merkTipeCell);
+                    row.appendChild(TipeCell);
                     row.appendChild(tanggalPerolehanCell);
 
                     typeTableBody.appendChild(row);
