@@ -30,7 +30,7 @@
       transform: translateX(-50%);
       bottom: 0;
       width: 2px;
-      background-color: #d1d5db; /* Gray-300 */
+      background-color: #065f46; /* Gray-300 */
       animation: draw 2s ease-out forwards; /* Animate the line */
     }
 
@@ -63,7 +63,7 @@
       width: 1.5rem;
       height: 1.5rem;
       border-radius: 50%;
-      background-color: #4f46e5; /* Indigo-500 */
+      background-color: #10b981;
       border: 4px solid #fff;
       z-index: 10;
     }
@@ -77,14 +77,14 @@
     }
 
     .timeline time {
-      color: #4f46e5; /* Indigo-500 */
+      color: #065f46; /* Indigo-500 */
       font-weight: bold;
       font-size: 1.125rem;
     }
 
     .timeline .timeline-content {
       padding: 1.5rem;
-      background-color: #f9fafb; /* Gray-50 */
+      background-color: #d1fae5; /* Gray-50 */
       border-radius: 0.75rem;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       position: relative;
@@ -97,7 +97,7 @@
     }
 
     .timeline .timeline-content .location {
-      color: #6b7280; /* Gray-600 */
+      color: #000; /* Gray-600 */
       font-style: italic;
       font-size: 0.875rem;
     }
@@ -302,7 +302,7 @@
     </div>
   </div>
 
-  
+  @include('components/footer')
 </body>
-@include('components/footer')
+
 </html>
