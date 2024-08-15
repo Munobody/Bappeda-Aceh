@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAPPEDA Aceh Komputer</title>
+    <title>BAPPEDA Aceh Alat Besar</title>
     <link rel="icon" href="{{ asset('images/pancacita.png') }}" type="image/x-icon">
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
@@ -19,8 +19,8 @@
         height: 400px;
         /* Adjust height as needed */
         margin: 0 auto;
-        margin-top: 20px;
-        margin-bottom: 70px;
+        margin-top: 30px;
+        margin-bottom: 80px;
         /* Increased margin for spacing between charts */
         display: flex;
         flex-direction: column;
@@ -36,7 +36,7 @@
         height: 500px;
         /* Default height for other charts */
         margin: 0 auto;
-        margin-bottom: 70px;
+        margin-bottom: 80px;
         /* Increased margin for spacing between charts */
         display: flex;
         flex-direction: column;
@@ -151,16 +151,11 @@
 
 <body>
     @include('components/navbar')
+    
 
     <div class="container mx-auto py-16">
         <h2 class="text-2xl font-bold text-green-800 mb-4 text-center mt-12">BAPPEDA ACEH</h2>
-        <h2 class="text-2xl font-bold text-green-800 mb-4 text-center">Data Visualisasi Komputer</h2>
-
-        <!-- Kategori Chart -->
-        <div class="category-chart-container">
-            <h3 class="text-xl font-semibold mb-2">Distribusi Barang Berdasarkan Kategori</h3>
-            <canvas id="categoryChart"></canvas>
-        </div>
+        <h2 class="text-2xl font-bold text-green-800 mb-4 text-center">Data Visualisasi Alat Besar</h2>
 
 
         <!-- Sub Kategori Chart -->
@@ -238,55 +233,6 @@
             return inputPassword.trim() === correctPassword;
         }
 
-        // Render Kategori Chart
-        var categoryData = @json($categoryData); // Replace with actual data
-        var categoryLabels = Object.keys(categoryData);
-        var categoryValues = Object.values(categoryData);
-
-        var categoryCtx = document.getElementById('categoryChart').getContext('2d');
-        new Chart(categoryCtx, {
-            type: 'bar',
-            data: {
-                labels: categoryLabels,
-                datasets: [{
-                    label: 'Jumlah Barang per Kategori',
-                    data: categoryValues,
-                    backgroundColor: categoryLabels.map(() => getRandomColor()),
-                    borderColor: categoryLabels.map(() => getRandomColor()),
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top'
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                var label = context.label || '';
-                                var value = context.raw || 0;
-                                return label + ': ' + value;
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        stacked: false,
-                        // Adjust the bar width here
-                        categoryPercentage: 0.8, // Controls the percentage of space occupied by bars
-                        barPercentage: 0.9 // Controls the percentage of space occupied by each bar within the category
-                    },
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
 
         // Render Sub Kategori Chart
         var subCategoryLabels = Object.keys(subCategoryData);
@@ -316,13 +262,16 @@
                             label: function(context) {
                                 var label = context.label || '';
                                 var value = context.raw || 0;
-                                return label + ': ' + value;
+                                var total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                var percentage = ((value / total) * 100).toFixed(2);
+                                return `${label}: ${value} (${percentage}%)`;
                             }
                         }
                     }
                 }
             }
         });
+
 
         // Render Tanggal Perolehan Chart
         var dateLabels = Object.keys(dateDistributionData);
@@ -345,7 +294,6 @@
                 datasets: [{
                     label: 'Distribusi Perolehan Barang Berdasarkan Tahun',
                     data: uniqueMonthYears.map(monthYear => {
-                        // Aggregate data for each month-year
                         return dateValues.reduce((acc, value, index) => {
                             var date = new Date(dateLabels[index]);
                             var formattedMonthYear =
@@ -356,8 +304,8 @@
                             return acc;
                         }, 0);
                     }),
-                    borderColor: '#0000FF', // Blue color for the line
-                    backgroundColor: 'rgba(0, 0, 255, 0.2)', // Light blue background color
+                    borderColor: '#0000FF',
+                    backgroundColor: 'rgba(0, 0, 255, 0.2)',
                     borderWidth: 2,
                     fill: true
                 }]
@@ -371,7 +319,6 @@
                     tooltip: {
                         callbacks: {
                             label: function(context) {
-                                // Show detailed day and month-year information
                                 var originalLabel = dateLabels[context.dataIndex];
                                 var date = new Date(originalLabel);
                                 var day = date.getDate();
@@ -380,7 +327,9 @@
                                 });
                                 var year = date.getFullYear();
                                 var value = context.raw || 0;
-                                return `${day} ${month} ${year}: ${value}`;
+                                var total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                var percentage = ((value / total) * 100).toFixed(2);
+                                return `${day} ${month} ${year}: ${value} (${percentage}%)`;
                             }
                         }
                     }
@@ -389,13 +338,12 @@
                     x: {
                         ticks: {
                             callback: function(value, index, values) {
-                                // Show only month-year on x-axis
                                 var label = uniqueMonthYears[index];
                                 var [year, month] = label.split('-');
                                 var monthName = new Date(year, month - 1).toLocaleString(
-                                    'default', {
-                                        month: 'short'
-                                    });
+                                'default', {
+                                    month: 'short'
+                                });
                                 return `${monthName} ${year}`;
                             }
                         }
@@ -403,6 +351,7 @@
                 }
             }
         });
+
 
 
         // Render Nama Barang Chart

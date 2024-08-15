@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class KomputerController extends Controller
+class AlatStudioController extends Controller
 {
     public function index()
     {
-        $csvPath = storage_path('app/public/Komputer.csv');
+        $csvPath = storage_path('app/public/Alat-Studio-Komunikasi-dan-Pemancar.csv');
 
         if (!file_exists($csvPath)) {
             abort(404, "CSV file not found at $csvPath");
@@ -24,7 +24,7 @@ class KomputerController extends Controller
         $dateDistributionData = $this->processDateDistributionData($rows, $headers);
         $categoryData = $this->processCategoryData($rows, $headers); // New
 
-        return view('komputer', compact('processedData', 'distributionData', 'subCategoryData', 'dateDistributionData', 'categoryData'));
+        return view('alatstudio', compact('processedData', 'distributionData', 'subCategoryData', 'dateDistributionData', 'categoryData'));
     }
 
     private function processKomputerData($rows, $headers)

@@ -43,8 +43,8 @@ class DashboardController extends Controller
                 continue; // Skip this row
             }
 
-            if (!isset($item['kategori']) || !isset($item['merek']) || !isset($item['tipe']) || !isset($item['subkategori']) || !isset($item['namabarang'])) {
-                \Log::warning("'kategori', 'merek', 'tipe', 'subkategori', or 'namabarang' key not found in row: " . implode(',', $row));
+            if (!isset($item['kategori']) || !isset($item['merek']) || !isset($item['tipe']) || !isset($item['sub kategori']) || !isset($item['nama_barang'])) {
+                \Log::warning("'kategori', 'merek', 'tipe', 'sub kategori', or 'nama_barang' key not found in row: " . implode(',', $row));
                 continue; // Skip this row
             }
 
@@ -52,8 +52,8 @@ class DashboardController extends Controller
                 'kategori' => $item['kategori'],
                 'merek' => $item['merek'],
                 'tipe' => $item['tipe'],
-                'subkategori' => $item['subkategori'],
-                'namabarang' => $item['namabarang'],
+                'sub kategori' => $item['sub kategori'],
+                'nama_barang' => $item['nama_barang'],
             ];
         }
 
