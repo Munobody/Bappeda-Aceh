@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meeting Room page</title>
     <link rel="icon" href="{{ asset('images/pancacita.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     @vite('resources/css/app.css')
     <style>
         body {
@@ -92,8 +93,9 @@
 
         th, td {
             border: 1px solid #cbd5e1; /* Border color for cells */
-            padding: 8px;
+            padding: 0.5rem 1rem; /* Adjusted padding with rem */
             text-align: left;
+            font-size: 1rem; /* Adjusted font size */
         }
 
         th {
@@ -120,6 +122,10 @@
 
         /* Container for heading and button */
         .heading-button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* Ensure content wraps on smaller screens */
             margin-bottom: 1.5rem; /* Adjust spacing as needed */
         }
 
@@ -131,8 +137,6 @@
         }
 
         .button-container {
-            display: flex;
-            justify-content: flex-start; /* Align button to the left */
             margin-top: 1rem; /* Adjust spacing as needed */
         }
 
@@ -145,8 +149,6 @@
             text-decoration: none;
             transition: background-color 0.3s ease;
         }
-
-        
 
         .button-container a:hover {
             background-color: #059669; /* Darker green on hover */
@@ -172,8 +174,9 @@
     </style>
 </head>
 <body>
-    @include('/components/navbar') 
-    <div id="content" class="container mx-auto pt-12 flex flex-col lg:flex-row items-center justify-center hero-section px-12">
+    @include('/components/navbar')
+
+    <div id="content" class="container mx-auto py-12 flex flex-col lg:flex-row items-center justify-center hero-section px-12 mt-20 mb-10">
         <div class="lg:px-12 lg:pt-12">
             <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4 animate-slideInLeft">Halaman Admin Ruang Rapat</h1>
             <h1 class="text-2xl md:text-4xl font-bold text-green-800 animate-slideInLeft text-center">BAPPEDA ACEH</h1>
@@ -181,8 +184,8 @@
     </div>
 
     <!-- Table Section -->
-    <div class="container mx-auto py-6 px-16 mt-[-12rem] ">
-        <div class="heading-button-container flex justify-between">
+    <div class="container mx-auto py-6 px-16 mt-[-12rem] mt-5">
+        <div class="heading-button-container">
             <div class="button-container">
                 <a href="/Room">+ Ruang Rapat</a>
             </div>
@@ -210,29 +213,25 @@
                 $index=1;
                 @endphp
 
-                
-
                     @foreach ($ruang_rapat as $data)
                     <tr>
-                        <td class="py-2 px-4 border-b">{{ $index++}}</td>
-                        <td class="py-2 px-4 border-b">{{$data->nama}}</td>
-                        <td class="py-2 px-4 border-b">{{$data->lokasi}}</td>
-                        <td class="py-2 px-4 border-b">{!! nl2br($data->fasilitas) !!} </td>
-                        <td class="py-2 px-4 border-b">{{$data->kapasitas}} orang</td>
+                        <td class="py-2 px-4 border-b">{{ $index++ }}</td>
+                        <td class="py-2 px-4 border-b">{{ $data->nama }}</td>
+                        <td class="py-2 px-4 border-b">{{ $data->lokasi }}</td>
+                        <td class="py-2 px-4 border-b">{!! nl2br($data->fasilitas) !!}</td>
+                        <td class="py-2 px-4 border-b">{{ $data->kapasitas }} orang</td>
                         <td class="py-2 px-4 border-b">
                             <ul class="bullet-list">
-                                <li>Operator : {{$data->operator}}</li>
-                                <li>Cs : {{$data->cs}}</li>
+                                <li>Operator: {{ $data->operator }}</li>
+                                <li>CS: {{ $data->cs }}</li>
                             </ul>
                         </td>
                         <td class="py-2 px-4 border-b">
-                            <a href="/Edit?id={{$data->id}}" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
+                            <a href="/Edit?id={{ $data->id }}" class="edit-button py-2 px-4 rounded-lg inline-block text-center">Edit</a>
                             <form action="{{ route('room.delete') }}" method="POST" style="display: inline;">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $data->id }}">
-                                <button type="submit" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">
-                                    Delete
-                                </button>
+                                <button type="submit" class="delete-button py-2 px-4 rounded-lg inline-block text-center ml-2">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -244,6 +243,5 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     @vite('resources/js/app.js')
     @include('components/footer')
-
 </body>
 </html>

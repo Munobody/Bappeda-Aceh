@@ -152,7 +152,7 @@
 <body>
     @include('components/navbar')
 
-    <div class="container mx-auto py-16">
+    <div class="container mx-auto py-16 justify-center">
         <h2 class="text-2xl font-bold text-green-800 mb-4 text-center mt-12">BAPPEDA ACEH</h2>
         <h2 class="text-2xl font-bold text-green-800 mb-4 text-center">Data Visualisasi Komputer</h2>
 

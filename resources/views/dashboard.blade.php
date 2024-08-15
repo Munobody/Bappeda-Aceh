@@ -43,14 +43,15 @@
         }
 
         .type-table th, .type-table td {
+            text-align: center;
             border: 1px solid #ddd;
             padding: 8px;
             transition: background-color 0.3s, box-shadow 0.3s;
         }
 
         .type-table th {
-            background-color: #f2f2f2;
-            text-align: left;
+            background-color: #34d399;
+            text-align: center;
             box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
         }
 
@@ -59,8 +60,8 @@
         }
 
         .type-table tr:hover {
-            background-color: rgba(0, 123, 255, 0.1);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            background-color: #d1fae5;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow on hover */
         }
 
         .type-table-container {
@@ -75,7 +76,7 @@
         }
 
         .btn-back {
-            background-color: #007bff;
+            background-color: #0f766e;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -141,7 +142,7 @@
         <!-- Data Table -->
         <div class="mt-12">
     <div class="type-table-container bg-green-400 rounded-lg overflow-x-auto" id="typeTableContainer">
-        <table class="type-table bg-green-500 text-black w-full border-collapse rounded-lg shadow-md transition-transform duration-500 ease-in-out transform hover:scale-105" id="typeTable">
+        <table class="type-table text-black w-full border-collapse rounded-lg shadow-md transition-transform duration-500 ease-in-out transform hover:scale-105" id="typeTable">
             <thead class="bg-green-600">
                 <tr class="bg-green-800">
                     <th class="p-3 border-b">Kategori</th>
