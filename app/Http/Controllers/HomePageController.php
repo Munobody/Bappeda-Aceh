@@ -1,12 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
-
-
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use Carbon\Carbon;
-
 class HomePageController extends Controller
 {
     public function showhomepage()
@@ -16,7 +12,7 @@ class HomePageController extends Controller
         ->whereDate('jadwal_mulai', '>=', Carbon::today())
         ->orderBy('jadwal_mulai', 'asc')
         ->get();
-    
+
     // Format tanggal jadwal_mulai dan jadwal_akhir untuk setiap booking
     foreach ($data as $booking) {
         $jadwalMulai = Carbon::parse($booking->jadwal_mulai)->locale("id");

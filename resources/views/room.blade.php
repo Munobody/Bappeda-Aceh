@@ -13,7 +13,6 @@
             animation: waveBackgroundAnimation 10s ease infinite;
             transition: background 0.5s, color 0.5s;
         }
-
         @keyframes waveBackgroundAnimation {
             0% {
                 background-position: 0% 50%;
@@ -25,7 +24,6 @@
                 background-position: 0% 50%;
             }
         }
-
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -34,7 +32,6 @@
                 opacity: 1;
             }
         }
-
         @keyframes slideInLeft {
             from {
                 transform: translateX(-100%);
@@ -45,7 +42,6 @@
                 opacity: 1;
             }
         }
-
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
@@ -57,28 +53,22 @@
                 transform: translateY(-15px);
             }
         }
-
         .animate-fadeIn {
             animation: fadeIn 1s ease-out;
         }
-
         .animate-slideInLeft {
             animation: slideInLeft 1s ease-out;
         }
-
         .animate-slideInLeft.delay-500 {
             animation-delay: 0.5s;
         }
-
         .animate-bounce {
             animation: bounce 2s infinite;
         }
-
         [data-theme="dark"] {
             background: #121212;
             color: #ffffff;
         }
-
         .form-container {
             max-width: 600px;
             margin: auto;
@@ -87,21 +77,18 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
         .form-container h1 {
             margin-bottom: 1rem;
             font-size: 1.5rem;
             color: #374151;
             text-align: center;
         }
-
         .form-container label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: bold;
             color: #374151;
         }
-
         .form-container input, .form-container textarea {
             width: 100%;
             padding: 0.75rem;
@@ -109,7 +96,6 @@
             border: 1px solid #d1d5db;
             border-radius: 0.375rem;
         }
-
         .form-container button {
             width: 100%;
             padding: 0.75rem;
@@ -121,7 +107,6 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
         .form-container button:hover {
             background-color: #059669;
         }
@@ -129,7 +114,6 @@
 </head>
 <body>
     @include('/components/navbar')
-
     <main class="container mx-auto p-4 mt-20 mb-8">
         <div class="bg-white p-6 rounded-lg shadow-lg">
             <h1 class="text-2xl font-semibold mb-4">Tambah Ruang Rapat Baru</h1>
@@ -163,7 +147,6 @@
             </form>
         </div>
     </main>
-
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     @vite('resources/js/app.js')
     @include('components/footer')

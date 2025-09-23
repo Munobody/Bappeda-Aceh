@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Models\Booking;
 use Carbon\Carbon;
@@ -40,7 +39,7 @@ class ViewRequestPageController extends Controller
         // Format waktu
         $jamMulai = $jadwalMulai->format('H:i');
         $jamAkhir = $jadwalAkhir->format('H:i');
-        
+
         // Format tanggal
         if ($jadwalMulai->isSameDay($jadwalAkhir)) {
             // Jika tanggal mulai dan akhir sama
@@ -65,15 +64,12 @@ class ViewRequestPageController extends Controller
     public function downloadfile(Request $request)
 {
     $filename = $request->get('file');
-
     // Menggunakan path relatif untuk public storage
     $path = 'public/' . $filename;
-
     // Cek apakah file ada
     if (Storage::exists($path)) {
         return Storage::download($path);
     }
-
     // Jika file tidak ditemukan, return response error
     return abort(404, 'File not found');
 }

@@ -26,7 +26,7 @@ class AdminPageController extends Controller
             // dd("berhasil");
             return redirect()->intended('/MeetingRoom'); // Ganti dengan route dashboard admin Anda
         }
-        
+
         // Jika login gagal
         // dd("tidak berhasil");
         return redirect()->back()->withErrors([
@@ -39,7 +39,7 @@ class AdminPageController extends Controller
         Auth::logout();
         return redirect('/home');
     }
-    
+
     public function updateAdmin(Request $request){
         $current = User::where('username', Auth::user()->username)->first();
         $current->username = $request->username;

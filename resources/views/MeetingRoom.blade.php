@@ -178,13 +178,13 @@
 
     <div id="content" class="container mx-auto py-12 flex flex-col lg:flex-row items-center justify-center hero-section px-12 mt-20 mb-10">
         <div class="lg:px-12 lg:pt-12">
-            <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4 animate-slideInLeft">Halaman Admin Ruang Rapat</h1>
-            <h1 class="text-2xl md:text-4xl font-bold text-green-800 animate-slideInLeft text-center">BAPPEDA ACEH</h1>
+            <!-- <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4 animate-slideInLeft">Halaman Admin Ruang Rapat</h1>
+            <h1 class="text-2xl md:text-4xl font-bold text-green-800 animate-slideInLeft text-center">BAPPEDA ACEH</h1> -->
         </div>
     </div>
 
     <!-- Table Section -->
-    <div class="container mx-auto py-6 px-16 mt-[-12rem] mt-5">
+    <div class="container mx-auto py-6 px-16 mt-[-12rem] ">
         <div class="heading-button-container">
             <div class="button-container">
                 <a href="/Room">+ Ruang Rapat</a>

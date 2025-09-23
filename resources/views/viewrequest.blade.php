@@ -13,7 +13,6 @@
             margin: 0;
             padding: 0;
         }
-
         body {
             display: flex;
             flex-direction: column;
@@ -22,7 +21,6 @@
             background-size: 400% 400%;
             animation: waveBackgroundAnimation 10s ease infinite;
         }
-
         @keyframes waveBackgroundAnimation {
             0% {
                 background-position: 0% 50%;
@@ -34,13 +32,11 @@
                 background-position: 0% 50%;
             }
         }
-
         .main-content {
             flex: 1;
             padding: 2rem;
             margin-top: 80px; /* Jarak agar tidak tertutup navbar */
         }
-
         .request-container {
             max-width: 1200px;
             margin: auto;
@@ -49,26 +45,21 @@
             border-radius: 0.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
         .request-table {
             width: 100%;
             border-collapse: collapse;
         }
-
         .request-table th, .request-table td {
             border: 1px solid #e5e7eb;
             padding: 1rem;
             text-align: left;
         }
-
         .request-table th {
             background-color: #f3f4f6;
         }
-
         .request-table tbody tr:nth-child(even) {
             background-color: #f9fafb;
         }
-
         .status-btn {
             padding: 0.5rem 1rem;
             border: none;
@@ -78,23 +69,18 @@
             font-weight: bold;
             margin: 0.25rem; /* Spasi antara tombol */
         }
-
         .approve {
             background-color: #10b981;
         }
-
         .reject {
             background-color: #ef4444;
         }
-
         .approve:hover {
             background-color: #059669;
         }
-
         .reject:hover {
             background-color: #dc2626;
         }
-
         /* footer {
             background: #f3f4f6;
             padding: 1rem;
@@ -145,7 +131,6 @@
                      @php
                      $index=1;
                      @endphp
-
                     @foreach ($booking as $data)
                     <tr>
         <td class="py-3 px-4">{{ $index++ }}</td>
@@ -214,7 +199,6 @@
         .catch(error => console.error('Error:', error));
     }
 </script>
-
     @vite('resources/js/app.js')
 </body>
 </html>

@@ -13,7 +13,6 @@
             animation: waveBackgroundAnimation 10s ease infinite;
             transition: background 0.5s, color 0.5s;
         }
-
         @keyframes waveBackgroundAnimation {
             0% {
                 background-position: 0% 50%;
@@ -25,7 +24,6 @@
                 background-position: 0% 50%;
             }
         }
-
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -34,7 +32,6 @@
                 opacity: 1;
             }
         }
-
         @keyframes slideInLeft {
             from {
                 transform: translateX(-100%);
@@ -45,7 +42,6 @@
                 opacity: 1;
             }
         }
-
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
@@ -57,7 +53,6 @@
                 transform: translateY(-15px);
             }
         }
-
         @keyframes checkmark {
             0% {
                 stroke-dashoffset: 50px;
@@ -66,7 +61,6 @@
                 stroke-dashoffset: 0;
             }
         }
-
         @keyframes modalFadeIn {
             0% {
                 transform: scale(0.8);
@@ -77,23 +71,18 @@
                 opacity: 1;
             }
         }
-
         .animate-fadeIn {
             animation: fadeIn 1s ease-out;
         }
-
         .animate-slideInLeft {
             animation: slideInLeft 1s ease-out;
         }
-
         .animate-slideInLeft.delay-500 {
             animation-delay: 0.5s;
         }
-
         .animate-bounce {
             animation: bounce 2s infinite;
         }
-
         .checkmark {
             width: 200px;
             height: 200px;
@@ -107,58 +96,47 @@
             stroke-linejoin: round;
             animation: checkmark 0.5s ease-in-out forwards;
         }
-
         [data-theme="dark"] {
             background: #121212;
             color: #ffffff;
         }
-
         .scrollable-table {
             max-height: 400px;
             overflow-y: auto;
         }
-
         table {
             border-collapse: collapse;
             width: 100%;
         }
-
         th, td {
             border: 1px solid #cbd5e1;
             padding: 8px;
             text-align: left;
         }
-
         th {
             background-color: #f1f5f9;
             color: #334155;
             font-weight: bold;
         }
-
         tbody tr:nth-child(even) {
             background-color: #f9fafb;
         }
-
         caption {
             padding: 8px;
             font-weight: bold;
             color: #334155;
         }
-
         .bullet-list {
             list-style-type: disc;
             padding-left: 1.5rem;
             margin: 0;
         }
-
         .datepicker {
             position: relative;
         }
-
         .datepicker input {
             cursor: pointer;
         }
-
         .datepicker .datepicker-calendar {
             position: absolute;
             top: 100%;
@@ -169,7 +147,6 @@
             border-radius: 0.5rem;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-
         .modal-bg {
             position: fixed;
             top: 0;
@@ -182,7 +159,6 @@
             align-items: center;
             z-index: 50;
         }
-
         .modal-content {
             background-color: white;
             padding: 40px;
@@ -192,11 +168,9 @@
             transform: scale(0.8);
             animation: modalFadeIn 0.5s ease-out forwards;
         }
-
         .blurred {
             filter: blur(5px);
         }
-
          /* New CSS for centering the form */
          .centered-container {
             display: flex;
@@ -205,18 +179,15 @@
             min-height: calc(100vh - 4rem); /* Adjust height based on header/footer */
             padding: 1rem;
         }
-
         .form-container {
             max-width: 600px;
             width: 100%;
         }
-
         .waiting-list {
       max-width: 1200px;
       margin: 0 auto;
       padding: 2rem 0;
     }
-
     .waiting-list-table {
       width: 100%;
       border-collapse: collapse;
@@ -224,48 +195,38 @@
       overflow: hidden;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
     }
-
     .waiting-list-table th, .waiting-list-table td {
       padding: 1rem;
       text-align: left;
       border-bottom: 1px solid #d1d5db; /* Gray-300 */
     }
-
     .waiting-list-table th {
       background-color: #34d399; /* Green-400 */
       color: #fff;
     }
-
     .waiting-list-table tr:nth-child(even) {
       background-color: #d1fae5; /* Green-100 */
     }
-
     .waiting-list-table td {
       font-size: 0.875rem;
       color: #4b5563; /* Gray-700 */
     }
-
     .waiting-list-table .department {
       font-weight: bold;
       color: #2d3748; /* Gray-800 */
     }
-
     .waiting-list-table .date {
       color: #4f46e5; /* Indigo-500 */
     }
-
     .waiting-list-table .time {
       color: #22c55e; /* Green-500 */
     }
-
-
     </style>
 </head>
 <body>
     @include('/components/navbar')
             
     @if (session('success'))
-
     <div id="popup-modal" tabindex="-1" class="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-50">
     <div class="relative p-4 w-full max-w-md bg-white rounded-lg shadow-md">
         <button type="button" class="absolute top-3 right-3 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center" data-modal-hide="popup-modal">
@@ -284,9 +245,7 @@
     </div>
 </div>
 @endif
-
     
-
 <div id="content" class="container mx-auto py-16 flex flex-col lg:flex-row items-center justify-center hero-section">
         <div class=" py-4 lg:px-12">
             <h1 class="text-3xl md:text-5xl font-bold text-green-800 mb-4 animate-slideInLeft">Form Peminjaman Ruang Rapat</h1>
@@ -299,7 +258,6 @@
         <form id="bookingForm" action="/submit-room-booking" method="POST" enctype="multipart/form-data">
             @csrf
             <!-- Nama Bidang atau Bagian -->
-
             <input type="hidden" id="ruang_rapat_id" name="ruang_rapat_id" value="{{ request()->get('id')}}" required>
             <div class="mb-4">
                 <label for="nama-bidang" class="block text-gray-700 font-bold mb-2">Nama Penanggung Jawab</label>
@@ -340,7 +298,6 @@
             </div>
         </form>
     </div>
-
     <div class="waiting-list container mx-auto py-12 px-32">
     <h2 class="text-2xl md:text-4xl font-bold mb-8 text-green-800 text-center">Waiting List</h2>
     <table class="waiting-list-table mx-auto">
@@ -356,7 +313,6 @@
                 @php
                 $index = 1;
                 @endphp
-
                 @foreach ($booking as $data)
                 <tr class="border-b">
                     <td class="py-3 px-4">{{ $index++ }}</td>
@@ -369,40 +325,31 @@
         </table>
     </div>
 </div>
-
-
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         const disabledDates = @json($disabledDates);
-
         const tanggalMulaiInput = document.getElementById('tanggal-mulai');
         tanggalMulaiInput.addEventListener('change', function () {
             const selectedDate = new Date(this.value);
             const formattedDate = selectedDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
-
             // Check if the selected date is in the disabled dates
             if (disabledDates.includes(formattedDate)) {
                 alert('Tanggal ini sudah digunakan.');
                 this.value = ''; // Clear the input
             }
         });
-
         // Disable all dates in the disabledDates array
         tanggalMulaiInput.setAttribute('min', new Date().toISOString().split('T')[0]); // Set minimum date to today
-
-
         const tanggalAkhirInput = document.getElementById('tanggal-akhir');
         tanggalAkhirInput.addEventListener('change', function () {
             const selectedDate = new Date(this.value);
             const formattedDate = selectedDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
-
             // Check if the selected date is in the disabled dates
             if (disabledDates.includes(formattedDate)) {
                 alert('Tanggal ini sudah digunakan.');
                 this.value = ''; // Clear the input
             }
         });
-
         // Disable all dates in the disabledDates array
         tanggalAkhirInput.setAttribute('min', new Date().toISOString().split('T')[0]); // Set minimum date to today
     });
@@ -413,17 +360,12 @@
     closeModalButton.addEventListener('click', function () {
         modal.classList.add('hidden');
     });
-
     // Jika ingin menampilkan modal, hapus kelas 'hidden'
     function showModal() {
         modal.classList.remove('hidden');
     }
 });
-
 </script>
-
 </body>
-
 @include('components/footer')
-
 </html>

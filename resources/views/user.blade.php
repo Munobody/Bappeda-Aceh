@@ -11,8 +11,8 @@
     <style>
         .chart-container {
             width: 100%;
-            max-width: 800px;
-            height: 600px;
+            max-width: 1200px;
+            height: 800px;
             margin: 0 auto;
             margin-bottom: 40px;
             display: flex;
@@ -310,7 +310,7 @@
         var totalItems = totals.reduce(function(a, b) { return a + b; }, 0);
 
         var myChart = new Chart(ctx, {
-            type: 'doughnut',
+            type: 'bar',
             data: {
                 labels: labels,
                 datasets: [{

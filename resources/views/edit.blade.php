@@ -11,7 +11,6 @@
             background: linear-gradient(90deg, #fff 0%, #fff 100%);
             background-size: 400% 400%;
             animation: waveBackgroundAnimation 10s ease infinite;
-            transition: background 0.5s, color 0.5s;
         }
 
         @keyframes waveBackgroundAnimation {
@@ -144,11 +143,11 @@
             <input type="hidden" id="id" name="id" value="{{ request()->get('id')}}" required>
                 <div class="mb-4">
                     <label for="room_name" class="block text-gray-700">Nama Ruang Rapat</label>
-                    <input type="text" value="{{$ruang_rapat->nama}}" id="room_name" name="room_name" class="w-full p-2 border border-gray-300 rounded" required>
+                    <input autocomplete="off" type="text" value="{{$ruang_rapat->nama}}" id="room_name" name="room_name" class="w-full p-2 border border-gray-300 rounded" required>
                 </div>
                 <div class="mb-4">
                     <label for="location" class="block text-gray-700">Lokasi</label>
-                    <input type="text" value="{{$ruang_rapat->lokasi}}"id="location" name="location" class="w-full p-2 border border-gray-300 rounded" required>
+                    <input autocomplete="off" type="text" value="{{$ruang_rapat->lokasi}}"id="location" name="location" class="w-full p-2 border border-gray-300 rounded" required>
                 </div>
                 <div class="mb-4">
                     <label for="facilities" class="block text-gray-700">Fasilitas</label>
@@ -160,11 +159,11 @@
                 </div class=".edit-button">
                 <div class="mb-4">
                     <label for="operator" class="block text-gray-700">operator</label>
-                    <input type="text" value="{{$ruang_rapat->operator}}" id="operator" name="operator" class="w-full p-2 border border-gray-300 rounded" required>
+                    <input autocomplete="off" type="text" value="{{$ruang_rapat->operator}}" id="operator" name="operator" class="w-full p-2 border border-gray-300 rounded" required>
                 </div class=".edit-button">
                 <div class="mb-4">
                     <label for="cs" class="block text-gray-700">CS</label>
-                    <input type="text" value="{{$ruang_rapat->cs}}" id="cs" name="cs" class="w-full p-2 border border-gray-300 rounded" required>
+                    <input autocomplete="off" type="text" value="{{$ruang_rapat->cs}}" id="cs" name="cs" class="w-full p-2 border border-gray-300 rounded" required>
                 </div class=".edit-button">
                 <button type="submit" class="bg-green-600 text-white p-2 rounded hover:bg-green-600">Submit</button>
             </form>
